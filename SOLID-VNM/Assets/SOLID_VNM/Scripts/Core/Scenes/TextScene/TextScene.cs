@@ -14,7 +14,7 @@ using SOLID_VNM.Displays.ImageDisplay;
 
 namespace SOLID_VNM.GameBehaviour.Scenes.TextScene
 {
-    public class TextSceneManager : IScenePlayer, INextHandler
+    public class TextScenePlayer : IScenePlayer, INextHandler
     {
         readonly private GameLoop _gameLoop;
 
@@ -29,7 +29,7 @@ namespace SOLID_VNM.GameBehaviour.Scenes.TextScene
 
         public TextSceneDefinition TextSceneDefinition { get { return _textSceneDefinition; } set { _textSceneDefinition = value; } }
 
-        public TextSceneManager(
+        public TextScenePlayer(
             TextDisplayController textDisplayController,
             BackgroundDisplayController backgroundDisplayController,
             ImageDisplayController imageDisplayController,
@@ -48,7 +48,7 @@ namespace SOLID_VNM.GameBehaviour.Scenes.TextScene
 
         void IScenePlayer.Play()
         {
-            _nextEventRaiser.NextHandler = this;
+            _nextEventRaiser.Push(this);
 
             foreach (var display in _displays)
             {
@@ -58,12 +58,13 @@ namespace SOLID_VNM.GameBehaviour.Scenes.TextScene
 
         void IScenePlayer.End()
         {
-            _nextEventRaiser.NextHandler = null;
-
             foreach (var display in _displays)
             {
                 display.Hide();
             }
+
+            _nextEventRaiser.Pop();
+            TextSceneDefinition = null;
         }
 
         void INextHandler.OnNext()

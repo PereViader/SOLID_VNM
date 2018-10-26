@@ -24,7 +24,7 @@ namespace SOLID_VNM.GameBehaviour.Installers
 
 
             //TextScene
-            Container.Bind<TextSceneManager>().AsSingle();
+            Container.Bind<TextScenePlayer>().AsSingle();
             Container.BindFactory<SceneContentDialogue, ISceneDefinitionFacade, TextSceneDefinition, TextSceneDefinition.Factory>();
             Container.BindFactory<TextNode, TextSceneDefinition.Facade, TextSceneDefinition.Facade.Factory>();
 

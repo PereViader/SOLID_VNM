@@ -19,13 +19,13 @@ namespace SOLID_VNM.GameBehaviour
 
     public class ScenePlayerDiscriminator : ISceneDefinitionVisitor
     {
-        readonly private LazyInject<TextSceneManager> _textSceneManager;
+        readonly private LazyInject<TextScenePlayer> _textScenePlayer;
 
         private IScenePlayer _scenePlayer;
 
-        public ScenePlayerDiscriminator(LazyInject<TextSceneManager> textSceneManager)
+        public ScenePlayerDiscriminator(LazyInject<TextScenePlayer> textSceneManager)
         {
-            _textSceneManager = textSceneManager;
+            _textScenePlayer = textSceneManager;
         }
 
         public IScenePlayer Choose(ISceneDefinition sceneDefinition)
@@ -36,8 +36,8 @@ namespace SOLID_VNM.GameBehaviour
 
         void ISceneDefinitionVisitor.Accept(TextSceneDefinition textSceneDefinition)
         {
-            _textSceneManager.Value.TextSceneDefinition = textSceneDefinition;
-            _scenePlayer = _textSceneManager.Value;
+            _textScenePlayer.Value.TextSceneDefinition = textSceneDefinition;
+            _scenePlayer = _textScenePlayer.Value;
         }
     }
 }
