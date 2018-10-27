@@ -6,11 +6,11 @@ using Zenject;
 
 namespace SOLID_VNM.InputManagement
 {
-    public class NextEventRaiser : ITickable
+    public class NextEventRaiser : MonoBehaviour
     {
         private Stack<INextHandler> _nextHandlers = new Stack<INextHandler>();
 
-        public INextHandler CurrentNextHandler { get { return _nextHandlers.Peek(); } }
+        public INextHandler CurrentNextHandler { get { return _nextHandlers.Count > 0 ? _nextHandlers.Peek() : null; } }
 
         public void Push(INextHandler nextHandler)
         {
@@ -22,11 +22,11 @@ namespace SOLID_VNM.InputManagement
             _nextHandlers.Pop();
         }
 
-        public void Tick()
+        private void Update()
         {
-            if (Input.anyKeyDown && CurrentNextHandler != null)
+            if (Input.anyKeyDown && _nextHandlers.Count > 0)
             {
-                CurrentNextHandler.OnNext();
+                _nextHandlers.Peek().OnNext();
             }
         }
     }

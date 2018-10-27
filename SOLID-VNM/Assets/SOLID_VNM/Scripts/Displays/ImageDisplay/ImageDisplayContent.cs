@@ -5,6 +5,8 @@ using UnityEngine;
 using Zenject;
 
 using SOLID_VNM.Actors;
+using SOLID_VNM.Core.Scenes.TextScene;
+using SOLID_VNM.Core.Scenes.ChoiceScene;
 
 namespace SOLID_VNM.Displays.ImageDisplay
 {
@@ -66,6 +68,11 @@ namespace SOLID_VNM.Displays.ImageDisplay
         public void Visit(SceneContentDialogue sceneContentDialogue)
         {
             _imageDisplayContent = Create(sceneContentDialogue);
+        }
+
+        public void Visit(SceneContentChoice sceneContentChoice)
+        {
+            _imageDisplayContent = null;
         }
     }
 

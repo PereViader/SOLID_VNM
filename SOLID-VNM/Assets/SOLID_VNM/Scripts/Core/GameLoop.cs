@@ -5,7 +5,7 @@ using UnityEngine;
 using SOLID_VNM;
 using SOLID_VNM.Dialogue;
 
-namespace SOLID_VNM.GameBehaviour
+namespace SOLID_VNM.Core
 {
     public class GameLoop
     {

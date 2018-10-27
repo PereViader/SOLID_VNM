@@ -3,11 +3,12 @@ using UnityEngine;
 using Zenject;
 
 using SOLID_VNM.Dialogue;
-using SOLID_VNM.GameBehaviour.Scenes;
-using SOLID_VNM.GameBehaviour.Scenes.TextScene;
+using SOLID_VNM.Core.Scenes;
+using SOLID_VNM.Core.Scenes.TextScene;
 using SOLID_VNM.InputManagement;
+using SOLID_VNM.Core.Scenes.ChoiceScene;
 
-namespace SOLID_VNM.GameBehaviour.Installers
+namespace SOLID_VNM.Core.Installers
 {
     public class GameBehaviourInstaller : MonoInstaller<GameBehaviourInstaller>
     {
@@ -28,8 +29,10 @@ namespace SOLID_VNM.GameBehaviour.Installers
             Container.BindFactory<SceneContentDialogue, ISceneDefinitionFacade, TextSceneDefinition, TextSceneDefinition.Factory>();
             Container.BindFactory<TextNode, TextSceneDefinition.Facade, TextSceneDefinition.Facade.Factory>();
 
-            //Inputs
-            Container.BindInterfacesAndSelfTo<NextEventRaiser>().AsSingle();
+            //TextScene
+            Container.Bind<ChoiceScenePlayer>().AsSingle();
+            Container.BindFactory<SceneContentChoice, ISceneDefinitionFacade[], ChoiceSceneDefinition, ChoiceSceneDefinition.Factory>();
+            Container.BindFactory<ChoiceNode, ChoiceSceneDefinition.Facade, ChoiceSceneDefinition.Facade.Factory>();
         }
     }
 }

@@ -1,7 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using ModestTree;
+
 using UnityEngine;
+using ModestTree;
+
+using SOLID_VNM.Core.Scenes.TextScene;
+using SOLID_VNM.Core.Scenes.ChoiceScene;
 
 namespace SOLID_VNM.Displays.BackgroundDisplay
 {
@@ -23,14 +27,14 @@ namespace SOLID_VNM.Displays.BackgroundDisplay
             return _backgroundDisplayContent;
         }
 
-        private BackgroundDisplayContent Extract(SceneContentDialogue sceneContentDialogue)
-        {
-            return _factory.Create(sceneContentDialogue.background);
-        }
-
         public void Visit(SceneContentDialogue sceneContentDialogue)
         {
-            _backgroundDisplayContent = Extract(sceneContentDialogue);
+            _backgroundDisplayContent = _factory.Create(sceneContentDialogue.background);
+        }
+
+        public void Visit(SceneContentChoice sceneContentChoice)
+        {
+            _backgroundDisplayContent = _factory.Create(sceneContentChoice.background);
         }
     }
 }

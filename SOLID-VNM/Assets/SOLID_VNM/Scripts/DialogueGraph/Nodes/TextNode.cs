@@ -1,5 +1,7 @@
 using XNode;
 
+using SOLID_VNM.Core.Scenes.TextScene;
+
 namespace SOLID_VNM.Dialogue
 {
     public class TextNode : DialogueNode

@@ -10,8 +10,9 @@ namespace SOLID_VNM.Displays.ChoiceDisplay
         readonly private ChoiceDisplayContentExtractor _choiceDisplayContentExtractor;
         readonly private ChoiceDisplayView _choiceDisplayView;
 
-        public ChoiceDisplayController(ChoiceDisplayView choiceDisplayView)
+        public ChoiceDisplayController(ChoiceDisplayContentExtractor choiceDisplayContentExtractor, ChoiceDisplayView choiceDisplayView)
         {
+            _choiceDisplayContentExtractor = choiceDisplayContentExtractor;
             _choiceDisplayView = choiceDisplayView;
         }
 

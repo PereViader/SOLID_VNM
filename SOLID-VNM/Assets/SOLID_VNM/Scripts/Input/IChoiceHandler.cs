@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputManager
+public interface IChoiceHandler
 {
-
-
+    void OnChoice(int choice);
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using SOLID_VNM.Dialogue;
-using SOLID_VNM.GameBehaviour;
+using SOLID_VNM.Core;
 using Zenject;
 
 public class DialogueTriggerer : MonoBehaviour

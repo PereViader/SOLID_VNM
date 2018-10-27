@@ -5,11 +5,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using SOLID_VNM;
-using SOLID_VNM.GameBehaviour.Scenes;
-using SOLID_VNM.GameBehaviour.Scenes.TextScene;
+using SOLID_VNM.Core.Scenes;
+using SOLID_VNM.Core.Scenes.TextScene;
 using Zenject;
+using SOLID_VNM.Core.Scenes.ChoiceScene;
 
-namespace SOLID_VNM.GameBehaviour
+namespace SOLID_VNM.Core
 {
     public interface IScenePlayer
     {
@@ -20,12 +21,14 @@ namespace SOLID_VNM.GameBehaviour
     public class ScenePlayerDiscriminator : ISceneDefinitionVisitor
     {
         readonly private LazyInject<TextScenePlayer> _textScenePlayer;
+        readonly private LazyInject<ChoiceScenePlayer> _choiceScenePlayer;
 
         private IScenePlayer _scenePlayer;
 
-        public ScenePlayerDiscriminator(LazyInject<TextScenePlayer> textSceneManager)
+        public ScenePlayerDiscriminator(LazyInject<TextScenePlayer> textSceneManager, LazyInject<ChoiceScenePlayer> choiceScenePlayer)
         {
             _textScenePlayer = textSceneManager;
+            _choiceScenePlayer = choiceScenePlayer;
         }
 
         public IScenePlayer Choose(ISceneDefinition sceneDefinition)
@@ -38,6 +41,12 @@ namespace SOLID_VNM.GameBehaviour
         {
             _textScenePlayer.Value.TextSceneDefinition = textSceneDefinition;
             _scenePlayer = _textScenePlayer.Value;
+        }
+
+        void ISceneDefinitionVisitor.Accept(ChoiceSceneDefinition choiceSceneDefinition)
+        {
+            _choiceScenePlayer.Value.ChoiceSceneDefinition = choiceSceneDefinition;
+            _scenePlayer = _choiceScenePlayer.Value;
         }
     }
 }

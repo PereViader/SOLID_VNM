@@ -7,7 +7,7 @@ public static class XNode_Extensions
 {
     public static T GetOutputConnection<T>(this Node node, string name) where T : Node
     {
-        NodePort nodePort = node.GetPort("next");
+        NodePort nodePort = node.GetPort(name);
         if (nodePort == null)
         {
             Debug.LogWarning("Requested NodePort connection is null");
@@ -28,5 +28,22 @@ public static class XNode_Extensions
         {
             return nodePort.Connection.node as T;
         }
+    }
+
+    public static T[] GetOutputConnections<T>(this Node node, string name) where T : Node
+    {
+        NodePort nodePort = node.GetPort(name);
+        if (nodePort == null)
+        {
+            Debug.LogWarning("Requested NodePort connection is null");
+            return null;
+        }
+
+        T[] nodes = new T[nodePort.ConnectionCount];
+        for (int i = 0; i < nodePort.ConnectionCount; i++)
+        {
+            nodes[i] = nodePort.GetConnection(i).node as T;
+        }
+        return nodes;
     }
 }

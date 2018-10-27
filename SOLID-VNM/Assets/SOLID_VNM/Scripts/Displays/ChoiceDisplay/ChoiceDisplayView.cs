@@ -14,6 +14,9 @@ namespace SOLID_VNM.Displays.ChoiceDisplay
         [SerializeField]
         private ChoiceDisplayButtonController[] _choiceButtonControllers;
 
+        [SerializeField]
+        private GameObject _choicePanel;
+
         public void Initialize()
         {
             Hide();
@@ -21,7 +24,7 @@ namespace SOLID_VNM.Displays.ChoiceDisplay
 
         public void Hide()
         {
-            gameObject.SetActive(false);
+            _choicePanel.SetActive(false);
         }
 
         public void Display(ChoiceDisplayContent choiceDisplayContent)
@@ -33,6 +36,7 @@ namespace SOLID_VNM.Displays.ChoiceDisplay
             {
                 _choiceButtonControllers[i].SetChoice(choiceDisplayContent.Choices[i]);
             }
+            _choicePanel.SetActive(true);
         }
     }
 }

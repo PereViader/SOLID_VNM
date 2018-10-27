@@ -4,6 +4,8 @@ using Zenject;
 using ModestTree;
 
 using SOLID_VNM.Actors;
+using SOLID_VNM.Core.Scenes.TextScene;
+using SOLID_VNM.Core.Scenes.ChoiceScene;
 
 namespace SOLID_VNM.Displays.TextDisplay
 {
@@ -64,6 +66,11 @@ namespace SOLID_VNM.Displays.TextDisplay
         public void Visit(SceneContentDialogue sceneContentDialogue)
         {
             _textDisplayContent = Create(sceneContentDialogue);
+        }
+
+        public void Visit(SceneContentChoice sceneContentChoice)
+        {
+            _textDisplayContent = null;
         }
     }
 }

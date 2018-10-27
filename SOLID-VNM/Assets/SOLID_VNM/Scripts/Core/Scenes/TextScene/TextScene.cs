@@ -12,7 +12,7 @@ using SOLID_VNM.Displays.TextDisplay;
 using SOLID_VNM.Displays.BackgroundDisplay;
 using SOLID_VNM.Displays.ImageDisplay;
 
-namespace SOLID_VNM.GameBehaviour.Scenes.TextScene
+namespace SOLID_VNM.Core.Scenes.TextScene
 {
     public class TextScenePlayer : IScenePlayer, INextHandler
     {
@@ -48,6 +48,7 @@ namespace SOLID_VNM.GameBehaviour.Scenes.TextScene
 
         void IScenePlayer.Play()
         {
+            _nextEventRaiser.enabled = true;
             _nextEventRaiser.Push(this);
 
             foreach (var display in _displays)
@@ -64,6 +65,7 @@ namespace SOLID_VNM.GameBehaviour.Scenes.TextScene
             }
 
             _nextEventRaiser.Pop();
+            _nextEventRaiser.enabled = false;
             TextSceneDefinition = null;
         }
 
@@ -130,6 +132,20 @@ namespace SOLID_VNM.GameBehaviour.Scenes.TextScene
             {
                 return Create(textNode.sceneContentDialogue, _sceneDefinitionFacadeFactory.Create(textNode.Next));
             }
+        }
+    }
+
+    [System.Serializable]
+    public class SceneContentDialogue : SceneContent
+    {
+        public int actorId;
+        public string actorAction;
+        public string text;
+        public Sprite background;
+
+        public override void Accept(ISceneContentVisitor sceneContentVisitor)
+        {
+            sceneContentVisitor.Visit(this);
         }
     }
 }

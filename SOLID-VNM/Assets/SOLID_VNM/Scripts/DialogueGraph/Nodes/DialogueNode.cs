@@ -18,6 +18,7 @@ namespace SOLID_VNM.Dialogue
     public interface IDialogueNodeVisitor
     {
         void Accept(TextNode textNode);
+        void Accept(ChoiceNode choiceNode);
     }
 }
 
