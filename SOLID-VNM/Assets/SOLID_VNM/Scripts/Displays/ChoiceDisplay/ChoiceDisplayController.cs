@@ -5,14 +5,14 @@ using Zenject;
 
 namespace SOLID_VNM.Displays.ChoiceDisplay
 {
-    public class ChoiceDisplayController : IDisplay, IInitializable
+    public interface IChoiceDisplay : IDisplay<ChoiceDisplayContent> { }
+
+    public class ChoiceDisplayController : IChoiceDisplay, IInitializable
     {
-        readonly private ChoiceDisplayContentExtractor _choiceDisplayContentExtractor;
         readonly private ChoiceDisplayView _choiceDisplayView;
 
-        public ChoiceDisplayController(ChoiceDisplayContentExtractor choiceDisplayContentExtractor, ChoiceDisplayView choiceDisplayView)
+        public ChoiceDisplayController(ChoiceDisplayView choiceDisplayView)
         {
-            _choiceDisplayContentExtractor = choiceDisplayContentExtractor;
             _choiceDisplayView = choiceDisplayView;
         }
 
@@ -21,12 +21,9 @@ namespace SOLID_VNM.Displays.ChoiceDisplay
             Hide();
         }
 
-        public void Display(SceneContent sceneContent)
+        public void Display(ChoiceDisplayContent choiceDisplayContent)
         {
-            using (ChoiceDisplayContent choiceDisplayContent = _choiceDisplayContentExtractor.Extract(sceneContent))
-            {
-                _choiceDisplayView.Display(choiceDisplayContent);
-            }
+            _choiceDisplayView.Display(choiceDisplayContent);
         }
 
         public void Hide()

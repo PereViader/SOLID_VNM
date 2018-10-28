@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChoiceEventRaiser : MonoBehaviour
+public class ChoiceEventRaiser : MonoBehaviour // TODO Remove push pop and make it a accessor
 {
 
     private Stack<IChoiceHandler> _choiceHandlers = new Stack<IChoiceHandler>();

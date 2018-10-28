@@ -8,7 +8,7 @@ using Zenject;
 
 namespace SOLID_VNM.Displays.TextDisplay
 {
-    public class TextDisplayView : MonoBehaviour, IInitializable
+    public class TextDisplayView : MonoBehaviour
     {
         [SerializeField]
         private TMP_Text _guiText;
@@ -23,11 +23,6 @@ namespace SOLID_VNM.Displays.TextDisplay
         {
             Debug.Assert(_guiText != null, "gui Text in text display view is not assigned", this);
             Debug.Assert(_textPanel != null, "TextPanel gameobject in text display view is not assigned", this);
-        }
-
-        public void Initialize()
-        {
-            Hide();
         }
 
         public void Hide()

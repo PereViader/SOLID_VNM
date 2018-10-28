@@ -12,41 +12,41 @@ using SOLID_VNM.Core.Scenes.ChoiceScene;
 
 namespace SOLID_VNM.Core
 {
-    public interface IScenePlayer
+    public interface ISceneController
     {
         void Play();
         void End();
     }
 
-    public class ScenePlayerDiscriminator : ISceneDefinitionVisitor
+    public class SceneControllerDiscriminator : ISceneDefinitionVisitor
     {
-        readonly private LazyInject<TextScenePlayer> _textScenePlayer;
-        readonly private LazyInject<ChoiceScenePlayer> _choiceScenePlayer;
+        readonly private LazyInject<TextSceneController> _textSceneController;
+        readonly private LazyInject<ChoiceSceneController> _choiceSceneController;
 
-        private IScenePlayer _scenePlayer;
+        private ISceneController _sceneController;
 
-        public ScenePlayerDiscriminator(LazyInject<TextScenePlayer> textSceneManager, LazyInject<ChoiceScenePlayer> choiceScenePlayer)
+        public SceneControllerDiscriminator(LazyInject<TextSceneController> textSceneManager, LazyInject<ChoiceSceneController> choiceScenePlayer)
         {
-            _textScenePlayer = textSceneManager;
-            _choiceScenePlayer = choiceScenePlayer;
+            _textSceneController = textSceneManager;
+            _choiceSceneController = choiceScenePlayer;
         }
 
-        public IScenePlayer Choose(ISceneDefinition sceneDefinition)
+        public ISceneController Choose(ISceneDefinition sceneDefinition)
         {
             sceneDefinition.Accept(this);
-            return _scenePlayer;
+            return _sceneController;
         }
 
         void ISceneDefinitionVisitor.Accept(TextSceneDefinition textSceneDefinition)
         {
-            _textScenePlayer.Value.TextSceneDefinition = textSceneDefinition;
-            _scenePlayer = _textScenePlayer.Value;
+            _textSceneController.Value.TextSceneDefinition = textSceneDefinition;
+            _sceneController = _textSceneController.Value;
         }
 
         void ISceneDefinitionVisitor.Accept(ChoiceSceneDefinition choiceSceneDefinition)
         {
-            _choiceScenePlayer.Value.ChoiceSceneDefinition = choiceSceneDefinition;
-            _scenePlayer = _choiceScenePlayer.Value;
+            _choiceSceneController.Value.ChoiceSceneDefinition = choiceSceneDefinition;
+            _sceneController = _choiceSceneController.Value;
         }
     }
 }

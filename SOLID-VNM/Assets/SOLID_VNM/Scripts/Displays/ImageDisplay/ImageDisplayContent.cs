@@ -17,63 +17,10 @@ namespace SOLID_VNM.Displays.ImageDisplay
     }
 
     [System.Serializable]
-    public abstract class ImageDisplayContent : IDisposable
+    public abstract class ImageDisplayContent : IDisplayContent, IDisposable
     {
         public abstract void Accept(IImageDisplayConentVisitor imageContentVisitor);
         public abstract void Dispose();
-    }
-
-    public class ImageDisplayContentExtractor : ISceneContentVisitor
-    {
-        readonly private ImageDisplayConentSprited.Factory _spritedFactory;
-        readonly private ImageDisplayConentSpritedAnimated.Factory _spritedAnimatedFactory;
-
-        readonly private ActorProvider _actorProvider;
-        readonly private ActorActionSettings _actorActionSettings;
-
-        private ImageDisplayContent _imageDisplayContent;
-
-        public ImageDisplayContentExtractor(ActorProvider actorProvider, ActorActionSettings actorActionSettings, ImageDisplayConentSprited.Factory spritedFactory, ImageDisplayConentSpritedAnimated.Factory spritedAnimatedFactory)
-        {
-            _spritedFactory = spritedFactory;
-            _spritedAnimatedFactory = spritedAnimatedFactory;
-            _actorProvider = actorProvider;
-            _actorActionSettings = actorActionSettings;
-        }
-
-        public ImageDisplayContent Create(SceneContent sceneContentDialogue)
-        {
-            Assert.IsNotNull(sceneContentDialogue);
-            sceneContentDialogue.Accept(this);
-            return _imageDisplayContent;
-        }
-
-        private ImageDisplayContent Create(SceneContentDialogue sceneContentDialogue)
-        {
-            Assert.IsNotNull(sceneContentDialogue);
-
-            Actor actor = _actorProvider.GetActorById(sceneContentDialogue.actorId);
-
-            if (sceneContentDialogue.actorAction == "")
-            {
-                return _spritedFactory.Create(actor.sprite);
-            }
-            else
-            {
-                AnimationClip animationClip = _actorActionSettings.GetAnimationClipByAction(sceneContentDialogue.actorAction);
-                return _spritedAnimatedFactory.Create(actor.sprite, animationClip);
-            }
-        }
-
-        public void Visit(SceneContentDialogue sceneContentDialogue)
-        {
-            _imageDisplayContent = Create(sceneContentDialogue);
-        }
-
-        public void Visit(SceneContentChoice sceneContentChoice)
-        {
-            _imageDisplayContent = null;
-        }
     }
 
     public class ImageDisplayConentSprited : ImageDisplayContent, IPoolable<Sprite, IMemoryPool>

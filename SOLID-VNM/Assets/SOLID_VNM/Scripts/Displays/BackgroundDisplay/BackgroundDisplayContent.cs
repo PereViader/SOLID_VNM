@@ -6,7 +6,7 @@ using Zenject;
 
 namespace SOLID_VNM.Displays.BackgroundDisplay
 {
-    public class BackgroundDisplayContent : IDisposable
+    public class BackgroundDisplayContent : IDisplayContent, IDisposable
     {
         private Sprite _backgroundSprite;
 
@@ -21,9 +21,7 @@ namespace SOLID_VNM.Displays.BackgroundDisplay
         {
         }
 
-        public class Factory : PlaceholderFactory<Sprite, BackgroundDisplayContent>
-        {
-        }
+        public class Factory : PlaceholderFactory<Sprite, BackgroundDisplayContent> { }
     }
 }
 

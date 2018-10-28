@@ -1,13 +1,13 @@
 ﻿namespace SOLID_VNM.Displays.BackgroundDisplay
 {
-    public class BackgroundDisplayController : IDisplay
+    public interface IBackgroundDisplay : IDisplay<BackgroundDisplayContent> { }
+
+    public class BackgroundDisplayController : IBackgroundDisplay
     {
-        readonly private BackgroundDisplayContentExtractor _backgroundDisplayContentExtractor;
         readonly private BackgroundDisplayView _backgroundDisplayView;
 
-        public BackgroundDisplayController(BackgroundDisplayContentExtractor backgroundDisplayContentExtractor, BackgroundDisplayView backgroundDisplayView)
+        public BackgroundDisplayController(BackgroundDisplayView backgroundDisplayView)
         {
-            _backgroundDisplayContentExtractor = backgroundDisplayContentExtractor;
             _backgroundDisplayView = backgroundDisplayView;
         }
 
@@ -16,12 +16,9 @@
             _backgroundDisplayView.Hide();
         }
 
-        public void Display(SceneContent sceneContent)
+        public void Display(BackgroundDisplayContent backgroundDisplayContent)
         {
-            using (BackgroundDisplayContent backgroundDisplayContent = _backgroundDisplayContentExtractor.Extract(sceneContent))
-            {
-                _backgroundDisplayView.Display(backgroundDisplayContent);
-            }
+            _backgroundDisplayView.Display(backgroundDisplayContent);
         }
     }
 }

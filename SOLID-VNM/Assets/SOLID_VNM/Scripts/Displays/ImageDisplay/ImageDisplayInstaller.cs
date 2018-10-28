@@ -12,8 +12,7 @@ namespace SOLID_VNM.Displays.ImageDisplay
         {
             Container.BindInstance(_imageDisplayView);
 
-            Container.Bind<ImageDisplayController>().AsSingle().NonLazy();
-            Container.Bind<ImageDisplayContentExtractor>().AsSingle().NonLazy();
+            Container.Bind<IImageDisplay>().To<ImageDisplayController>().AsSingle().NonLazy();
 
             Container.BindFactory<Sprite, ImageDisplayConentSprited, ImageDisplayConentSprited.Factory>()
                 .FromPoolableMemoryPool(x =>

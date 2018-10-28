@@ -11,15 +11,15 @@ using SOLID_VNM.Actors;
 
 namespace SOLID_VNM.Displays.TextDisplay
 {
-    public class TextDisplayController : IDisplay, IInitializable
+    public interface ITextDisplay : IDisplay<TextDisplayContent> { }
+
+    public class TextDisplayController : ITextDisplay, IInitializable
     {
         readonly private TextDisplayView _textDisplayView;
-        readonly private TextDisplayContentFactory _textDisplayContentFactory;
 
-        public TextDisplayController(TextDisplayView textDisplayView, TextDisplayContentFactory textDisplayContentFactory)
+        public TextDisplayController(TextDisplayView textDisplayView)
         {
             _textDisplayView = textDisplayView;
-            _textDisplayContentFactory = textDisplayContentFactory;
         }
 
         void IInitializable.Initialize()
@@ -27,18 +27,16 @@ namespace SOLID_VNM.Displays.TextDisplay
             Hide();
         }
 
-        public void Display(SceneContent sceneContent)
+        public void Display(TextDisplayContent content)
         {
-            using (TextDisplayContent textDisplayContent = _textDisplayContentFactory.Create(sceneContent))
-            {
-                _textDisplayView.Display(textDisplayContent);
-            }
+            _textDisplayView.Display(content);
         }
 
         public void Hide()
         {
             _textDisplayView.Hide();
         }
+
     }
 }
 
