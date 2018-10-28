@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Zenject;
 
-using UnityEngine;
-
-using SOLID_VNM;
-using SOLID_VNM.Core.Scenes;
-using SOLID_VNM.Core.Scenes.TextScene;
-using Zenject;
 using SOLID_VNM.Core.Scenes.ChoiceScene;
+using SOLID_VNM.Core.Scenes.TextScene;
 
-namespace SOLID_VNM.Core
+namespace SOLID_VNM.Core.Scenes
 {
     public interface ISceneController
     {

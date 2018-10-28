@@ -4,6 +4,7 @@ using UnityEngine;
 
 using SOLID_VNM;
 using SOLID_VNM.Graph;
+using SOLID_VNM.Core.Scenes;
 
 namespace SOLID_VNM.Core
 {

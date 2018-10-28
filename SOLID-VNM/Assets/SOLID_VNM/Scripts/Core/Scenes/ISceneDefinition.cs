@@ -7,7 +7,7 @@ using SOLID_VNM.Core.Scenes;
 using SOLID_VNM.Core.Scenes.TextScene;
 using SOLID_VNM.Core.Scenes.ChoiceScene;
 
-namespace SOLID_VNM.Core
+namespace SOLID_VNM.Core.Scenes
 {
     public interface ISceneDefinition
     {
