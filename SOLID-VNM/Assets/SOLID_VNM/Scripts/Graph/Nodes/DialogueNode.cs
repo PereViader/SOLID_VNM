@@ -2,19 +2,19 @@ using XNode;
 
 using SOLID_VNM.Core.Scenes.TextScene;
 
-namespace SOLID_VNM.Dialogue
+namespace SOLID_VNM.Graph
 {
-    public class TextNode : DialogueNode
+    public class DialogueNode : VNNode
     {
-        [Input] public DialogueNode previous;
+        [Input] public VNNode previous;
 
 
         [Output(backingValue = ShowBackingValue.Never, connectionType = ConnectionType.Override)]
-        public DialogueNode next;
+        public VNNode next;
 
         public SceneContentDialogue sceneContentDialogue;
 
-        public DialogueNode Next { get { return this.GetOutputConnection<DialogueNode>("next"); } }
+        public VNNode Next { get { return this.GetOutputConnection<VNNode>("next"); } }
 
         public override void Accept(IDialogueNodeVisitor visitor)
         {

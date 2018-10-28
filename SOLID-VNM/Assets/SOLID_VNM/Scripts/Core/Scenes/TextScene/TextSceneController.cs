@@ -6,7 +6,7 @@ using Zenject;
 
 using SOLID_VNM;
 using SOLID_VNM.InputManagement;
-using SOLID_VNM.Dialogue;
+using SOLID_VNM.Graph;
 using SOLID_VNM.Displays;
 using SOLID_VNM.Displays.TextDisplay;
 using SOLID_VNM.Displays.BackgroundDisplay;

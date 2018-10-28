@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using SOLID_VNM.Dialogue;
+using SOLID_VNM.Graph;
 using SOLID_VNM.Core.Scenes;
 using SOLID_VNM.Core.Scenes.TextScene;
 using SOLID_VNM.Core.Scenes.ChoiceScene;
@@ -34,7 +34,7 @@ namespace SOLID_VNM.Core
         }
 
 
-        public ISceneDefinition Create(DialogueNode dialogueNode)
+        public ISceneDefinition Create(VNNode dialogueNode)
         {
             dialogueNode.Accept(this);
             return _sceneDefinition;
@@ -45,7 +45,7 @@ namespace SOLID_VNM.Core
             _sceneDefinition = _choiceSceneFactory.Create(choiceNode);
         }
 
-        void IDialogueNodeVisitor.Accept(TextNode textNode)
+        void IDialogueNodeVisitor.Accept(DialogueNode textNode)
         {
             _sceneDefinition = _textSceneDefinitionFactory.Create(textNode);
         }

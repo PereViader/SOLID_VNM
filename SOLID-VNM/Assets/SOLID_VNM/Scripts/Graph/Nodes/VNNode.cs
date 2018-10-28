@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-namespace SOLID_VNM.Dialogue
+namespace SOLID_VNM.Graph
 {
-    public abstract class DialogueNode : Node
+    public interface ISolidNode
+    {
+    }
+
+
+    public abstract class VNNode : Node
     {
         public override object GetValue(NodePort port)
         {
@@ -17,7 +22,7 @@ namespace SOLID_VNM.Dialogue
 
     public interface IDialogueNodeVisitor
     {
-        void Accept(TextNode textNode);
+        void Accept(DialogueNode textNode);
         void Accept(ChoiceNode choiceNode);
     }
 }

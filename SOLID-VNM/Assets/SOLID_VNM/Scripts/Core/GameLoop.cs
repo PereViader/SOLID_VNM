@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using SOLID_VNM;
-using SOLID_VNM.Dialogue;
+using SOLID_VNM.Graph;
 
 namespace SOLID_VNM.Core
 {
@@ -20,7 +20,7 @@ namespace SOLID_VNM.Core
             _sceneDefinitionFactory = sceneDefinitionFactory;
         }
 
-        public void Play(DialogueNodeGraph dialogueNodeGraph)
+        public void Play(VNGraph dialogueNodeGraph)
         {
             ISceneDefinition sceneDefinition = _sceneDefinitionFactory.Create(dialogueNodeGraph.RootNode);
             Play(sceneDefinition);

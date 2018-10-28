@@ -1,19 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using XNode;
 using Zenject;
 
-namespace SOLID_VNM.Dialogue
+namespace SOLID_VNM.Graph
 {
     [CreateAssetMenu]
-    public class DialogueNodeGraph : NodeGraph
+    public class VNGraph : NodeGraph
     {
-        public DialogueNode RootNode
+        public VNNode RootNode
         {
             get
             {
-                List<Node> rootNodes = nodes.FindAll(x => x is DialogueStartNode);
+                List<Node> rootNodes = nodes.FindAll(x => x is StartNode);
                 if (rootNodes.Count == 0)
                 {
                     Debug.LogError("Dialogue Graph does not have dialogue start", this);
@@ -25,7 +26,7 @@ namespace SOLID_VNM.Dialogue
                     return null;
                 }
 
-                return ((DialogueStartNode)rootNodes[0]).Start;
+                return ((StartNode)rootNodes[0]).Start;
             }
         }
     }

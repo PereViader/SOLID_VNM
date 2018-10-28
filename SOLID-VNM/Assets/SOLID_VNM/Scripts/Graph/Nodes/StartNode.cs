@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-namespace SOLID_VNM.Dialogue
+namespace SOLID_VNM.Graph
 {
-    public class DialogueStartNode : Node
+    public class StartNode : Node
     {
         [Output(backingValue = ShowBackingValue.Never, connectionType = ConnectionType.Override)]
-        public DialogueNode next;
+        public VNNode next;
 
-        public DialogueNode Start
+        public VNNode Start
         {
             get
             {
-                return this.GetOutputConnection<DialogueNode>("next");
+                return this.GetOutputConnection<VNNode>("next");
             }
         }
 

@@ -2,19 +2,19 @@
 
 using SOLID_VNM.Core.Scenes.ChoiceScene;
 
-namespace SOLID_VNM.Dialogue
+namespace SOLID_VNM.Graph
 {
-    public class ChoiceNode : DialogueNode
+    public class ChoiceNode : VNNode
     {
-        [Input] public DialogueNode previous;
+        [Input] public VNNode previous;
 
 
         [Output(backingValue = ShowBackingValue.Never, connectionType = ConnectionType.Multiple)]
-        public DialogueNode choices;
+        public VNNode choices;
 
         public SceneContentChoice sceneContentChoice;
 
-        public DialogueNode[] Choices { get { return this.GetOutputConnections<DialogueNode>("choices"); } }
+        public VNNode[] Choices { get { return this.GetOutputConnections<VNNode>("choices"); } }
 
         public override void Accept(IDialogueNodeVisitor visitor)
         {

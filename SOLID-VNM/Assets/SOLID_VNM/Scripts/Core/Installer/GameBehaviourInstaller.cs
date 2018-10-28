@@ -2,7 +2,7 @@ using UnityEngine;
 
 using Zenject;
 
-using SOLID_VNM.Dialogue;
+using SOLID_VNM.Graph;
 using SOLID_VNM.Core.Scenes;
 using SOLID_VNM.Core.Scenes.TextScene;
 using SOLID_VNM.InputManagement;
@@ -43,7 +43,7 @@ namespace SOLID_VNM.Core.Installers
             Container.Bind<ITextScenePlayer>().To<TextScenePlayer>().AsSingle();
 
             Container.BindFactory<SceneContentDialogue, ISceneDefinitionFacade, TextSceneDefinition, TextSceneDefinition.Factory>();
-            Container.BindFactory<TextNode, TextSceneDefinition.Facade, TextSceneDefinition.Facade.Factory>();
+            Container.BindFactory<DialogueNode, TextSceneDefinition.Facade, TextSceneDefinition.Facade.Factory>();
 
             Container.Bind<ISceneContentDialogueTextDisplayContentExtractor>().To<SceneContentDialogueTextDisplayContentExtractor>().AsSingle();
             Container.Bind<ISceneContentDialogueImageDisplayContentExtractor>().To<SceneContentDialogueImageDisplayContentExtractor>().AsSingle();

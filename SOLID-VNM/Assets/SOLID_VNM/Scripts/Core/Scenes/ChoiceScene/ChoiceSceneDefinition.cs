@@ -2,7 +2,7 @@
 
 using Zenject;
 
-using SOLID_VNM.Dialogue;
+using SOLID_VNM.Graph;
 
 namespace SOLID_VNM.Core.Scenes.ChoiceScene
 {

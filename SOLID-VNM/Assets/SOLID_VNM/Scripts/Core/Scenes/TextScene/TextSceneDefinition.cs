@@ -1,6 +1,6 @@
 ﻿using Zenject;
 
-using SOLID_VNM.Dialogue;
+using SOLID_VNM.Graph;
 
 namespace SOLID_VNM.Core.Scenes.TextScene
 {
@@ -28,9 +28,9 @@ namespace SOLID_VNM.Core.Scenes.TextScene
         {
             readonly private TextSceneDefinition.Factory _textSceneDefinitionFactory;
 
-            readonly private TextNode _textNode;
+            readonly private DialogueNode _textNode;
 
-            public Facade(TextNode textNode, TextSceneDefinition.Factory textSceneDefinitionFactory)
+            public Facade(DialogueNode textNode, TextSceneDefinition.Factory textSceneDefinitionFactory)
             {
                 _textNode = textNode;
 
@@ -45,7 +45,7 @@ namespace SOLID_VNM.Core.Scenes.TextScene
                 }
             }
 
-            public class Factory : PlaceholderFactory<TextNode, Facade> { }
+            public class Factory : PlaceholderFactory<DialogueNode, Facade> { }
         }
 
         public class Factory : PlaceholderFactory<SceneContentDialogue, ISceneDefinitionFacade, TextSceneDefinition>
@@ -57,7 +57,7 @@ namespace SOLID_VNM.Core.Scenes.TextScene
                 _sceneDefinitionFacadeFactory = sceneDefinitionFacadeFactory;
             }
 
-            public TextSceneDefinition Create(TextNode textNode)
+            public TextSceneDefinition Create(DialogueNode textNode)
             {
                 return Create(textNode.sceneContentDialogue, _sceneDefinitionFacadeFactory.Create(textNode.Next));
             }
