@@ -8,25 +8,23 @@ namespace SOLID_VNM.InputManagement
 {
     public class NextEventRaiser : MonoBehaviour
     {
-        private Stack<INextHandler> _nextHandlers = new Stack<INextHandler>();
+        private INextHandler _nextHandler;
 
-        public INextHandler CurrentNextHandler { get { return _nextHandlers.Count > 0 ? _nextHandlers.Peek() : null; } }
-
-        public void Push(INextHandler nextHandler)
+        public INextHandler NextHandler
         {
-            _nextHandlers.Push(nextHandler);
-        }
-
-        public void Pop()
-        {
-            _nextHandlers.Pop();
+            get { return _nextHandler; }
+            set
+            {
+                _nextHandler = value;
+                enabled = _nextHandler != null;
+            }
         }
 
         private void Update()
         {
-            if (Input.anyKeyDown && _nextHandlers.Count > 0)
+            if (NextHandler != null && Input.anyKeyDown)
             {
-                _nextHandlers.Peek().OnNext();
+                NextHandler.OnNext();
             }
         }
     }

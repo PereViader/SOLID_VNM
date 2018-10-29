@@ -37,15 +37,13 @@ namespace SOLID_VNM.Core.Scenes.TextScene
 
         void ISceneController.Play()
         {
-            _nextEventRaiser.enabled = true;
-            _nextEventRaiser.Push(this);
+            _nextEventRaiser.NextHandler = this;
             _textScenePlayer.Play(_textSceneDefinition);
         }
 
         void ISceneController.End()
         {
-            _nextEventRaiser.Pop();
-            _nextEventRaiser.enabled = false;
+            _nextEventRaiser.NextHandler = null;
             _textSceneDefinition = null;
             _textScenePlayer.End();
         }

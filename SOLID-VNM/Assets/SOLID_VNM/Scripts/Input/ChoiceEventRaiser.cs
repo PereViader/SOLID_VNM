@@ -2,28 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChoiceEventRaiser : MonoBehaviour // TODO Remove push pop and make it a accessor
+public class ChoiceEventRaiser : MonoBehaviour
 {
 
-    private Stack<IChoiceHandler> _choiceHandlers = new Stack<IChoiceHandler>();
+    private IChoiceHandler _choiceHandler;
 
-    public IChoiceHandler CurrentChoiceHandler { get { return _choiceHandlers.Peek(); } }
-
-    public void Push(IChoiceHandler choiceHandler)
+    public IChoiceHandler ChoiceHandler
     {
-        _choiceHandlers.Push(choiceHandler);
-    }
-
-    public void Pop()
-    {
-        _choiceHandlers.Pop();
+        get { return _choiceHandler; }
+        set
+        {
+            _choiceHandler = value;
+            enabled = _choiceHandler != null;
+        }
     }
 
     public void OnUIChoice(int choice)
     {
-        if (CurrentChoiceHandler != null)
+        if (ChoiceHandler != null)
         {
-            CurrentChoiceHandler.OnChoice(choice);
+            ChoiceHandler.OnChoice(choice);
         }
     }
 }

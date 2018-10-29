@@ -22,15 +22,13 @@ namespace SOLID_VNM.Core.Scenes.ChoiceScene
 
         void ISceneController.Play()
         {
-            _choiceEventRaiser.Push(this);
-            _choiceEventRaiser.enabled = true;
+            _choiceEventRaiser.ChoiceHandler = this;
             _choiceScenePlayer.Play(_choiceSceneDefinition);
         }
 
         void ISceneController.End()
         {
-            _choiceEventRaiser.enabled = false;
-            _choiceEventRaiser.Pop();
+            _choiceEventRaiser.ChoiceHandler = null;
             _choiceSceneDefinition = null;
             _choiceScenePlayer.End();
         }
