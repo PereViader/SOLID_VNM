@@ -15,7 +15,7 @@ namespace SOLID_VNM.Displays.TextDisplay
 
     public class TextDisplayController : ITextDisplay, IInitializable
     {
-        readonly private TextDisplayView _textDisplayView;
+        private readonly TextDisplayView _textDisplayView;
 
         public TextDisplayController(TextDisplayView textDisplayView)
         {

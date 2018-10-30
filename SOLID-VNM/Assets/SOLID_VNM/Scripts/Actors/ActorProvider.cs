@@ -4,7 +4,7 @@ namespace SOLID_VNM.Actors
 {
     public class ActorProvider
     {
-        readonly private ActorDatabase _actorDatabase;
+        private readonly ActorDatabase _actorDatabase;
 
         public ActorProvider(ActorDatabase actorDatabase)
         {

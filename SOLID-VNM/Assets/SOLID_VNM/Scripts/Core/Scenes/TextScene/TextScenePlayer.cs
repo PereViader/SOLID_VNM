@@ -16,14 +16,14 @@ namespace SOLID_VNM.Core.Scenes.TextScene
 
     public class TextScenePlayer : ITextScenePlayer
     {
-        readonly private ITextDisplay _textDisplay;
-        readonly private ISceneContentDialogueTextDisplayContentExtractor _textDisplayContentExtractor;
+        private readonly ITextDisplay _textDisplay;
+        private readonly ISceneContentDialogueTextDisplayContentExtractor _textDisplayContentExtractor;
 
-        readonly private IBackgroundDisplay _backgroundDisplay;
-        readonly private ISceneContentDialogueBackgroundDisplayContentExtractor _backgroundDisplayContentExtractor;
+        private readonly IBackgroundDisplay _backgroundDisplay;
+        private readonly ISceneContentDialogueBackgroundDisplayContentExtractor _backgroundDisplayContentExtractor;
 
-        readonly private IImageDisplay _imageDisplay;
-        readonly private ISceneContentDialogueImageDisplayContentExtractor _imageDisplayContentExtractor;
+        private readonly IImageDisplay _imageDisplay;
+        private readonly ISceneContentDialogueImageDisplayContentExtractor _imageDisplayContentExtractor;
 
 
         public TextScenePlayer(

@@ -6,8 +6,8 @@ namespace SOLID_VNM.Core.Scenes.TextScene
 {
     public class TextSceneDefinition : ISceneDefinition
     {
-        readonly private SceneContentDialogue _sceneContentDialogue;
-        readonly private ISceneDefinitionFacade _nextSceneDefinitionFacade;
+        private readonly SceneContentDialogue _sceneContentDialogue;
+        private readonly ISceneDefinitionFacade _nextSceneDefinitionFacade;
 
         public SceneContentDialogue SceneContentDialogue { get { return _sceneContentDialogue; } }
 
@@ -26,9 +26,9 @@ namespace SOLID_VNM.Core.Scenes.TextScene
 
         public class Facade : ISceneDefinitionFacade
         {
-            readonly private TextSceneDefinition.Factory _textSceneDefinitionFactory;
+            private readonly TextSceneDefinition.Factory _textSceneDefinitionFactory;
 
-            readonly private DialogueNode _textNode;
+            private readonly DialogueNode _textNode;
 
             public Facade(DialogueNode textNode, TextSceneDefinition.Factory textSceneDefinitionFactory)
             {
@@ -50,7 +50,7 @@ namespace SOLID_VNM.Core.Scenes.TextScene
 
         public class Factory : PlaceholderFactory<SceneContentDialogue, ISceneDefinitionFacade, TextSceneDefinition>
         {
-            readonly private SceneDefinitionFacadeFactory _sceneDefinitionFacadeFactory;
+            private readonly SceneDefinitionFacadeFactory _sceneDefinitionFacadeFactory;
 
             public Factory(SceneDefinitionFacadeFactory sceneDefinitionFacadeFactory)
             {

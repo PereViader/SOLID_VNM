@@ -9,7 +9,7 @@ namespace SOLID_VNM.Displays.ChoiceDisplay
 
     public class ChoiceDisplayController : IChoiceDisplay, IInitializable
     {
-        readonly private ChoiceDisplayView _choiceDisplayView;
+        private readonly ChoiceDisplayView _choiceDisplayView;
 
         public ChoiceDisplayController(ChoiceDisplayView choiceDisplayView)
         {

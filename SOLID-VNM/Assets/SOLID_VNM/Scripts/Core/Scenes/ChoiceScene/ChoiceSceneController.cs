@@ -4,9 +4,9 @@ namespace SOLID_VNM.Core.Scenes.ChoiceScene
 {
     public class ChoiceSceneController : ISceneController, IChoiceHandler
     {
-        readonly private GameLoop _gameLoop;
-        readonly private IChoiceScenePlayer _choiceScenePlayer;
-        readonly private ChoiceEventRaiser _choiceEventRaiser;
+        private readonly GameLoop _gameLoop;
+        private readonly IChoiceScenePlayer _choiceScenePlayer;
+        private readonly ChoiceEventRaiser _choiceEventRaiser;
 
 
         private ChoiceSceneDefinition _choiceSceneDefinition;

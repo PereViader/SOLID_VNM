@@ -22,8 +22,8 @@ namespace SOLID_VNM.Core.Scenes
 
     public class SceneDefinitionFactory : IDialogueNodeVisitor
     {
-        readonly private TextSceneDefinition.Factory _textSceneDefinitionFactory;
-        readonly private ChoiceSceneDefinition.Factory _choiceSceneFactory;
+        private readonly TextSceneDefinition.Factory _textSceneDefinitionFactory;
+        private readonly ChoiceSceneDefinition.Factory _choiceSceneFactory;
 
         private ISceneDefinition _sceneDefinition;
 

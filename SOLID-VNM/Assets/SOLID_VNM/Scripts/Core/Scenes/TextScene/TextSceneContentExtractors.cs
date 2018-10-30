@@ -11,8 +11,8 @@ namespace SOLID_VNM.Core.Scenes.TextScene
     public interface ISceneContentDialogueTextDisplayContentExtractor : ISceneContentExtractor<SceneContentDialogue, TextDisplayContent> { }
     public class SceneContentDialogueTextDisplayContentExtractor : ISceneContentDialogueTextDisplayContentExtractor
     {
-        readonly private TextDisplayContent.Factory _textDisplayContentFactory;
-        readonly private ActorProvider _actorProvider;
+        private readonly TextDisplayContent.Factory _textDisplayContentFactory;
+        private readonly ActorProvider _actorProvider;
 
         public SceneContentDialogueTextDisplayContentExtractor(TextDisplayContent.Factory textDisplayContentFactory, ActorProvider actorProvider)
         {
@@ -31,11 +31,11 @@ namespace SOLID_VNM.Core.Scenes.TextScene
 
     public class SceneContentDialogueImageDisplayContentExtractor : ISceneContentDialogueImageDisplayContentExtractor
     {
-        readonly private ImageDisplayConentSprited.Factory _spritedFactory;
-        readonly private ImageDisplayConentSpritedAnimated.Factory _spritedAnimatedFactory;
+        private readonly ImageDisplayConentSprited.Factory _spritedFactory;
+        private readonly ImageDisplayConentSpritedAnimated.Factory _spritedAnimatedFactory;
 
-        readonly private ActorProvider _actorProvider;
-        readonly private ActorActionSettings _actorActionSettings;
+        private readonly ActorProvider _actorProvider;
+        private readonly ActorActionSettings _actorActionSettings;
 
         private ImageDisplayContent _imageDisplayContent;
 
@@ -67,7 +67,7 @@ namespace SOLID_VNM.Core.Scenes.TextScene
 
     public class SceneContentDialogueBackgroundDisplayContentExtractor : ISceneContentDialogueBackgroundDisplayContentExtractor
     {
-        readonly private BackgroundDisplayContent.Factory _backgroundDisplayContentFactory;
+        private readonly BackgroundDisplayContent.Factory _backgroundDisplayContentFactory;
 
         public SceneContentDialogueBackgroundDisplayContentExtractor(BackgroundDisplayContent.Factory backgroundDisplayContentFactory)
         {

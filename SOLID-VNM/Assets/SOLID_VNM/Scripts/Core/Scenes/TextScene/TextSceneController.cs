@@ -17,9 +17,9 @@ namespace SOLID_VNM.Core.Scenes.TextScene
 {
     public class TextSceneController : ISceneController, INextHandler
     {
-        readonly private GameLoop _gameLoop;
-        readonly private ITextScenePlayer _textScenePlayer;
-        readonly private NextEventRaiser _nextEventRaiser;
+        private readonly GameLoop _gameLoop;
+        private readonly ITextScenePlayer _textScenePlayer;
+        private readonly NextEventRaiser _nextEventRaiser;
 
         private TextSceneDefinition _textSceneDefinition;
 

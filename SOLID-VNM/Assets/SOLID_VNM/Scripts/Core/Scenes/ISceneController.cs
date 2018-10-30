@@ -13,8 +13,8 @@ namespace SOLID_VNM.Core.Scenes
 
     public class SceneControllerDiscriminator : ISceneDefinitionVisitor
     {
-        readonly private LazyInject<TextSceneController> _textSceneController;
-        readonly private LazyInject<ChoiceSceneController> _choiceSceneController;
+        private readonly LazyInject<TextSceneController> _textSceneController;
+        private readonly LazyInject<ChoiceSceneController> _choiceSceneController;
 
         private ISceneController _sceneController;
 

@@ -13,7 +13,7 @@ namespace SOLID_VNM.Displays.ImageDisplay
 
     public class ImageDisplayController : IImageDisplay
     {
-        readonly private ImageDisplayView _imageDisplayView;
+        private readonly ImageDisplayView _imageDisplayView;
 
         public ImageDisplayController(ImageDisplayView imageDisplayView)
         {

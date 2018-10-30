@@ -10,8 +10,8 @@ namespace SOLID_VNM.Core
 {
     public class GameLoop
     {
-        readonly private SceneControllerDiscriminator _sceneControllerDiscriminator;
-        readonly private SceneDefinitionFactory _sceneDefinitionFactory;
+        private readonly SceneControllerDiscriminator _sceneControllerDiscriminator;
+        private readonly SceneDefinitionFactory _sceneDefinitionFactory;
 
         private ISceneController _sceneController;
 

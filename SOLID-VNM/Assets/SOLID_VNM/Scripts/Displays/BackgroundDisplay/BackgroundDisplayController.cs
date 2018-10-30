@@ -4,7 +4,7 @@
 
     public class BackgroundDisplayController : IBackgroundDisplay
     {
-        readonly private BackgroundDisplayView _backgroundDisplayView;
+        private readonly BackgroundDisplayView _backgroundDisplayView;
 
         public BackgroundDisplayController(BackgroundDisplayView backgroundDisplayView)
         {

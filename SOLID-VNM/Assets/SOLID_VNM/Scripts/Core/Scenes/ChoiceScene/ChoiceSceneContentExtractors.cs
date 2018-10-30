@@ -10,7 +10,7 @@ namespace SOLID_VNM.Core.Scenes.ChoiceScene
 
     public class SceneContentChoiceChoiceDisplayContentExtractor : ISceneContentChoiceChoiceDisplayContentExtractor
     {
-        readonly private ChoiceDisplayContent.Factory _contentFactory;
+        private readonly ChoiceDisplayContent.Factory _contentFactory;
 
 
         public SceneContentChoiceChoiceDisplayContentExtractor(ChoiceDisplayContent.Factory contentFactory)
@@ -31,7 +31,7 @@ namespace SOLID_VNM.Core.Scenes.ChoiceScene
     public class SceneContentChoiceBackgroundDisplayContentExtractor : ISceneContentChoiceBackgroundDisplayContentExtractor
     {
 
-        readonly private BackgroundDisplayContent.Factory _backgroundDisplayContentFactory;
+        private readonly BackgroundDisplayContent.Factory _backgroundDisplayContentFactory;
 
         public SceneContentChoiceBackgroundDisplayContentExtractor(BackgroundDisplayContent.Factory backgroundDisplayContentFactory)
         {

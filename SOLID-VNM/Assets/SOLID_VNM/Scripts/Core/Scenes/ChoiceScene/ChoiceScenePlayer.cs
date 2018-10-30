@@ -18,11 +18,11 @@ namespace SOLID_VNM.Core.Scenes.ChoiceScene
 
     public class ChoiceScenePlayer : IChoiceScenePlayer
     {
-        readonly private IChoiceDisplay _choiceDisplay;
-        readonly private ISceneContentChoiceChoiceDisplayContentExtractor _choiceDisplayContentExtractor;
+        private readonly IChoiceDisplay _choiceDisplay;
+        private readonly ISceneContentChoiceChoiceDisplayContentExtractor _choiceDisplayContentExtractor;
 
-        readonly private IBackgroundDisplay _backgroundDisplay;
-        readonly private ISceneContentChoiceBackgroundDisplayContentExtractor _backgroundDisplayContentExtractor;
+        private readonly IBackgroundDisplay _backgroundDisplay;
+        private readonly ISceneContentChoiceBackgroundDisplayContentExtractor _backgroundDisplayContentExtractor;
 
         public ChoiceScenePlayer(
             IChoiceDisplay choiceDisplay,
