@@ -21,12 +21,17 @@ namespace SOLID_VNM.Displays.ChoiceDisplay
             Hide();
         }
 
-        public void Display(ChoiceDisplayContent choiceDisplayContent)
+        void IDisplay<ChoiceDisplayContent>.Display(ChoiceDisplayContent choiceDisplayContent)
         {
             _choiceDisplayView.Display(choiceDisplayContent);
         }
 
-        public void Hide()
+        void IDisplay<ChoiceDisplayContent>.Hide()
+        {
+            Hide();
+        }
+
+        private void Hide()
         {
             _choiceDisplayView.Hide();
         }

@@ -1,8 +1,10 @@
-﻿namespace SOLID_VNM.Displays.BackgroundDisplay
+﻿using Zenject;
+
+namespace SOLID_VNM.Displays.BackgroundDisplay
 {
     public interface IBackgroundDisplay : IDisplay<BackgroundDisplayContent> { }
 
-    public class BackgroundDisplayController : IBackgroundDisplay
+    public class BackgroundDisplayController : IBackgroundDisplay, IInitializable
     {
         private readonly BackgroundDisplayView _backgroundDisplayView;
 
@@ -11,14 +13,24 @@
             _backgroundDisplayView = backgroundDisplayView;
         }
 
-        public void Hide()
+        void IInitializable.Initialize()
         {
-            _backgroundDisplayView.Hide();
+            Hide();
         }
 
-        public void Display(BackgroundDisplayContent backgroundDisplayContent)
+        void IDisplay<BackgroundDisplayContent>.Display(BackgroundDisplayContent backgroundDisplayContent)
         {
             _backgroundDisplayView.Display(backgroundDisplayContent);
+        }
+
+        void IDisplay<BackgroundDisplayContent>.Hide()
+        {
+            Hide();
+        }
+
+        private void Hide()
+        {
+            _backgroundDisplayView.Hide();
         }
     }
 }

@@ -11,7 +11,7 @@ namespace SOLID_VNM.Displays.ImageDisplay
 {
     public interface IImageDisplay : IDisplay<ImageDisplayContent> { }
 
-    public class ImageDisplayController : IImageDisplay
+    public class ImageDisplayController : IImageDisplay, IInitializable
     {
         private readonly ImageDisplayView _imageDisplayView;
 
@@ -20,14 +20,24 @@ namespace SOLID_VNM.Displays.ImageDisplay
             _imageDisplayView = imageDisplayView;
         }
 
-        void IDisplay<ImageDisplayContent>.Hide()
+        void IInitializable.Initialize()
         {
-            _imageDisplayView.Hide();
+            Hide();
         }
 
         void IDisplay<ImageDisplayContent>.Display(ImageDisplayContent imageDisplayContent)
         {
             _imageDisplayView.Display(imageDisplayContent);
+        }
+
+        void IDisplay<ImageDisplayContent>.Hide()
+        {
+            Hide();
+        }
+
+        private void Hide()
+        {
+            _imageDisplayView.Hide();
         }
     }
 }

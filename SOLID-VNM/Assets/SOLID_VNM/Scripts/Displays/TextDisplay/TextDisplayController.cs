@@ -27,16 +27,20 @@ namespace SOLID_VNM.Displays.TextDisplay
             Hide();
         }
 
-        public void Display(TextDisplayContent content)
+        void IDisplay<TextDisplayContent>.Display(TextDisplayContent content)
         {
             _textDisplayView.Display(content);
         }
 
-        public void Hide()
+        void IDisplay<TextDisplayContent>.Hide()
+        {
+            Hide();
+        }
+
+        private void Hide()
         {
             _textDisplayView.Hide();
         }
-
     }
 }
 
