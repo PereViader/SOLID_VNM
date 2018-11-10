@@ -21,7 +21,7 @@ namespace SOLID_VNM.Core.Installers
         {
             InstallCore();
             InstallFactories();
-            InstallTextScene();
+            InstallDialogueScene();
             InstallChoiceScene();
         }
 
@@ -33,33 +33,34 @@ namespace SOLID_VNM.Core.Installers
         private void InstallFactories()
         {
             Container.Bind<SceneControllerDiscriminator>().AsSingle();
-            Container.Bind<SceneDefinitionFactory>().AsSingle();
-            Container.Bind<SceneDefinitionFacadeFactory>().AsSingle();
+            Container.Bind<SceneFactory>().AsSingle();
+            Container.Bind<SceneFacadeFactory>().AsSingle();
         }
 
-        private void InstallTextScene()
+        private void InstallDialogueScene()
         {
-            Container.Bind<TextSceneController>().AsSingle();
-            Container.Bind<ITextScenePlayer>().To<TextScenePlayer>().AsSingle();
+            Container.Bind<DialogueSceneController>().AsSingle();
+            Container.Bind<IDialogueScenePlayer>().To<ConcreteDialogueScenePlayer>().AsSingle();
 
-            Container.BindFactory<IDialogueSceneModel, ISceneDefinitionFacade, TextSceneDefinition, TextSceneDefinition.Factory>();
-            Container.BindFactory<DialogueNode, TextSceneDefinition.Facade, TextSceneDefinition.Facade.Factory>();
+            Container.BindFactoryCustomInterface<IDialogueSceneModel, ISceneFacade, ConcreteDialogueScene, ConcreteDialogueScene.Factory, IDialogueSceneFactory>();
+            Container.BindFactoryCustomInterface<IDialogueNode, ConcreteDialogueScene.Facade, ConcreteDialogueScene.Facade.Factory, IDialogueSceneFacadeFactory>();
 
-            Container.Bind<ISceneContentDialogueTextDisplayContentExtractor>().To<SceneContentDialogueTextDisplayContentExtractor>().AsSingle();
-            Container.Bind<ISceneContentDialogueImageDisplayContentExtractor>().To<SceneContentDialogueImageDisplayContentExtractor>().AsSingle();
-            Container.Bind<ISceneContentDialogueBackgroundDisplayContentExtractor>().To<SceneContentDialogueBackgroundDisplayContentExtractor>().AsSingle();
+            Container.Bind<IDialogueSceneModelTextDisplayContentExtractor>().To<ConcreteDialogueSceneModelTextDisplayContentExtractor>().AsSingle();
+            Container.Bind<IDialogueSceneModelImageDisplayContentExtractor>().To<ConcreteDialogueSceneModelImageDisplayContentExtractor>().AsSingle();
+            Container.Bind<IDialogueSceneModelBackgroundDisplayContentExtractor>().To<ConcreteDialogueSceneModelBackgroundDisplayContentExtractor>().AsSingle();
         }
 
         private void InstallChoiceScene()
         {
             Container.Bind<ChoiceSceneController>().AsSingle();
-            Container.Bind<IChoiceScenePlayer>().To<ChoiceScenePlayer>().AsSingle();
+            Container.Bind<IChoiceScenePlayer>().To<ConcreteChoiceScenePlayer>().AsSingle();
 
-            Container.BindFactory<IChoiceSceneModel, ISceneDefinitionFacade[], ChoiceSceneDefinition, ChoiceSceneDefinition.Factory>();
-            Container.BindFactory<ChoiceNode, ChoiceSceneDefinition.Facade, ChoiceSceneDefinition.Facade.Factory>();
+            Container.BindFactoryCustomInterface<IChoiceSceneModel, ISceneFacade[], ConcreteChoiceScene, ConcreteChoiceScene.Factory, IChoiceSceneFactory>();
+            Container.BindFactoryCustomInterface<IChoiceNode, ConcreteChoiceScene.Facade, ConcreteChoiceScene.Facade.Factory, IChoiceSceneFacadeFactory>();
 
-            Container.Bind<ISceneContentChoiceChoiceDisplayContentExtractor>().To<SceneContentChoiceChoiceDisplayContentExtractor>().AsSingle();
-            Container.Bind<ISceneContentChoiceBackgroundDisplayContentExtractor>().To<SceneContentChoiceBackgroundDisplayContentExtractor>().AsSingle();
+
+            Container.Bind<IChoiceScenModelChoiceChoiceDisplayContentExtractor>().To<ConcreteChoiceScenModelChoiceChoiceDisplayContentExtractor>().AsSingle();
+            Container.Bind<IChoiceSceneModelBackgroundDisplayContentExtractor>().To<ConcreteChoiceSceneModelBackgroundDisplayContentExtractor>().AsSingle();
         }
     }
 }

@@ -4,8 +4,6 @@ using UnityEngine;
 
 namespace SOLID_VNM.Core.Scenes.ChoiceScene
 {
-
-
     public interface IChoiceSceneModel : ISceneModel
     {
         Sprite Background { get; }
@@ -30,9 +28,9 @@ namespace SOLID_VNM.Core.Scenes.ChoiceScene
 
         IChoiceModel[] IChoiceSceneModel.Choices { get { return _choices; } }
 
-        public void Accept(ISceneContentVisitor sceneContentVisitor)
+        public void Accept(ISceneModelVisitor sceneModelVisitor)
         {
-            sceneContentVisitor.Visit(this);
+            sceneModelVisitor.Visit(this);
         }
     }
 

@@ -10,7 +10,7 @@ namespace SOLID_VNM.Graph
     [CreateAssetMenu]
     public class VNGraph : NodeGraph
     {
-        public VNNode RootNode
+        public INode RootNode
         {
             get
             {

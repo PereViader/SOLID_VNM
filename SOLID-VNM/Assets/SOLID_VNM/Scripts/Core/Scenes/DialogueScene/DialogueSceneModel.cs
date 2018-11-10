@@ -36,9 +36,9 @@ namespace SOLID_VNM.Core.Scenes.DialogueScene
         public Sprite Background { get { return background; } }
 
 
-        public void Accept(ISceneContentVisitor sceneContentVisitor)
+        public void Accept(ISceneModelVisitor visitor)
         {
-            sceneContentVisitor.Visit(this);
+            visitor.Visit(this);
         }
     }
 }

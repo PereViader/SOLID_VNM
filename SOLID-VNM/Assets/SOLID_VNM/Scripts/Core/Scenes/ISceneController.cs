@@ -11,34 +11,34 @@ namespace SOLID_VNM.Core.Scenes
         void End();
     }
 
-    public class SceneControllerDiscriminator : ISceneDefinitionVisitor
+    public class SceneControllerDiscriminator : ISceneVisitor
     {
-        private readonly LazyInject<TextSceneController> _textSceneController;
+        private readonly LazyInject<DialogueSceneController> _dialogueSceneController;
         private readonly LazyInject<ChoiceSceneController> _choiceSceneController;
 
         private ISceneController _sceneController;
 
-        public SceneControllerDiscriminator(LazyInject<TextSceneController> textSceneManager, LazyInject<ChoiceSceneController> choiceScenePlayer)
+        public SceneControllerDiscriminator(LazyInject<DialogueSceneController> dialogueSceneController, LazyInject<ChoiceSceneController> choiceSceneController)
         {
-            _textSceneController = textSceneManager;
-            _choiceSceneController = choiceScenePlayer;
+            _dialogueSceneController = dialogueSceneController;
+            _choiceSceneController = choiceSceneController;
         }
 
-        public ISceneController Choose(ISceneDefinition sceneDefinition)
+        public ISceneController Choose(IScene scene)
         {
-            sceneDefinition.Accept(this);
+            scene.Accept(this);
             return _sceneController;
         }
 
-        void ISceneDefinitionVisitor.Accept(TextSceneDefinition textSceneDefinition)
+        void ISceneVisitor.Visit(IDialogueScene dialogueScene)
         {
-            _textSceneController.Value.TextSceneDefinition = textSceneDefinition;
-            _sceneController = _textSceneController.Value;
+            _dialogueSceneController.Value.DialogueScene = dialogueScene;
+            _sceneController = _dialogueSceneController.Value;
         }
 
-        void ISceneDefinitionVisitor.Accept(ChoiceSceneDefinition choiceSceneDefinition)
+        void ISceneVisitor.Visit(IChoiceScene choiceScene)
         {
-            _choiceSceneController.Value.ChoiceSceneDefinition = choiceSceneDefinition;
+            _choiceSceneController.Value.ChoiceScene = choiceScene;
             _sceneController = _choiceSceneController.Value;
         }
     }

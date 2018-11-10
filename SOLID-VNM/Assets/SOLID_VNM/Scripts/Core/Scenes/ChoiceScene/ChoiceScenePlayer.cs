@@ -12,23 +12,21 @@ using SOLID_VNM.Displays.ImageDisplay;
 
 namespace SOLID_VNM.Core.Scenes.ChoiceScene
 {
-    public interface IChoiceScenePlayer : IScenePlayer<ChoiceSceneDefinition>
-    {
-    }
+    public interface IChoiceScenePlayer : IScenePlayer<IChoiceScene> { }
 
-    public class ChoiceScenePlayer : IChoiceScenePlayer
+    public class ConcreteChoiceScenePlayer : IChoiceScenePlayer
     {
         private readonly IChoiceDisplay _choiceDisplay;
-        private readonly ISceneContentChoiceChoiceDisplayContentExtractor _choiceDisplayContentExtractor;
+        private readonly IChoiceScenModelChoiceChoiceDisplayContentExtractor _choiceDisplayContentExtractor;
 
         private readonly IBackgroundDisplay _backgroundDisplay;
-        private readonly ISceneContentChoiceBackgroundDisplayContentExtractor _backgroundDisplayContentExtractor;
+        private readonly IChoiceSceneModelBackgroundDisplayContentExtractor _backgroundDisplayContentExtractor;
 
-        public ChoiceScenePlayer(
+        public ConcreteChoiceScenePlayer(
             IChoiceDisplay choiceDisplay,
-            ISceneContentChoiceChoiceDisplayContentExtractor choiceDisplayContentExtractor,
+            IChoiceScenModelChoiceChoiceDisplayContentExtractor choiceDisplayContentExtractor,
             IBackgroundDisplay backgroundDisplay,
-            ISceneContentChoiceBackgroundDisplayContentExtractor backgroundDisplayContentExtractor)
+            IChoiceSceneModelBackgroundDisplayContentExtractor backgroundDisplayContentExtractor)
         {
             _choiceDisplay = choiceDisplay;
             _choiceDisplayContentExtractor = choiceDisplayContentExtractor;
@@ -37,15 +35,15 @@ namespace SOLID_VNM.Core.Scenes.ChoiceScene
             _backgroundDisplayContentExtractor = backgroundDisplayContentExtractor;
         }
 
-        void IScenePlayer<ChoiceSceneDefinition>.Play(ChoiceSceneDefinition sceneDefinition)
+        void IScenePlayer<IChoiceScene>.Play(IChoiceScene choiceScene)
         {
-            IChoiceSceneModel sceneContent = sceneDefinition.ChoiceSceneModel;
+            IChoiceSceneModel choiceSceneModel = choiceScene.ChoiceSceneModel;
 
-            _choiceDisplay.Display(_choiceDisplayContentExtractor.Extract(sceneContent));
-            _backgroundDisplay.Display(_backgroundDisplayContentExtractor.Extract(sceneContent));
+            _choiceDisplay.Display(_choiceDisplayContentExtractor.Extract(choiceSceneModel));
+            _backgroundDisplay.Display(_backgroundDisplayContentExtractor.Extract(choiceSceneModel));
         }
 
-        void IScenePlayer<ChoiceSceneDefinition>.End()
+        void IScenePlayer<IChoiceScene>.End()
         {
             _choiceDisplay.Hide();
             _backgroundDisplay.Hide();

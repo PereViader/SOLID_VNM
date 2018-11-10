@@ -9,8 +9,8 @@ namespace SOLID_VNM.Core.Scenes.ChoiceScene
         private readonly ChoiceEventRaiser _choiceEventRaiser;
 
 
-        private ChoiceSceneDefinition _choiceSceneDefinition;
-        public ChoiceSceneDefinition ChoiceSceneDefinition { get { return _choiceSceneDefinition; } set { _choiceSceneDefinition = value; } }
+        private IChoiceScene _choiceScene;
+        public IChoiceScene ChoiceScene { get { return _choiceScene; } set { _choiceScene = value; } }
 
 
         public ChoiceSceneController(GameLoop gameLoop, IChoiceScenePlayer choiceScenePlayer, ChoiceEventRaiser choiceEventRaiser)
@@ -23,19 +23,19 @@ namespace SOLID_VNM.Core.Scenes.ChoiceScene
         void ISceneController.Play()
         {
             _choiceEventRaiser.ChoiceHandler = this;
-            _choiceScenePlayer.Play(_choiceSceneDefinition);
+            _choiceScenePlayer.Play(_choiceScene);
         }
 
         void ISceneController.End()
         {
             _choiceEventRaiser.ChoiceHandler = null;
-            _choiceSceneDefinition = null;
+            _choiceScene = null;
             _choiceScenePlayer.End();
         }
 
         void IChoiceHandler.OnChoice(int choice)
         {
-            _gameLoop.Play(_choiceSceneDefinition.SceneDefinitionFacades[choice].SceneDefinition);
+            _gameLoop.Play(_choiceScene.NextSceneFacades[choice].Scene);
         }
     }
 }

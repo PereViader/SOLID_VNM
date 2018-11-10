@@ -5,7 +5,7 @@ using XNode;
 
 public static class XNode_Extensions
 {
-    public static T GetOutputConnection<T>(this Node node, string name) where T : Node
+    public static Node GetOutputConnection(this Node node, string name)
     {
         NodePort nodePort = node.GetPort(name);
         if (nodePort == null)
@@ -26,8 +26,19 @@ public static class XNode_Extensions
         }
         else
         {
-            return nodePort.Connection.node as T;
+            return nodePort.Connection.node;
         }
+    }
+
+
+    public static T GetOutputConnection<T>(this Node node, string name) where T : Node
+    {
+        return node.GetOutputConnection(name) as T;
+    }
+
+    public static Node[] GetOutputConnections(this Node node, string name)
+    {
+        return node.GetOutputConnections<Node>(name);
     }
 
     public static T[] GetOutputConnections<T>(this Node node, string name) where T : Node

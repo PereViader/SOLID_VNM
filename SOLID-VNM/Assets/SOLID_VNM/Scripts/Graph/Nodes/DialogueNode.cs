@@ -1,24 +1,34 @@
+using UnityEngine;
 using XNode;
 
 using SOLID_VNM.Core.Scenes.DialogueScene;
 
 namespace SOLID_VNM.Graph
 {
-    public class DialogueNode : VNNode
+    public interface IDialogueNode : INode
     {
-        [Input] public VNNode previous;
+        IDialogueSceneModel DialogueSceneModel { get; }
+        INode NextNode { get; }
+    }
+
+    public class DialogueNode : BaseNode, IDialogueNode
+    {
+        [Input] public BaseNode previous;
 
 
         [Output(backingValue = ShowBackingValue.Never, connectionType = ConnectionType.Override)]
-        public VNNode next;
+        public BaseNode next;
 
-        public ConcreteDialogueSceneModel dialogueSceneModel;
+        [SerializeField]
+        private ConcreteDialogueSceneModel dialogueSceneModel;
 
-        public VNNode Next { get { return this.GetOutputConnection<VNNode>("next"); } }
+        INode IDialogueNode.NextNode { get { return (INode)this.GetOutputConnection("next"); } }
 
-        public override void Accept(IDialogueNodeVisitor visitor)
+        IDialogueSceneModel IDialogueNode.DialogueSceneModel { get { return dialogueSceneModel; } }
+
+        void INode.Accept(INodeVisitor visitor)
         {
-            visitor.Accept(this);
+            visitor.Visit(this);
         }
     }
 }

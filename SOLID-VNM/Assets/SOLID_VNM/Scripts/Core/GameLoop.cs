@@ -11,30 +11,30 @@ namespace SOLID_VNM.Core
     public class GameLoop
     {
         private readonly SceneControllerDiscriminator _sceneControllerDiscriminator;
-        private readonly SceneDefinitionFactory _sceneDefinitionFactory;
+        private readonly SceneFactory _sceneFactory;
 
         private ISceneController _sceneController;
 
-        public GameLoop(SceneControllerDiscriminator sceneControllerDiscriminator, SceneDefinitionFactory sceneDefinitionFactory)
+        public GameLoop(SceneControllerDiscriminator sceneControllerDiscriminator, SceneFactory sceneFactory)
         {
             _sceneControllerDiscriminator = sceneControllerDiscriminator;
-            _sceneDefinitionFactory = sceneDefinitionFactory;
+            _sceneFactory = sceneFactory;
         }
 
         public void Play(VNGraph dialogueNodeGraph)
         {
-            ISceneDefinition sceneDefinition = _sceneDefinitionFactory.Create(dialogueNodeGraph.RootNode);
-            Play(sceneDefinition);
+            IScene scene = _sceneFactory.Create(dialogueNodeGraph.RootNode);
+            Play(scene);
         }
 
-        public void Play(ISceneDefinition sceneDefinition)
+        public void Play(IScene scene)
         {
             if (_sceneController != null)
             {
                 _sceneController.End();
             }
 
-            _sceneController = _sceneControllerDiscriminator.Choose(sceneDefinition);
+            _sceneController = _sceneControllerDiscriminator.Choose(scene);
             _sceneController.Play();
         }
     }

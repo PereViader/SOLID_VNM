@@ -40,7 +40,7 @@ MonoBehaviour:
     values:
     - _fieldName: next
       _node: {fileID: 114067995478946002}
-      _typeQualifiedName: SOLID_VNM.Graph.VNNode, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: SOLID_VNM.Graph.BaseNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: previous
@@ -51,7 +51,7 @@ MonoBehaviour:
       _dynamic: 0
     - _fieldName: previous
       _node: {fileID: 114067995478946002}
-      _typeQualifiedName: SOLID_VNM.Graph.VNNode, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: SOLID_VNM.Graph.BaseNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: choices
@@ -90,7 +90,7 @@ MonoBehaviour:
     values:
     - _fieldName: previous
       _node: {fileID: 114068252417261796}
-      _typeQualifiedName: SOLID_VNM.Graph.VNNode, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: SOLID_VNM.Graph.BaseNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: next
@@ -101,7 +101,7 @@ MonoBehaviour:
       _dynamic: 0
     - _fieldName: next
       _node: {fileID: 114068252417261796}
-      _typeQualifiedName: SOLID_VNM.Graph.VNNode, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: SOLID_VNM.Graph.BaseNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: previous
@@ -137,7 +137,7 @@ MonoBehaviour:
     values:
     - _fieldName: previous
       _node: {fileID: 114408837478615818}
-      _typeQualifiedName: SOLID_VNM.Graph.VNNode, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: SOLID_VNM.Graph.BaseNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: choices
@@ -151,7 +151,7 @@ MonoBehaviour:
       _dynamic: 0
     - _fieldName: next
       _node: {fileID: 114408837478615818}
-      _typeQualifiedName: SOLID_VNM.Graph.VNNode, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: SOLID_VNM.Graph.BaseNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: previous
@@ -187,7 +187,7 @@ MonoBehaviour:
     values:
     - _fieldName: previous
       _node: {fileID: 114582216700096444}
-      _typeQualifiedName: SOLID_VNM.Graph.VNNode, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: SOLID_VNM.Graph.BaseNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: choices
@@ -201,7 +201,7 @@ MonoBehaviour:
       _dynamic: 0
     - _fieldName: next
       _node: {fileID: 114582216700096444}
-      _typeQualifiedName: SOLID_VNM.Graph.VNNode, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: SOLID_VNM.Graph.BaseNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: previous
@@ -236,7 +236,7 @@ MonoBehaviour:
     values:
     - _fieldName: next
       _node: {fileID: 114643262804631766}
-      _typeQualifiedName: SOLID_VNM.Graph.VNNode, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: SOLID_VNM.Graph.BaseNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: previous
@@ -266,7 +266,7 @@ MonoBehaviour:
     values:
     - _fieldName: previous
       _node: {fileID: 114775574320451460}
-      _typeQualifiedName: SOLID_VNM.Graph.VNNode, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: SOLID_VNM.Graph.BaseNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: choices
@@ -280,7 +280,7 @@ MonoBehaviour:
       _dynamic: 0
     - _fieldName: next
       _node: {fileID: 114775574320451460}
-      _typeQualifiedName: SOLID_VNM.Graph.VNNode, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: SOLID_VNM.Graph.BaseNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: previous
@@ -316,7 +316,7 @@ MonoBehaviour:
     values:
     - _fieldName: next
       _node: {fileID: 114908421212005266}
-      _typeQualifiedName: SOLID_VNM.Graph.VNNode, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: SOLID_VNM.Graph.BaseNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: previous
@@ -327,7 +327,7 @@ MonoBehaviour:
       _dynamic: 0
     - _fieldName: previous
       _node: {fileID: 114908421212005266}
-      _typeQualifiedName: SOLID_VNM.Graph.VNNode, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: SOLID_VNM.Graph.BaseNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: next
@@ -378,7 +378,7 @@ MonoBehaviour:
     values:
     - _fieldName: previous
       _node: {fileID: 114909576202169830}
-      _typeQualifiedName: SOLID_VNM.Graph.VNNode, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: SOLID_VNM.Graph.BaseNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: next
@@ -392,7 +392,7 @@ MonoBehaviour:
       _dynamic: 0
     - _fieldName: choices
       _node: {fileID: 114909576202169830}
-      _typeQualifiedName: SOLID_VNM.Graph.VNNode, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: SOLID_VNM.Graph.BaseNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: previous
@@ -412,7 +412,7 @@ MonoBehaviour:
       _dynamic: 0
   previous: {fileID: 0}
   choices: {fileID: 0}
-  choiceSceneModel:
+  _choiceSceneModel:
     _background: {fileID: 21300000, guid: 9a9e3620f12d022428aea2033789c193, type: 3}
     _choices:
     - _text: 1

@@ -7,14 +7,14 @@ using SOLID_VNM.Core.Scenes.ChoiceScene;
 
 namespace SOLID_VNM
 {
-    public interface ISceneContentVisitor
+    public interface ISceneModelVisitor
     {
-        void Visit(ConcreteDialogueSceneModel sceneContentDialogue);
-        void Visit(IChoiceSceneModel sceneContentChoice);
+        void Visit(IDialogueSceneModel dialogueSceneModel);
+        void Visit(IChoiceSceneModel choiceSceneModel);
     }
 
     public interface ISceneModel
     {
-        void Accept(ISceneContentVisitor sceneContentVisitor);
+        void Accept(ISceneModelVisitor sceneContentVisitor);
     }
 }

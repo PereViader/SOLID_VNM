@@ -1,24 +1,36 @@
-﻿using XNode;
+﻿using System.Linq;
+
+using UnityEngine;
+using XNode;
 
 using SOLID_VNM.Core.Scenes.ChoiceScene;
 
 namespace SOLID_VNM.Graph
 {
-    public class ChoiceNode : VNNode
+    public interface IChoiceNode : INode
     {
-        [Input] public VNNode previous;
+        IChoiceSceneModel ChoiceSceneModel { get; }
+        INode[] Choices { get; }
+    }
 
+    public class ChoiceNode : BaseNode, IChoiceNode
+    {
+        [Input] public BaseNode previous;
 
         [Output(backingValue = ShowBackingValue.Never, connectionType = ConnectionType.Multiple)]
-        public VNNode choices;
+        public BaseNode choices;
 
-        public ConcreteChoiceSceneModel choiceSceneModel;
 
-        public VNNode[] Choices { get { return this.GetOutputConnections<VNNode>("choices"); } }
+        [SerializeField]
+        private ConcreteChoiceSceneModel _choiceSceneModel;
 
-        public override void Accept(IDialogueNodeVisitor visitor)
+
+        IChoiceSceneModel IChoiceNode.ChoiceSceneModel { get { return _choiceSceneModel; } }
+        INode[] IChoiceNode.Choices { get { return this.GetOutputConnections("choices").Select(choice => (INode)choice).ToArray(); } }
+
+        void INode.Accept(INodeVisitor visitor)
         {
-            visitor.Accept(this);
+            visitor.Visit(this);
         }
     }
 }

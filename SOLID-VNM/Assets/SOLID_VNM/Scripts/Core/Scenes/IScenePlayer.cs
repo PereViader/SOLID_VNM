@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace SOLID_VNM.Core.Scenes
 {
-    public interface IScenePlayer<T> where T : ISceneDefinition
+    public interface IScenePlayer<S> where S : IScene
     {
-        void Play(T sceneDefinition);
+        void Play(S scene);
         void End();
     }
 }

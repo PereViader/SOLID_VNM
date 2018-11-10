@@ -8,13 +8,13 @@ namespace SOLID_VNM.Graph
     public class StartNode : Node
     {
         [Output(backingValue = ShowBackingValue.Never, connectionType = ConnectionType.Override)]
-        public VNNode next;
+        public BaseNode next;
 
-        public VNNode Start
+        public INode Start
         {
             get
             {
-                return this.GetOutputConnection<VNNode>("next");
+                return (INode)this.GetOutputConnection("next");
             }
         }
 
