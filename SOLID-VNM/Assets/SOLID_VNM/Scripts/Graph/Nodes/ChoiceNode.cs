@@ -12,7 +12,7 @@ namespace SOLID_VNM.Graph
         [Output(backingValue = ShowBackingValue.Never, connectionType = ConnectionType.Multiple)]
         public VNNode choices;
 
-        public SceneContentChoice sceneContentChoice;
+        public ConcreteChoiceSceneModel choiceSceneModel;
 
         public VNNode[] Choices { get { return this.GetOutputConnections<VNNode>("choices"); } }
 

@@ -2,20 +2,20 @@
 
 using SOLID_VNM.Graph;
 
-namespace SOLID_VNM.Core.Scenes.TextScene
+namespace SOLID_VNM.Core.Scenes.DialogueScene
 {
     public class TextSceneDefinition : ISceneDefinition
     {
-        private readonly SceneContentDialogue _sceneContentDialogue;
+        private readonly IDialogueSceneModel _dialogueSceneModel;
         private readonly ISceneDefinitionFacade _nextSceneDefinitionFacade;
 
-        public SceneContentDialogue SceneContentDialogue { get { return _sceneContentDialogue; } }
+        public IDialogueSceneModel DialogueSceneModel { get { return _dialogueSceneModel; } }
 
         public ISceneDefinitionFacade NextSceneDefinitionFacade { get { return _nextSceneDefinitionFacade; } }
 
-        public TextSceneDefinition(SceneContentDialogue sceneContentDialogue, ISceneDefinitionFacade nextSceneDefinitionFacade)
+        public TextSceneDefinition(IDialogueSceneModel dialogueSceneModel, ISceneDefinitionFacade nextSceneDefinitionFacade)
         {
-            _sceneContentDialogue = sceneContentDialogue;
+            _dialogueSceneModel = dialogueSceneModel;
             _nextSceneDefinitionFacade = nextSceneDefinitionFacade;
         }
 
@@ -48,7 +48,7 @@ namespace SOLID_VNM.Core.Scenes.TextScene
             public class Factory : PlaceholderFactory<DialogueNode, Facade> { }
         }
 
-        public class Factory : PlaceholderFactory<SceneContentDialogue, ISceneDefinitionFacade, TextSceneDefinition>
+        public class Factory : PlaceholderFactory<IDialogueSceneModel, ISceneDefinitionFacade, TextSceneDefinition>
         {
             private readonly SceneDefinitionFacadeFactory _sceneDefinitionFacadeFactory;
 
@@ -57,9 +57,9 @@ namespace SOLID_VNM.Core.Scenes.TextScene
                 _sceneDefinitionFacadeFactory = sceneDefinitionFacadeFactory;
             }
 
-            public TextSceneDefinition Create(DialogueNode textNode)
+            public TextSceneDefinition Create(DialogueNode dialogueNode)
             {
-                return Create(textNode.sceneContentDialogue, _sceneDefinitionFacadeFactory.Create(textNode.Next));
+                return Create(dialogueNode.dialogueSceneModel, _sceneDefinitionFacadeFactory.Create(dialogueNode.Next));
             }
         }
     }

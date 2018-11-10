@@ -1,6 +1,6 @@
 using XNode;
 
-using SOLID_VNM.Core.Scenes.TextScene;
+using SOLID_VNM.Core.Scenes.DialogueScene;
 
 namespace SOLID_VNM.Graph
 {
@@ -12,7 +12,7 @@ namespace SOLID_VNM.Graph
         [Output(backingValue = ShowBackingValue.Never, connectionType = ConnectionType.Override)]
         public VNNode next;
 
-        public SceneContentDialogue sceneContentDialogue;
+        public ConcreteDialogueSceneModel dialogueSceneModel;
 
         public VNNode Next { get { return this.GetOutputConnection<VNNode>("next"); } }
 

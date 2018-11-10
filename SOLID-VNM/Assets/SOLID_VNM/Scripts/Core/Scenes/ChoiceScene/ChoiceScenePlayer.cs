@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-using SOLID_VNM.Core.Scenes.TextScene;
+using SOLID_VNM.Core.Scenes.DialogueScene;
 using SOLID_VNM.Displays;
 using SOLID_VNM.Displays.BackgroundDisplay;
 using SOLID_VNM.Displays.ChoiceDisplay;
@@ -39,7 +39,7 @@ namespace SOLID_VNM.Core.Scenes.ChoiceScene
 
         void IScenePlayer<ChoiceSceneDefinition>.Play(ChoiceSceneDefinition sceneDefinition)
         {
-            SceneContentChoice sceneContent = sceneDefinition.SceneContentChoice;
+            IChoiceSceneModel sceneContent = sceneDefinition.ChoiceSceneModel;
 
             _choiceDisplay.Display(_choiceDisplayContentExtractor.Extract(sceneContent));
             _backgroundDisplay.Display(_backgroundDisplayContentExtractor.Extract(sceneContent));

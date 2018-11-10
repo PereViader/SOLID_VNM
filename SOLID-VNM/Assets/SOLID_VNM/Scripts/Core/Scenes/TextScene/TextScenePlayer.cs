@@ -8,7 +8,7 @@ using SOLID_VNM.Displays.TextDisplay;
 using SOLID_VNM.Displays.BackgroundDisplay;
 using SOLID_VNM.Displays.ImageDisplay;
 
-namespace SOLID_VNM.Core.Scenes.TextScene
+namespace SOLID_VNM.Core.Scenes.DialogueScene
 {
     public interface ITextScenePlayer : IScenePlayer<TextSceneDefinition>
     {
@@ -46,11 +46,11 @@ namespace SOLID_VNM.Core.Scenes.TextScene
 
         void IScenePlayer<TextSceneDefinition>.Play(TextSceneDefinition textSceneDefinition)
         {
-            SceneContentDialogue sceneContent = textSceneDefinition.SceneContentDialogue;
+            IDialogueSceneModel dialogueScene = textSceneDefinition.DialogueSceneModel;
 
-            _textDisplay.Display(_textDisplayContentExtractor.Extract(sceneContent));
-            _backgroundDisplay.Display(_backgroundDisplayContentExtractor.Extract(sceneContent));
-            _imageDisplay.Display(_imageDisplayContentExtractor.Extract(sceneContent));
+            _textDisplay.Display(_textDisplayContentExtractor.Extract(dialogueScene));
+            _backgroundDisplay.Display(_backgroundDisplayContentExtractor.Extract(dialogueScene));
+            _imageDisplay.Display(_imageDisplayContentExtractor.Extract(dialogueScene));
         }
 
         void IScenePlayer<TextSceneDefinition>.End()

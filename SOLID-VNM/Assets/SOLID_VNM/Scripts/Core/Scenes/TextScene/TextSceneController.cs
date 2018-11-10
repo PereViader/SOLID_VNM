@@ -13,7 +13,7 @@ using SOLID_VNM.Displays.BackgroundDisplay;
 using SOLID_VNM.Displays.ImageDisplay;
 using SOLID_VNM.Actors;
 
-namespace SOLID_VNM.Core.Scenes.TextScene
+namespace SOLID_VNM.Core.Scenes.DialogueScene
 {
     public class TextSceneController : ISceneController, INextHandler
     {

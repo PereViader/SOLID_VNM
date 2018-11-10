@@ -4,7 +4,7 @@ using SOLID_VNM.Displays.ChoiceDisplay;
 
 namespace SOLID_VNM.Core.Scenes.ChoiceScene
 {
-    public interface ISceneContentChoiceChoiceDisplayContentExtractor : ISceneContentExtractor<SceneContentChoice, ChoiceDisplayContent>
+    public interface ISceneContentChoiceChoiceDisplayContentExtractor : ISceneModelExtractor<IChoiceSceneModel, ChoiceDisplayContent>
     {
     }
 
@@ -18,15 +18,15 @@ namespace SOLID_VNM.Core.Scenes.ChoiceScene
             _contentFactory = contentFactory;
         }
 
-        ChoiceDisplayContent ISceneContentExtractor<SceneContentChoice, ChoiceDisplayContent>.Extract(SceneContentChoice sceneContentChoice)
+        ChoiceDisplayContent ISceneModelExtractor<IChoiceSceneModel, ChoiceDisplayContent>.Extract(IChoiceSceneModel sceneContentChoice)
         {
-            ChoiceDisplayContent.Choice[] choices = sceneContentChoice.choices.Select(choiceText => new ChoiceDisplayContent.Choice() { text = choiceText }).ToArray();
+            ChoiceDisplayContent.Choice[] choices = sceneContentChoice.Choices.Select(choice => new ChoiceDisplayContent.Choice() { text = choice.Text }).ToArray();
             return _contentFactory.Create(choices);
         }
     }
 
 
-    public interface ISceneContentChoiceBackgroundDisplayContentExtractor : ISceneContentExtractor<SceneContentChoice, BackgroundDisplayContent> { }
+    public interface ISceneContentChoiceBackgroundDisplayContentExtractor : ISceneModelExtractor<IChoiceSceneModel, BackgroundDisplayContent> { }
 
     public class SceneContentChoiceBackgroundDisplayContentExtractor : ISceneContentChoiceBackgroundDisplayContentExtractor
     {
@@ -38,9 +38,9 @@ namespace SOLID_VNM.Core.Scenes.ChoiceScene
             _backgroundDisplayContentFactory = backgroundDisplayContentFactory;
         }
 
-        BackgroundDisplayContent ISceneContentExtractor<SceneContentChoice, BackgroundDisplayContent>.Extract(SceneContentChoice content)
+        BackgroundDisplayContent ISceneModelExtractor<IChoiceSceneModel, BackgroundDisplayContent>.Extract(IChoiceSceneModel content)
         {
-            return _backgroundDisplayContentFactory.Create(content.background);
+            return _backgroundDisplayContentFactory.Create(content.Background);
         }
     }
 }

@@ -2,17 +2,41 @@
 
 using UnityEngine;
 
-namespace SOLID_VNM.Core.Scenes.TextScene
+namespace SOLID_VNM.Core.Scenes.DialogueScene
 {
-    [Serializable]
-    public class SceneContentDialogue : SceneContent
+    public interface IDialogueSceneModel : ISceneModel
     {
-        public int actorId;
-        public string actorAction;
-        public string text;
-        public Sprite background;
+        int ActorId { get; }
+        string ActorAction { get; }
+        string Text { get; }
+        Sprite Background { get; }
+    }
 
-        public override void Accept(ISceneContentVisitor sceneContentVisitor)
+    [Serializable]
+    public class ConcreteDialogueSceneModel : IDialogueSceneModel
+    {
+        [SerializeField]
+        private int actorId;
+
+        [SerializeField]
+        private string actorAction;
+
+        [SerializeField]
+        private string text;
+
+        [SerializeField]
+        private Sprite background;
+
+        public int ActorId { get { return actorId; } }
+
+        public string ActorAction { get { return actorAction; } }
+
+        public string Text { get { return text; } }
+
+        public Sprite Background { get { return background; } }
+
+
+        public void Accept(ISceneContentVisitor sceneContentVisitor)
         {
             sceneContentVisitor.Visit(this);
         }

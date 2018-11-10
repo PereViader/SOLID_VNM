@@ -4,7 +4,7 @@ using Zenject;
 
 using SOLID_VNM.Graph;
 using SOLID_VNM.Core.Scenes;
-using SOLID_VNM.Core.Scenes.TextScene;
+using SOLID_VNM.Core.Scenes.DialogueScene;
 using SOLID_VNM.InputManagement;
 using SOLID_VNM.Core.Scenes.ChoiceScene;
 using SOLID_VNM.Displays.TextDisplay;
@@ -42,7 +42,7 @@ namespace SOLID_VNM.Core.Installers
             Container.Bind<TextSceneController>().AsSingle();
             Container.Bind<ITextScenePlayer>().To<TextScenePlayer>().AsSingle();
 
-            Container.BindFactory<SceneContentDialogue, ISceneDefinitionFacade, TextSceneDefinition, TextSceneDefinition.Factory>();
+            Container.BindFactory<IDialogueSceneModel, ISceneDefinitionFacade, TextSceneDefinition, TextSceneDefinition.Factory>();
             Container.BindFactory<DialogueNode, TextSceneDefinition.Facade, TextSceneDefinition.Facade.Factory>();
 
             Container.Bind<ISceneContentDialogueTextDisplayContentExtractor>().To<SceneContentDialogueTextDisplayContentExtractor>().AsSingle();
@@ -55,7 +55,7 @@ namespace SOLID_VNM.Core.Installers
             Container.Bind<ChoiceSceneController>().AsSingle();
             Container.Bind<IChoiceScenePlayer>().To<ChoiceScenePlayer>().AsSingle();
 
-            Container.BindFactory<SceneContentChoice, ISceneDefinitionFacade[], ChoiceSceneDefinition, ChoiceSceneDefinition.Factory>();
+            Container.BindFactory<IChoiceSceneModel, ISceneDefinitionFacade[], ChoiceSceneDefinition, ChoiceSceneDefinition.Factory>();
             Container.BindFactory<ChoiceNode, ChoiceSceneDefinition.Facade, ChoiceSceneDefinition.Facade.Factory>();
 
             Container.Bind<ISceneContentChoiceChoiceDisplayContentExtractor>().To<SceneContentChoiceChoiceDisplayContentExtractor>().AsSingle();

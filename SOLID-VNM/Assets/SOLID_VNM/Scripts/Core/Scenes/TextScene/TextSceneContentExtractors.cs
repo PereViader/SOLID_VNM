@@ -5,10 +5,10 @@ using SOLID_VNM.Displays.ImageDisplay;
 using SOLID_VNM.Displays.TextDisplay;
 using SOLID_VNM.Displays.BackgroundDisplay;
 
-namespace SOLID_VNM.Core.Scenes.TextScene
+namespace SOLID_VNM.Core.Scenes.DialogueScene
 {
 
-    public interface ISceneContentDialogueTextDisplayContentExtractor : ISceneContentExtractor<SceneContentDialogue, TextDisplayContent> { }
+    public interface ISceneContentDialogueTextDisplayContentExtractor : ISceneModelExtractor<IDialogueSceneModel, TextDisplayContent> { }
     public class SceneContentDialogueTextDisplayContentExtractor : ISceneContentDialogueTextDisplayContentExtractor
     {
         private readonly TextDisplayContent.Factory _textDisplayContentFactory;
@@ -20,14 +20,14 @@ namespace SOLID_VNM.Core.Scenes.TextScene
             _actorProvider = actorProvider;
         }
 
-        TextDisplayContent ISceneContentExtractor<SceneContentDialogue, TextDisplayContent>.Extract(SceneContentDialogue content)
+        TextDisplayContent ISceneModelExtractor<IDialogueSceneModel, TextDisplayContent>.Extract(IDialogueSceneModel content)
         {
-            Actor actor = _actorProvider.GetActorById(content.actorId);
-            return _textDisplayContentFactory.Create(actor.name, content.text);
+            Actor actor = _actorProvider.GetActorById(content.ActorId);
+            return _textDisplayContentFactory.Create(actor.name, content.Text);
         }
     }
 
-    public interface ISceneContentDialogueImageDisplayContentExtractor : ISceneContentExtractor<SceneContentDialogue, ImageDisplayContent> { }
+    public interface ISceneContentDialogueImageDisplayContentExtractor : ISceneModelExtractor<IDialogueSceneModel, ImageDisplayContent> { }
 
     public class SceneContentDialogueImageDisplayContentExtractor : ISceneContentDialogueImageDisplayContentExtractor
     {
@@ -47,23 +47,23 @@ namespace SOLID_VNM.Core.Scenes.TextScene
             _actorActionSettings = actorActionSettings;
         }
 
-        ImageDisplayContent ISceneContentExtractor<SceneContentDialogue, ImageDisplayContent>.Extract(SceneContentDialogue sceneContentDialogue)
+        ImageDisplayContent ISceneModelExtractor<IDialogueSceneModel, ImageDisplayContent>.Extract(IDialogueSceneModel sceneContentDialogue)
         {
-            Actor actor = _actorProvider.GetActorById(sceneContentDialogue.actorId);
+            Actor actor = _actorProvider.GetActorById(sceneContentDialogue.ActorId);
 
-            if (sceneContentDialogue.actorAction == string.Empty)
+            if (sceneContentDialogue.ActorAction == string.Empty)
             {
                 return _spritedFactory.Create(actor.sprite);
             }
             else
             {
-                AnimationClip animationClip = _actorActionSettings.GetAnimationClipByAction(sceneContentDialogue.actorAction);
+                AnimationClip animationClip = _actorActionSettings.GetAnimationClipByAction(sceneContentDialogue.ActorAction);
                 return _spritedAnimatedFactory.Create(actor.sprite, animationClip);
             }
         }
     }
 
-    public interface ISceneContentDialogueBackgroundDisplayContentExtractor : ISceneContentExtractor<SceneContentDialogue, BackgroundDisplayContent> { }
+    public interface ISceneContentDialogueBackgroundDisplayContentExtractor : ISceneModelExtractor<IDialogueSceneModel, BackgroundDisplayContent> { }
 
     public class SceneContentDialogueBackgroundDisplayContentExtractor : ISceneContentDialogueBackgroundDisplayContentExtractor
     {
@@ -74,9 +74,9 @@ namespace SOLID_VNM.Core.Scenes.TextScene
             _backgroundDisplayContentFactory = backgroundDisplayContentFactory;
         }
 
-        BackgroundDisplayContent ISceneContentExtractor<SceneContentDialogue, BackgroundDisplayContent>.Extract(SceneContentDialogue sceneContentDialogue)
+        BackgroundDisplayContent ISceneModelExtractor<IDialogueSceneModel, BackgroundDisplayContent>.Extract(IDialogueSceneModel sceneContentDialogue)
         {
-            return _backgroundDisplayContentFactory.Create(sceneContentDialogue.background);
+            return _backgroundDisplayContentFactory.Create(sceneContentDialogue.Background);
         }
     }
 }

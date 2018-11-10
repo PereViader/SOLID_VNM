@@ -65,10 +65,10 @@ MonoBehaviour:
       _dynamic: 0
   previous: {fileID: 0}
   next: {fileID: 0}
-  sceneContentDialogue:
+  dialogueSceneModel:
     actorId: 1
-    actorAction: Shake
-    text: 0
+    actorAction: 
+    text: 1
     background: {fileID: 21300000, guid: 9a9e3620f12d022428aea2033789c193, type: 3}
 --- !u!114 &114068252417261796
 MonoBehaviour:
@@ -112,11 +112,11 @@ MonoBehaviour:
       _dynamic: 0
   previous: {fileID: 0}
   next: {fileID: 0}
-  sceneContentDialogue:
-    actorId: 2
+  dialogueSceneModel:
+    actorId: 0
     actorAction: 
-    text: Hola guapo
-    background: {fileID: 21300000, guid: 9a9e3620f12d022428aea2033789c193, type: 3}
+    text: 
+    background: {fileID: 0}
 --- !u!114 &114408837478615818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,10 +162,10 @@ MonoBehaviour:
       _dynamic: 0
   previous: {fileID: 0}
   next: {fileID: 0}
-  sceneContentDialogue:
+  dialogueSceneModel:
     actorId: 2
-    actorAction: Shake
-    text: 1
+    actorAction: 
+    text: 2
     background: {fileID: 21300000, guid: 9a9e3620f12d022428aea2033789c193, type: 3}
 --- !u!114 &114582216700096444
 MonoBehaviour:
@@ -212,10 +212,10 @@ MonoBehaviour:
       _dynamic: 0
   previous: {fileID: 0}
   next: {fileID: 0}
-  sceneContentDialogue:
+  dialogueSceneModel:
     actorId: 2
-    actorAction: Shake
-    text: 3
+    actorAction: 
+    text: 4
     background: {fileID: 21300000, guid: 9a9e3620f12d022428aea2033789c193, type: 3}
 --- !u!114 &114643262804631766
 MonoBehaviour:
@@ -291,10 +291,10 @@ MonoBehaviour:
       _dynamic: 0
   previous: {fileID: 0}
   next: {fileID: 0}
-  sceneContentDialogue:
-    actorId: 2
-    actorAction: Shake
-    text: "at\xF3"
+  dialogueSceneModel:
+    actorId: 1
+    actorAction: 
+    text: 3
     background: {fileID: 21300000, guid: 9a9e3620f12d022428aea2033789c193, type: 3}
 --- !u!114 &114908421212005266
 MonoBehaviour:
@@ -353,10 +353,10 @@ MonoBehaviour:
       _dynamic: 0
   previous: {fileID: 0}
   next: {fileID: 0}
-  sceneContentDialogue:
+  dialogueSceneModel:
     actorId: 0
-    actorAction: 
-    text: 2ello I am B2
+    actorAction: shake
+    text: hihi
     background: {fileID: 21300000, guid: 9a9e3620f12d022428aea2033789c193, type: 3}
 --- !u!114 &114909576202169830
 MonoBehaviour:
@@ -412,10 +412,10 @@ MonoBehaviour:
       _dynamic: 0
   previous: {fileID: 0}
   choices: {fileID: 0}
-  sceneContentChoice:
-    background: {fileID: 21300000, guid: 9a9e3620f12d022428aea2033789c193, type: 3}
-    choices:
-    - 0
-    - 1
-    - 2
-    - 3
+  choiceSceneModel:
+    _background: {fileID: 21300000, guid: 9a9e3620f12d022428aea2033789c193, type: 3}
+    _choices:
+    - _text: 1
+    - _text: 2
+    - _text: 3
+    - _text: 4

@@ -4,7 +4,7 @@ using Zenject;
 using ModestTree;
 
 using SOLID_VNM.Actors;
-using SOLID_VNM.Core.Scenes.TextScene;
+using SOLID_VNM.Core.Scenes.DialogueScene;
 using SOLID_VNM.Core.Scenes.ChoiceScene;
 
 namespace SOLID_VNM.Displays.TextDisplay

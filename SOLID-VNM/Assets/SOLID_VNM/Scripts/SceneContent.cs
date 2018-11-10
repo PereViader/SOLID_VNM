@@ -2,19 +2,19 @@
 using UnityEngine;
 
 using SOLID_VNM.Actors;
-using SOLID_VNM.Core.Scenes.TextScene;
+using SOLID_VNM.Core.Scenes.DialogueScene;
 using SOLID_VNM.Core.Scenes.ChoiceScene;
 
 namespace SOLID_VNM
 {
     public interface ISceneContentVisitor
     {
-        void Visit(SceneContentDialogue sceneContentDialogue);
-        void Visit(SceneContentChoice sceneContentChoice);
+        void Visit(ConcreteDialogueSceneModel sceneContentDialogue);
+        void Visit(IChoiceSceneModel sceneContentChoice);
     }
 
-    public abstract class SceneContent
+    public interface ISceneModel
     {
-        public abstract void Accept(ISceneContentVisitor sceneContentVisitor);
+        void Accept(ISceneContentVisitor sceneContentVisitor);
     }
 }

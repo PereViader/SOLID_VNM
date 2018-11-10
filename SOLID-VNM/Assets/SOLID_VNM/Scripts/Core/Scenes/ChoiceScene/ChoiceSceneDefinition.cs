@@ -8,15 +8,15 @@ namespace SOLID_VNM.Core.Scenes.ChoiceScene
 {
     public class ChoiceSceneDefinition : ISceneDefinition
     {
-        private readonly SceneContentChoice _sceneContentChoice;
+        private readonly IChoiceSceneModel _choiceSceneModel;
         private readonly ISceneDefinitionFacade[] _sceneDefinitionFacades;
 
-        public SceneContentChoice SceneContentChoice { get { return _sceneContentChoice; } }
+        public IChoiceSceneModel ChoiceSceneModel { get { return _choiceSceneModel; } }
         public ISceneDefinitionFacade[] SceneDefinitionFacades { get { return _sceneDefinitionFacades; } }
 
-        public ChoiceSceneDefinition(SceneContentChoice sceneContentChoice, ISceneDefinitionFacade[] sceneDefinitionFacades)
+        public ChoiceSceneDefinition(IChoiceSceneModel choiceSceneModel, ISceneDefinitionFacade[] sceneDefinitionFacades)
         {
-            _sceneContentChoice = sceneContentChoice;
+            _choiceSceneModel = choiceSceneModel;
             _sceneDefinitionFacades = sceneDefinitionFacades;
         }
 
@@ -48,7 +48,7 @@ namespace SOLID_VNM.Core.Scenes.ChoiceScene
             public class Factory : PlaceholderFactory<ChoiceNode, Facade> { }
         }
 
-        public class Factory : PlaceholderFactory<SceneContentChoice, ISceneDefinitionFacade[], ChoiceSceneDefinition>, IFactory<ChoiceNode, ChoiceSceneDefinition>
+        public class Factory : PlaceholderFactory<IChoiceSceneModel, ISceneDefinitionFacade[], ChoiceSceneDefinition>, IFactory<ChoiceNode, ChoiceSceneDefinition>
         {
             private readonly SceneDefinitionFacadeFactory _sceneDefinitionFacadeFactory;
 
@@ -60,7 +60,7 @@ namespace SOLID_VNM.Core.Scenes.ChoiceScene
             public ChoiceSceneDefinition Create(ChoiceNode choiceNode)
             {
                 ISceneDefinitionFacade[] sceneDefinitionFacades = choiceNode.Choices.Select(node => _sceneDefinitionFacadeFactory.Create(node)).ToArray();
-                return Create(choiceNode.sceneContentChoice, sceneDefinitionFacades);
+                return Create(choiceNode.choiceSceneModel, sceneDefinitionFacades);
             }
         }
     }

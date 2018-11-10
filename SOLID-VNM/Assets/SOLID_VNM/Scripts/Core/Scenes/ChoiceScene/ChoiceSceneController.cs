@@ -1,4 +1,4 @@
-﻿using SOLID_VNM.Core.Scenes.TextScene;
+﻿using SOLID_VNM.Core.Scenes.DialogueScene;
 
 namespace SOLID_VNM.Core.Scenes.ChoiceScene
 {
