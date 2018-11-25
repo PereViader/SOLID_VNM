@@ -8,7 +8,6 @@ using SOLID_VNM.Displays;
 using SOLID_VNM.Displays.BackgroundDisplay;
 using SOLID_VNM.Displays.ChoiceDisplay;
 using SOLID_VNM.Displays.TextDisplay;
-using SOLID_VNM.Displays.ImageDisplay;
 
 namespace SOLID_VNM.Core.Scenes.ChoiceScene
 {

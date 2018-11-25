@@ -1,21 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
+using ModestTree;
+using Zenject;
 
 using SOLID_VNM.Displays;
-using Zenject;
+using SOLID_VNM.Actors;
 
 namespace SOLID_VNM.Displays.ActorDisplay
 {
-    public interface IActorDisplay : IDisplay<ActorDisplayContent> { }
+    public interface IActorDisplay : IDisplay<IActorDisplayModel> { }
 
-    public class ActorDisplayController : IActorDisplay, IInitializable
+    public class ConcreteActorDisplay : IActorDisplay, IInitializable
     {
-        private readonly ActorDisplayView _actorDisplayView;
+        private readonly IActorDisplayBehaviour _actorDisplayBehaviour;
 
-        public ActorDisplayController(ActorDisplayView actorDisplayView)
+        public ConcreteActorDisplay(IActorDisplayBehaviour actorDisplayBehaviour)
         {
-            _actorDisplayView = actorDisplayView;
+            _actorDisplayBehaviour = actorDisplayBehaviour;
         }
 
         void IInitializable.Initialize()
@@ -23,19 +26,20 @@ namespace SOLID_VNM.Displays.ActorDisplay
             Hide();
         }
 
-        void IDisplay<ActorDisplayContent>.Display(ActorDisplayContent content)
+        void IDisplay<IActorDisplayModel>.Display(IActorDisplayModel model)
         {
-            _actorDisplayView.Display(content);
+            _actorDisplayBehaviour.Update(model);
+            _actorDisplayBehaviour.Display(true);
         }
 
-        void IDisplay<ActorDisplayContent>.Hide()
+        void IDisplay<IActorDisplayModel>.Hide()
         {
             Hide();
         }
 
         private void Hide()
         {
-            _actorDisplayView.Hide();
+            _actorDisplayBehaviour.Display(false);
         }
     }
 }

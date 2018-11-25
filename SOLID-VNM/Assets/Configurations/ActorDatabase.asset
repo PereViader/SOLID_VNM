@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Name: ActorDatabase
   m_EditorClassIdentifier: 
   actors:
-  - name: B2
-    sprite: {fileID: 21300000, guid: 0018708f30bbeb1498db116128aa82ed, type: 3}
-  - name: Derp
-    sprite: {fileID: 21300000, guid: 3995d19444a1667428d8e43df79476f3, type: 3}
-  - name: Ohyee
-    sprite: {fileID: 21300000, guid: 3b2653edda6de164cb39b20448175d6a, type: 3}
+  - _name: B2
+    _sprite: {fileID: 21300000, guid: 0018708f30bbeb1498db116128aa82ed, type: 3}
+  - _name: Derp
+    _sprite: {fileID: 21300000, guid: 3b2653edda6de164cb39b20448175d6a, type: 3}
+  - _name: Momi
+    _sprite: {fileID: 21300000, guid: 3b2653edda6de164cb39b20448175d6a, type: 3}

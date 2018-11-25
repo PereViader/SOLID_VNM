@@ -16,7 +16,7 @@ namespace SOLID_VNM.Displays.ChoiceDisplay
         {
             Container.BindInstance(_choiceDisplayView);
 
-            Container.Bind<IChoiceDisplay>().To<ChoiceDisplayController>().AsSingle().NonLazy();
+            Container.Bind<IChoiceDisplay>().To<ConcreteChoiceDisplay>().AsSingle().NonLazy();
 
             Container.BindFactory<ChoiceDisplayContent.Choice[], ChoiceDisplayContent, ChoiceDisplayContent.Factory>();
         }

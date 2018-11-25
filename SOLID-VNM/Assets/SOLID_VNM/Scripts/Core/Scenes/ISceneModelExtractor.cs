@@ -4,7 +4,7 @@ namespace SOLID_VNM.Core.Scenes
 {
     public interface ISceneModelExtractor<S, D>
         where S : ISceneModel
-        where D : IDisplayContent
+        where D : IDisplayModel
     {
         D Extract(S content);
     }

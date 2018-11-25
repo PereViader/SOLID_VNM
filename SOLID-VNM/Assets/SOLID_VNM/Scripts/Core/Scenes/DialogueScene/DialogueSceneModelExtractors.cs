@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 
 using SOLID_VNM.Actors;
-using SOLID_VNM.Displays.ImageDisplay;
+using SOLID_VNM.Displays.ActorDisplay;
 using SOLID_VNM.Displays.TextDisplay;
 using SOLID_VNM.Displays.BackgroundDisplay;
+using System.Collections.Generic;
 
 namespace SOLID_VNM.Core.Scenes.DialogueScene
 {
@@ -22,45 +23,31 @@ namespace SOLID_VNM.Core.Scenes.DialogueScene
 
         TextDisplayContent ISceneModelExtractor<IDialogueSceneModel, TextDisplayContent>.Extract(IDialogueSceneModel dialogueSceneModel)
         {
-            Actor actor = _actorProvider.GetActorById(dialogueSceneModel.ActorId);
-            return _textDisplayContentFactory.Create(actor.name, dialogueSceneModel.Text);
+            IActor actor = _actorProvider.GetActorById(dialogueSceneModel.ActorId);
+            return _textDisplayContentFactory.Create(actor.Name, dialogueSceneModel.Text);
         }
     }
 
+    public interface IDialogueSceneModelActorDisplayContentExtractor : ISceneModelExtractor<IDialogueSceneModel, IActorDisplayModel> { }
 
-    public interface IDialogueSceneModelImageDisplayContentExtractor : ISceneModelExtractor<IDialogueSceneModel, ImageDisplayContent> { }
-
-    public class ConcreteDialogueSceneModelImageDisplayContentExtractor : IDialogueSceneModelImageDisplayContentExtractor
+    public class ConcreteDialogueSceneModelActorDisplayModelExtractor : IDialogueSceneModelActorDisplayContentExtractor
     {
-        private readonly ImageDisplayConentSprited.Factory _spritedFactory;
-        private readonly ImageDisplayConentSpritedAnimated.Factory _spritedAnimatedFactory;
+        private readonly ConcreteActorDisplayModel.Factory _actorDisplayModelFactory;
 
         private readonly ActorProvider _actorProvider;
         private readonly ActorActionSettings _actorActionSettings;
 
-        private ImageDisplayContent _imageDisplayContent;
-
-        public ConcreteDialogueSceneModelImageDisplayContentExtractor(ActorProvider actorProvider, ActorActionSettings actorActionSettings, ImageDisplayConentSprited.Factory spritedFactory, ImageDisplayConentSpritedAnimated.Factory spritedAnimatedFactory)
+        public ConcreteDialogueSceneModelActorDisplayModelExtractor(ActorProvider actorProvider, ActorActionSettings actorActionSettings, ConcreteActorDisplayModel.Factory actorDisplayModelFactory)
         {
-            _spritedFactory = spritedFactory;
-            _spritedAnimatedFactory = spritedAnimatedFactory;
+            _actorDisplayModelFactory = actorDisplayModelFactory;
             _actorProvider = actorProvider;
             _actorActionSettings = actorActionSettings;
         }
 
-        ImageDisplayContent ISceneModelExtractor<IDialogueSceneModel, ImageDisplayContent>.Extract(IDialogueSceneModel dialogueSceneModel)
+        IActorDisplayModel ISceneModelExtractor<IDialogueSceneModel, IActorDisplayModel>.Extract(IDialogueSceneModel dialogueSceneModel)
         {
-            Actor actor = _actorProvider.GetActorById(dialogueSceneModel.ActorId);
-
-            if (dialogueSceneModel.ActorAction == string.Empty)
-            {
-                return _spritedFactory.Create(actor.sprite);
-            }
-            else
-            {
-                AnimationClip animationClip = _actorActionSettings.GetAnimationClipByAction(dialogueSceneModel.ActorAction);
-                return _spritedAnimatedFactory.Create(actor.sprite, animationClip);
-            }
+            IActor actor = _actorProvider.GetActorById(dialogueSceneModel.ActorId);
+            return _actorDisplayModelFactory.Create(new List<IActor>(), new List<IActor>(new IActor[] { actor })); //TODO add actor left and right
         }
     }
 

@@ -4,11 +4,11 @@ namespace SOLID_VNM.Displays.BackgroundDisplay
 {
     public interface IBackgroundDisplay : IDisplay<BackgroundDisplayContent> { }
 
-    public class BackgroundDisplayController : IBackgroundDisplay, IInitializable
+    public class ConcreteBackgroundDisplay : IBackgroundDisplay, IInitializable
     {
         private readonly BackgroundDisplayView _backgroundDisplayView;
 
-        public BackgroundDisplayController(BackgroundDisplayView backgroundDisplayView)
+        public ConcreteBackgroundDisplay(BackgroundDisplayView backgroundDisplayView)
         {
             _backgroundDisplayView = backgroundDisplayView;
         }

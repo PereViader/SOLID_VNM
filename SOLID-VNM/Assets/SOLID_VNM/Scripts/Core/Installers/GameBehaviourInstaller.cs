@@ -8,7 +8,6 @@ using SOLID_VNM.Core.Scenes.DialogueScene;
 using SOLID_VNM.InputManagement;
 using SOLID_VNM.Core.Scenes.ChoiceScene;
 using SOLID_VNM.Displays.TextDisplay;
-using SOLID_VNM.Displays.ImageDisplay;
 using SOLID_VNM.Displays.BackgroundDisplay;
 using SOLID_VNM.Displays.ChoiceDisplay;
 using System;
@@ -46,7 +45,7 @@ namespace SOLID_VNM.Core.Installers
             Container.BindFactoryCustomInterface<IDialogueNode, ConcreteDialogueScene.Facade, ConcreteDialogueScene.Facade.Factory, IDialogueSceneFacadeFactory>();
 
             Container.Bind<IDialogueSceneModelTextDisplayContentExtractor>().To<ConcreteDialogueSceneModelTextDisplayContentExtractor>().AsSingle();
-            Container.Bind<IDialogueSceneModelImageDisplayContentExtractor>().To<ConcreteDialogueSceneModelImageDisplayContentExtractor>().AsSingle();
+            Container.Bind<IDialogueSceneModelActorDisplayContentExtractor>().To<ConcreteDialogueSceneModelActorDisplayModelExtractor>().AsSingle();
             Container.Bind<IDialogueSceneModelBackgroundDisplayContentExtractor>().To<ConcreteDialogueSceneModelBackgroundDisplayContentExtractor>().AsSingle();
         }
 

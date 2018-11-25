@@ -1,6 +1,6 @@
 ﻿using SOLID_VNM.Displays.TextDisplay;
 using SOLID_VNM.Displays.BackgroundDisplay;
-using SOLID_VNM.Displays.ImageDisplay;
+using SOLID_VNM.Displays.ActorDisplay;
 
 namespace SOLID_VNM.Core.Scenes.DialogueScene
 {
@@ -14,8 +14,8 @@ namespace SOLID_VNM.Core.Scenes.DialogueScene
         private readonly IBackgroundDisplay _backgroundDisplay;
         private readonly IDialogueSceneModelBackgroundDisplayContentExtractor _backgroundDisplayContentExtractor;
 
-        private readonly IImageDisplay _imageDisplay;
-        private readonly IDialogueSceneModelImageDisplayContentExtractor _imageDisplayContentExtractor;
+        private readonly IActorDisplay _actorDisplay;
+        private readonly IDialogueSceneModelActorDisplayContentExtractor _actorDisplayContentExtractor;
 
 
         public ConcreteDialogueScenePlayer(
@@ -23,8 +23,8 @@ namespace SOLID_VNM.Core.Scenes.DialogueScene
             IDialogueSceneModelTextDisplayContentExtractor textDisplayContentExtractor,
             IBackgroundDisplay backgroundDisplay,
             IDialogueSceneModelBackgroundDisplayContentExtractor backgroundDisplayContentExtractor,
-            IImageDisplay imageDisplay,
-            IDialogueSceneModelImageDisplayContentExtractor imageDisplayContentExtractor)
+        IActorDisplay actorDisplay,
+        IDialogueSceneModelActorDisplayContentExtractor actorDisplayContentExtractor)
         {
             _textDisplay = textDisplay;
             _textDisplayContentExtractor = textDisplayContentExtractor;
@@ -32,8 +32,8 @@ namespace SOLID_VNM.Core.Scenes.DialogueScene
             _backgroundDisplay = backgroundDisplay;
             _backgroundDisplayContentExtractor = backgroundDisplayContentExtractor;
 
-            _imageDisplay = imageDisplay;
-            _imageDisplayContentExtractor = imageDisplayContentExtractor;
+            _actorDisplay = actorDisplay;
+            _actorDisplayContentExtractor = actorDisplayContentExtractor;
         }
 
         void IScenePlayer<IDialogueScene>.Play(IDialogueScene dialogueScene)
@@ -42,14 +42,14 @@ namespace SOLID_VNM.Core.Scenes.DialogueScene
 
             _textDisplay.Display(_textDisplayContentExtractor.Extract(dialogueSceneModel));
             _backgroundDisplay.Display(_backgroundDisplayContentExtractor.Extract(dialogueSceneModel));
-            _imageDisplay.Display(_imageDisplayContentExtractor.Extract(dialogueSceneModel));
+            _actorDisplay.Display(_actorDisplayContentExtractor.Extract(dialogueSceneModel));
         }
 
         void IScenePlayer<IDialogueScene>.End()
         {
             _textDisplay.Hide();
             _backgroundDisplay.Hide();
-            _imageDisplay.Hide();
+            _actorDisplay.Hide();
         }
     }
 }

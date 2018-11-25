@@ -9,8 +9,7 @@ using SOLID_VNM.Core.Scenes.ChoiceScene;
 
 namespace SOLID_VNM.Displays.TextDisplay
 {
-    [Serializable]
-    public class TextDisplayContent : IDisplayContent, IDisposable
+    public class TextDisplayContent : IDisplayModel, IDisposable
     {
         private string _actorName;
         private string _text;

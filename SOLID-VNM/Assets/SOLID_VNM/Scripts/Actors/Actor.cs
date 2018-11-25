@@ -2,10 +2,23 @@ using UnityEngine;
 
 namespace SOLID_VNM.Actors
 {
-    [System.Serializable]
-    public class Actor
+    public interface IActor
     {
-        public string name;
-        public Sprite sprite;
+        string Name { get; }
+        Sprite Sprite { get; }
+    }
+
+    [System.Serializable]
+    public class Actor : IActor
+    {
+        [SerializeField]
+        private string _name;
+
+        [SerializeField]
+        private Sprite _sprite;
+
+        string IActor.Name { get { return _name; } }
+
+        Sprite IActor.Sprite { get { return _sprite; } }
     }
 }
