@@ -15,7 +15,7 @@ namespace SOLID_VNM.Actors.Installers
             Container.Bind<ActorDatabase>().FromInstance(_actorDatabase);
             Container.Bind<ActorActionSettings>().FromInstance(_actorActionSettings);
 
-            Container.Bind<ActorProvider>().AsSingle();
+            Container.Bind<IActorProvider>().To<ConcreteActorProvider>().AsSingle();
         }
     }
 }

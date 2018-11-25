@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Name: ActorDatabase
   m_EditorClassIdentifier: 
   actors:
-  - _name: B2
-    _sprite: {fileID: 21300000, guid: 0018708f30bbeb1498db116128aa82ed, type: 3}
-  - _name: Derp
-    _sprite: {fileID: 21300000, guid: 3b2653edda6de164cb39b20448175d6a, type: 3}
-  - _name: Momi
-    _sprite: {fileID: 21300000, guid: 3b2653edda6de164cb39b20448175d6a, type: 3}
+  - {fileID: 11400000, guid: 5c3a07b90204c064d9d0749b75878fd4, type: 2}
+  - {fileID: 11400000, guid: bed6dea50caf02646beb0a198115acd0, type: 2}
+  - {fileID: 11400000, guid: 1f58f0d746119de46bdcd3375012a554, type: 2}

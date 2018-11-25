@@ -13,9 +13,9 @@ namespace SOLID_VNM.Core.Scenes.DialogueScene
     public class ConcreteDialogueSceneModelTextDisplayContentExtractor : IDialogueSceneModelTextDisplayContentExtractor
     {
         private readonly TextDisplayContent.Factory _textDisplayContentFactory;
-        private readonly ActorProvider _actorProvider;
+        private readonly IActorProvider _actorProvider;
 
-        public ConcreteDialogueSceneModelTextDisplayContentExtractor(TextDisplayContent.Factory textDisplayContentFactory, ActorProvider actorProvider)
+        public ConcreteDialogueSceneModelTextDisplayContentExtractor(TextDisplayContent.Factory textDisplayContentFactory, IActorProvider actorProvider)
         {
             _textDisplayContentFactory = textDisplayContentFactory;
             _actorProvider = actorProvider;
@@ -34,10 +34,10 @@ namespace SOLID_VNM.Core.Scenes.DialogueScene
     {
         private readonly ConcreteActorDisplayModel.Factory _actorDisplayModelFactory;
 
-        private readonly ActorProvider _actorProvider;
+        private readonly IActorProvider _actorProvider;
         private readonly ActorActionSettings _actorActionSettings;
 
-        public ConcreteDialogueSceneModelActorDisplayModelExtractor(ActorProvider actorProvider, ActorActionSettings actorActionSettings, ConcreteActorDisplayModel.Factory actorDisplayModelFactory)
+        public ConcreteDialogueSceneModelActorDisplayModelExtractor(IActorProvider actorProvider, ActorActionSettings actorActionSettings, ConcreteActorDisplayModel.Factory actorDisplayModelFactory)
         {
             _actorDisplayModelFactory = actorDisplayModelFactory;
             _actorProvider = actorProvider;

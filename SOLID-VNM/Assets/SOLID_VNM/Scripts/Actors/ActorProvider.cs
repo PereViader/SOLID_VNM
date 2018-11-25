@@ -2,23 +2,23 @@ using Zenject;
 
 namespace SOLID_VNM.Actors
 {
-    public class ActorProvider
+    public interface IActorProvider
+    {
+        IActor GetActorById(string id);
+    }
+
+    public class ConcreteActorProvider : IActorProvider
     {
         private readonly ActorDatabase _actorDatabase;
 
-        public ActorProvider(ActorDatabase actorDatabase)
+        public ConcreteActorProvider(ActorDatabase actorDatabase)
         {
             _actorDatabase = actorDatabase;
         }
 
-        public Actor GetActorById(int id)
+        IActor IActorProvider.GetActorById(string id)
         {
-            if (id < 0 || id >= _actorDatabase.actors.Count)
-            {
-                return null;
-            }
-
-            return _actorDatabase.actors[id];
+            return _actorDatabase.actors.Find(x => ((UnityEngine.Object)x).name.Equals(id));
         }
     }
 }

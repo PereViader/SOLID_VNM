@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SOLID_VNM.Actors
 {
-    [CreateAssetMenu(menuName = "Custom/ActorDatabase")]
+    [CreateAssetMenu(menuName = "SOLID VNM/ActorDatabase")]
     public class ActorDatabase : ScriptableObject
     {
         public List<Actor> actors;

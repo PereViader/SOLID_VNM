@@ -66,7 +66,7 @@ MonoBehaviour:
   previous: {fileID: 0}
   next: {fileID: 0}
   dialogueSceneModel:
-    actorId: 1
+    actorId: Derp
     actorAction: 
     text: 1
     background: {fileID: 21300000, guid: 9a9e3620f12d022428aea2033789c193, type: 3}
@@ -113,7 +113,7 @@ MonoBehaviour:
   previous: {fileID: 0}
   next: {fileID: 0}
   dialogueSceneModel:
-    actorId: 0
+    actorId: Momo
     actorAction: 
     text: 
     background: {fileID: 0}
@@ -163,7 +163,7 @@ MonoBehaviour:
   previous: {fileID: 0}
   next: {fileID: 0}
   dialogueSceneModel:
-    actorId: 2
+    actorId: B2
     actorAction: 
     text: 2
     background: {fileID: 21300000, guid: 9a9e3620f12d022428aea2033789c193, type: 3}
@@ -213,7 +213,7 @@ MonoBehaviour:
   previous: {fileID: 0}
   next: {fileID: 0}
   dialogueSceneModel:
-    actorId: 2
+    actorId: B2
     actorAction: 
     text: 4
     background: {fileID: 21300000, guid: 9a9e3620f12d022428aea2033789c193, type: 3}
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Name: Dialogue Start Node
   m_EditorClassIdentifier: 
   graph: {fileID: 0}
-  position: {x: -744, y: -8}
+  position: {x: -808, y: -8}
   ports:
     keys:
     - next
@@ -292,7 +292,7 @@ MonoBehaviour:
   previous: {fileID: 0}
   next: {fileID: 0}
   dialogueSceneModel:
-    actorId: 1
+    actorId: B2
     actorAction: 
     text: 3
     background: {fileID: 21300000, guid: 9a9e3620f12d022428aea2033789c193, type: 3}
@@ -354,7 +354,7 @@ MonoBehaviour:
   previous: {fileID: 0}
   next: {fileID: 0}
   dialogueSceneModel:
-    actorId: 0
+    actorId: B2
     actorAction: shake
     text: hihi
     background: {fileID: 21300000, guid: 9a9e3620f12d022428aea2033789c193, type: 3}

@@ -9,7 +9,8 @@ namespace SOLID_VNM.Actors
     }
 
     [System.Serializable]
-    public class Actor : IActor
+    [CreateAssetMenu(menuName = "SOLID VNM/Actor")]
+    public class Actor : ScriptableObject, IActor
     {
         [SerializeField]
         private string _name;
