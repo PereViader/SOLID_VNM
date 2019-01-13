@@ -14,13 +14,13 @@ public class DialogueTriggerer : MonoBehaviour
     private VNGraph _dialogueNodeGraph;
 
     [Inject]
-    private GameLoop _gameLoop;
+    private Core _core;
 
     [Inject]
     private VisualNovelGraphImpl.Factory _visualNovelGraphFactory;
 
     private void Start()
     {
-        _gameLoop.Play(_visualNovelGraphFactory.Create(_dialogueNodeGraph));
+        _core.Play(_visualNovelGraphFactory.Create(_dialogueNodeGraph));
     }
 }

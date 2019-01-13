@@ -27,7 +27,7 @@ namespace SOLID_VNM.Core.Installers
 
         private void InstallCore()
         {
-            Container.Bind<GameLoop>().AsSingle();
+            Container.Bind<Core>().AsSingle();
             Container.BindFactory<IScene, ISceneController, SceneControllerFactory>().FromFactory<SceneControllerFactoryImpl>();
             Container.BindFactory<INode, ISceneFacade, SceneFacadeFactory>().FromFactory<SceneFacadeFactoryImpl>();
             Container.BindFactory<INode, IScene, SceneFactory>().FromFactory<SceneFactoryImpl>();

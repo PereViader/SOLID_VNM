@@ -8,14 +8,14 @@ using SOLID_VNM.Core.Scenes;
 
 namespace SOLID_VNM.Core
 {
-    public class GameLoop
+    public class Core
     {
         private readonly SceneControllerFactory _sceneControllerFactory;
         private readonly SceneFactory _sceneFactory;
 
         private ISceneController _sceneController;
 
-        public GameLoop(
+        public Core(
             SceneControllerFactory sceneControllerFactory,
             SceneFactory sceneFactory)
         {

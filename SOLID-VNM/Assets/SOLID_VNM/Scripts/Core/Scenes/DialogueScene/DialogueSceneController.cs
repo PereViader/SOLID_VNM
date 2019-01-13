@@ -6,7 +6,7 @@ namespace SOLID_VNM.Core.Scenes.DialogueScene
 {
     public class DialogueSceneController : ISceneController, INextHandler
     {
-        private readonly GameLoop _gameLoop;
+        private readonly Core _core;
         private readonly IDialogueScenePlayer _dialogueScenePlayer;
         private readonly NextEventRaiser _nextEventRaiser;
 
@@ -14,12 +14,12 @@ namespace SOLID_VNM.Core.Scenes.DialogueScene
 
         public DialogueSceneController(
             IDialogueScene dialogueScene,
-            GameLoop gameLoop,
+            Core core,
             IDialogueScenePlayer dialogueScenePlayer,
             NextEventRaiser nextInputEventRaiser)
         {
             _dialogueScene = dialogueScene;
-            _gameLoop = gameLoop;
+            _core = core;
             _dialogueScenePlayer = dialogueScenePlayer;
             _nextEventRaiser = nextInputEventRaiser;
         }
@@ -38,7 +38,7 @@ namespace SOLID_VNM.Core.Scenes.DialogueScene
 
         void INextHandler.OnNext()
         {
-            _gameLoop.Play(_dialogueScene.NextSceneFacade.Scene);
+            _core.Play(_dialogueScene.NextSceneFacade.Scene);
         }
 
         public class Factory : PlaceholderFactory<IDialogueScene, DialogueSceneController>
