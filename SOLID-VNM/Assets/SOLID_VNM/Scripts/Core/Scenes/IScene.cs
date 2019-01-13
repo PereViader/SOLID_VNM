@@ -33,7 +33,6 @@ namespace SOLID_VNM.Core.Scenes
             _choiceSceneFactory = choiceSceneFactory;
         }
 
-
         public IScene Create(INode node)
         {
             node.Accept(this);

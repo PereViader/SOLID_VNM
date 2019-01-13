@@ -15,14 +15,5 @@ namespace SOLID_VNM.Graph
         void Visit(IDialogueNode textNode);
         void Visit(IChoiceNode choiceNode);
     }
-
-
-    public abstract class BaseNode : Node
-    {
-        public override object GetValue(NodePort port)
-        {
-            return null;
-        }
-    }
 }
 

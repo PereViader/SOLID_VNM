@@ -35,13 +35,11 @@ namespace SOLID_VNM.Core.Scenes.DialogueScene
         private readonly ConcreteActorDisplayModel.Factory _actorDisplayModelFactory;
 
         private readonly IActorProvider _actorProvider;
-        private readonly ActorActionSettings _actorActionSettings;
 
         public ConcreteDialogueSceneModelActorDisplayModelExtractor(IActorProvider actorProvider, ActorActionSettings actorActionSettings, ConcreteActorDisplayModel.Factory actorDisplayModelFactory)
         {
             _actorDisplayModelFactory = actorDisplayModelFactory;
             _actorProvider = actorProvider;
-            _actorActionSettings = actorActionSettings;
         }
 
         IActorDisplayModel ISceneModelExtractor<IDialogueSceneModel, IActorDisplayModel>.Extract(IDialogueSceneModel dialogueSceneModel)

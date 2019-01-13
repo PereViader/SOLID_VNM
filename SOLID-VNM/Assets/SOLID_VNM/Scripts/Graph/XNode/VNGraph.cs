@@ -1,16 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using UnityEngine;
 using XNode;
-using Zenject;
 
-namespace SOLID_VNM.Graph
+namespace SOLID_VNM.Graph.XNode
 {
     [CreateAssetMenu]
     public class VNGraph : NodeGraph
     {
-        public INode RootNode
+        public IGraphNode RootNode
         {
             get
             {

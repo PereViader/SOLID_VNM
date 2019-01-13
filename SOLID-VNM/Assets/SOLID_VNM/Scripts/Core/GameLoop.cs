@@ -21,7 +21,7 @@ namespace SOLID_VNM.Core
             _sceneFactory = sceneFactory;
         }
 
-        public void Play(VNGraph dialogueNodeGraph)
+        public void Play(IVisualNovelGraph dialogueNodeGraph)
         {
             IScene scene = _sceneFactory.Create(dialogueNodeGraph.RootNode);
             Play(scene);
