@@ -2363,7 +2363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3376d07717fae5041850473a367153e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dialogueNodeGraph: {fileID: 11400000, guid: 6c021c0d9d94ae146bab6260bf8e1b16, type: 2}
+  _dialogueNodeGraph: {fileID: 11400000, guid: 4126e7bfca4f80945b87b97beabe84ba, type: 2}
 --- !u!114 &1849026958
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,12 +15,12 @@ namespace SOLID_VNM.Graph
 
     public class DialogueNodeImpl : IDialogueNode
     {
-        private readonly INodeGraphNodeFactory _graphNodeFactory;
+        private readonly NodeGraphNodeFactory _graphNodeFactory;
 
         private DialogueNode _dialogueNode;
 
 
-        public DialogueNodeImpl(DialogueNode dialogueNode, INodeGraphNodeFactory graphNodeFactory)
+        public DialogueNodeImpl(DialogueNode dialogueNode, NodeGraphNodeFactory graphNodeFactory)
         {
             _graphNodeFactory = graphNodeFactory;
             _dialogueNode = dialogueNode;

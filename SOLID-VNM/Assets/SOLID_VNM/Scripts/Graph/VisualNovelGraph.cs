@@ -10,13 +10,14 @@ namespace SOLID_VNM.Graph
 
     public class VisualNovelGraphImpl : IVisualNovelGraph
     {
-        private readonly INodeGraphNodeFactory _graphNodeFactory;
+        private readonly NodeGraphNodeFactory _graphNodeFactory;
 
         private VNGraph _graph;
 
-        public VisualNovelGraphImpl(VNGraph vngraph, INodeGraphNodeFactory _graphNodeFactory)
+        public VisualNovelGraphImpl(VNGraph vngraph, NodeGraphNodeFactory graphNodeFactory)
         {
             _graph = vngraph;
+            _graphNodeFactory = graphNodeFactory;
         }
 
         public INode RootNode

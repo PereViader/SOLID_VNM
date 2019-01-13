@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using Zenject;
 
 using SOLID_VNM.Core.Scenes.ChoiceScene;
@@ -14,12 +15,12 @@ namespace SOLID_VNM.Graph
 
     public class ChoiceNodeImpl : IChoiceNode
     {
-        private readonly INodeGraphNodeFactory _graphNodeFactory;
+        private readonly NodeGraphNodeFactory _graphNodeFactory;
 
         private ChoiceNode _choiceNode;
 
 
-        public ChoiceNodeImpl(ChoiceNode choiceNode, INodeGraphNodeFactory graphNodeFactory)
+        public ChoiceNodeImpl(ChoiceNode choiceNode, NodeGraphNodeFactory graphNodeFactory)
         {
             _graphNodeFactory = graphNodeFactory;
             _choiceNode = choiceNode;
@@ -37,7 +38,7 @@ namespace SOLID_VNM.Graph
         {
             get
             {
-                return _graphNodeFactory.Create(_choiceNode.Choices);
+                return _choiceNode.Choices.Select(choice => _graphNodeFactory.Create(choice)).ToArray();
             }
         }
 

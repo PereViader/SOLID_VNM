@@ -4,12 +4,11 @@ using SOLID_VNM.Graph.XNode;
 
 namespace SOLID_VNM.Graph
 {
-
-    public interface INodeGraphNodeFactory : IFactory<IGraphNode, INode>, IFactory<IGraphNode[], INode[]>
+    public class NodeGraphNodeFactory : PlaceholderFactory<IGraphNode, INode>
     {
     }
 
-    public class NodeGraphNodeFactoryImpl : INodeGraphNodeFactory, IGraphNodeVisitor
+    public class NodeGraphNodeFactoryImpl : IFactory<IGraphNode, INode>, IGraphNodeVisitor
     {
         private readonly DialogueNodeImpl.Factory _dialogueNodeFactory;
         private readonly ChoiceNodeImpl.Factory _choiceNodeFactory;
@@ -25,11 +24,6 @@ namespace SOLID_VNM.Graph
         INode IFactory<IGraphNode, INode>.Create(IGraphNode graphNode)
         {
             return Create(graphNode);
-        }
-
-        INode[] IFactory<IGraphNode[], INode[]>.Create(IGraphNode[] graphNodes)
-        {
-            return graphNodes.Select(graphNode => Create(graphNode)).ToArray();
         }
 
         private INode Create(IGraphNode graphNode)
