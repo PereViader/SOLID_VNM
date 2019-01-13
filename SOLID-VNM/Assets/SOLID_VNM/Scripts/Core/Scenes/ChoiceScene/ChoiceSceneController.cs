@@ -1,4 +1,6 @@
-﻿using SOLID_VNM.Core.Scenes.DialogueScene;
+﻿using Zenject;
+
+using SOLID_VNM.Core.Scenes.DialogueScene;
 
 namespace SOLID_VNM.Core.Scenes.ChoiceScene
 {
@@ -9,12 +11,15 @@ namespace SOLID_VNM.Core.Scenes.ChoiceScene
         private readonly ChoiceEventRaiser _choiceEventRaiser;
 
 
-        private IChoiceScene _choiceScene;
-        public IChoiceScene ChoiceScene { get { return _choiceScene; } set { _choiceScene = value; } }
+        private readonly IChoiceScene _choiceScene;
 
-
-        public ChoiceSceneController(GameLoop gameLoop, IChoiceScenePlayer choiceScenePlayer, ChoiceEventRaiser choiceEventRaiser)
+        public ChoiceSceneController(
+            IChoiceScene choiceScene,
+            GameLoop gameLoop,
+            IChoiceScenePlayer choiceScenePlayer,
+            ChoiceEventRaiser choiceEventRaiser)
         {
+            _choiceScene = choiceScene;
             _gameLoop = gameLoop;
             _choiceScenePlayer = choiceScenePlayer;
             _choiceEventRaiser = choiceEventRaiser;
@@ -29,13 +34,16 @@ namespace SOLID_VNM.Core.Scenes.ChoiceScene
         void ISceneController.End()
         {
             _choiceEventRaiser.ChoiceHandler = null;
-            _choiceScene = null;
             _choiceScenePlayer.End();
         }
 
         void IChoiceHandler.OnChoice(int choice)
         {
             _gameLoop.Play(_choiceScene.NextSceneFacades[choice].Scene);
+        }
+
+        public class Factory : PlaceholderFactory<IChoiceScene, ChoiceSceneController>
+        {
         }
     }
 }

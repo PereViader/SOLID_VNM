@@ -28,9 +28,9 @@ namespace SOLID_VNM.Core.Installers
         private void InstallCore()
         {
             Container.Bind<GameLoop>().AsSingle();
-            Container.Bind<SceneControllerDiscriminator>().AsSingle();
-            Container.Bind<SceneFactory>().AsSingle();
-            Container.Bind<SceneFacadeFactory>().AsSingle();
+            Container.BindFactory<IScene, ISceneController, SceneControllerFactory>().FromFactory<SceneControllerFactoryImpl>();
+            Container.BindFactory<INode, ISceneFacade, SceneFacadeFactory>().FromFactory<SceneFacadeFactoryImpl>();
+            Container.BindFactory<INode, IScene, SceneFactory>().FromFactory<SceneFactoryImpl>();
         }
 
         private void InstallGraph()
@@ -43,11 +43,11 @@ namespace SOLID_VNM.Core.Installers
         {
             Container.BindFactory<DialogueNode, DialogueNodeImpl, DialogueNodeImpl.Factory>();
 
-            Container.Bind<DialogueSceneController>().AsSingle();
+            Container.BindFactory<IDialogueScene, DialogueSceneController, DialogueSceneController.Factory>();
             Container.Bind<IDialogueScenePlayer>().To<ConcreteDialogueScenePlayer>().AsSingle();
 
-            Container.BindFactoryCustomInterface<IDialogueSceneModel, ISceneFacade, ConcreteDialogueScene, ConcreteDialogueScene.Factory, IDialogueSceneFactory>();
-            Container.BindFactoryCustomInterface<IDialogueNode, ConcreteDialogueScene.Facade, ConcreteDialogueScene.Facade.Factory, IDialogueSceneFacadeFactory>();
+            Container.BindFactoryCustomInterface<IDialogueSceneModel, ISceneFacade, DialogueSceneImpl, DialogueSceneImpl.Factory, IDialogueSceneFactory>();
+            Container.BindFactoryCustomInterface<IDialogueNode, DialogueSceneImpl.Facade, DialogueSceneImpl.Facade.Factory, IDialogueSceneFacadeFactory>();
 
             Container.Bind<IDialogueSceneModelTextDisplayContentExtractor>().To<ConcreteDialogueSceneModelTextDisplayContentExtractor>().AsSingle();
             Container.Bind<IDialogueSceneModelActorDisplayContentExtractor>().To<ConcreteDialogueSceneModelActorDisplayModelExtractor>().AsSingle();
@@ -58,11 +58,11 @@ namespace SOLID_VNM.Core.Installers
         {
             Container.BindFactory<ChoiceNode, ChoiceNodeImpl, ChoiceNodeImpl.Factory>();
 
-            Container.Bind<ChoiceSceneController>().AsSingle();
+            Container.BindFactory<IChoiceScene, ChoiceSceneController, ChoiceSceneController.Factory>();
             Container.Bind<IChoiceScenePlayer>().To<ConcreteChoiceScenePlayer>().AsSingle();
 
-            Container.BindFactoryCustomInterface<IChoiceSceneModel, ISceneFacade[], ConcreteChoiceScene, ConcreteChoiceScene.Factory, IChoiceSceneFactory>();
-            Container.BindFactoryCustomInterface<IChoiceNode, ConcreteChoiceScene.Facade, ConcreteChoiceScene.Facade.Factory, IChoiceSceneFacadeFactory>();
+            Container.BindFactoryCustomInterface<IChoiceSceneModel, ISceneFacade[], ChoiceSceneImpl, ChoiceSceneImpl.Factory, IChoiceSceneFactory>();
+            Container.BindFactoryCustomInterface<IChoiceNode, ChoiceSceneImpl.Facade, ChoiceSceneImpl.Facade.Factory, IChoiceSceneFacadeFactory>();
 
             Container.Bind<IChoiceScenModelChoiceChoiceDisplayContentExtractor>().To<ConcreteChoiceScenModelChoiceChoiceDisplayContentExtractor>().AsSingle();
             Container.Bind<IChoiceSceneModelBackgroundDisplayContentExtractor>().To<ConcreteChoiceSceneModelBackgroundDisplayContentExtractor>().AsSingle();

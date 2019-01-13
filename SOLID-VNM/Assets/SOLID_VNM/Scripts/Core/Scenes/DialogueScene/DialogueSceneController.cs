@@ -1,4 +1,6 @@
-﻿using SOLID_VNM.InputManagement;
+﻿using Zenject;
+
+using SOLID_VNM.InputManagement;
 
 namespace SOLID_VNM.Core.Scenes.DialogueScene
 {
@@ -8,15 +10,15 @@ namespace SOLID_VNM.Core.Scenes.DialogueScene
         private readonly IDialogueScenePlayer _dialogueScenePlayer;
         private readonly NextEventRaiser _nextEventRaiser;
 
-        private IDialogueScene _dialogueScene;
-
-        public IDialogueScene DialogueScene { get { return _dialogueScene; } set { _dialogueScene = value; } }
+        private readonly IDialogueScene _dialogueScene;
 
         public DialogueSceneController(
+            IDialogueScene dialogueScene,
             GameLoop gameLoop,
             IDialogueScenePlayer dialogueScenePlayer,
             NextEventRaiser nextInputEventRaiser)
         {
+            _dialogueScene = dialogueScene;
             _gameLoop = gameLoop;
             _dialogueScenePlayer = dialogueScenePlayer;
             _nextEventRaiser = nextInputEventRaiser;
@@ -31,13 +33,16 @@ namespace SOLID_VNM.Core.Scenes.DialogueScene
         void ISceneController.End()
         {
             _nextEventRaiser.NextHandler = null;
-            _dialogueScene = null;
             _dialogueScenePlayer.End();
         }
 
         void INextHandler.OnNext()
         {
             _gameLoop.Play(_dialogueScene.NextSceneFacade.Scene);
+        }
+
+        public class Factory : PlaceholderFactory<IDialogueScene, DialogueSceneController>
+        {
         }
     }
 }

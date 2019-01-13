@@ -11,20 +11,26 @@ namespace SOLID_VNM.Core.Scenes
         void End();
     }
 
-    public class SceneControllerDiscriminator : ISceneVisitor
+    public class SceneControllerFactory : PlaceholderFactory<IScene, ISceneController>
     {
-        private readonly LazyInject<DialogueSceneController> _dialogueSceneController;
-        private readonly LazyInject<ChoiceSceneController> _choiceSceneController;
+    }
+
+    public class SceneControllerFactoryImpl : IFactory<IScene, ISceneController>, ISceneVisitor
+    {
+        private readonly DialogueSceneController.Factory _dialogueSceneControllerFactory;
+        private readonly ChoiceSceneController.Factory _choiceSceneControllerFactory;
 
         private ISceneController _sceneController;
 
-        public SceneControllerDiscriminator(LazyInject<DialogueSceneController> dialogueSceneController, LazyInject<ChoiceSceneController> choiceSceneController)
+        public SceneControllerFactoryImpl(
+            DialogueSceneController.Factory dialogueSceneControllerFactory,
+            ChoiceSceneController.Factory choiceSceneControllerFactory)
         {
-            _dialogueSceneController = dialogueSceneController;
-            _choiceSceneController = choiceSceneController;
+            _dialogueSceneControllerFactory = dialogueSceneControllerFactory;
+            _choiceSceneControllerFactory = choiceSceneControllerFactory;
         }
 
-        public ISceneController Choose(IScene scene)
+        public ISceneController Create(IScene scene)
         {
             scene.Accept(this);
             return _sceneController;
@@ -32,14 +38,12 @@ namespace SOLID_VNM.Core.Scenes
 
         void ISceneVisitor.Visit(IDialogueScene dialogueScene)
         {
-            _dialogueSceneController.Value.DialogueScene = dialogueScene;
-            _sceneController = _dialogueSceneController.Value;
+            _sceneController = _dialogueSceneControllerFactory.Create(dialogueScene);
         }
 
         void ISceneVisitor.Visit(IChoiceScene choiceScene)
         {
-            _choiceSceneController.Value.ChoiceScene = choiceScene;
-            _sceneController = _choiceSceneController.Value;
+            _sceneController = _choiceSceneControllerFactory.Create(choiceScene);
         }
     }
 }

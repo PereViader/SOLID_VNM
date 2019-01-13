@@ -17,7 +17,7 @@ namespace SOLID_VNM.Core.Scenes.ChoiceScene
     public interface IChoiceSceneFacadeFactory : IFactory<IChoiceNode, ISceneFacade> { }
 
 
-    public class ConcreteChoiceScene : IChoiceScene
+    public class ChoiceSceneImpl : IChoiceScene
     {
         private readonly IChoiceSceneModel _choiceSceneModel;
         private readonly ISceneFacade[] _sceneFacades;
@@ -25,7 +25,7 @@ namespace SOLID_VNM.Core.Scenes.ChoiceScene
         public IChoiceSceneModel ChoiceSceneModel { get { return _choiceSceneModel; } }
         public ISceneFacade[] NextSceneFacades { get { return _sceneFacades; } }
 
-        public ConcreteChoiceScene(IChoiceSceneModel choiceSceneModel, ISceneFacade[] sceneFacades)
+        public ChoiceSceneImpl(IChoiceSceneModel choiceSceneModel, ISceneFacade[] sceneFacades)
         {
             _choiceSceneModel = choiceSceneModel;
             _sceneFacades = sceneFacades;
@@ -65,7 +65,7 @@ namespace SOLID_VNM.Core.Scenes.ChoiceScene
             }
         }
 
-        public class Factory : PlaceholderFactory<IChoiceSceneModel, ISceneFacade[], ConcreteChoiceScene>, IChoiceSceneFactory
+        public class Factory : PlaceholderFactory<IChoiceSceneModel, ISceneFacade[], ChoiceSceneImpl>, IChoiceSceneFactory
         {
             private readonly SceneFacadeFactory _sceneFacadeFactory;
 

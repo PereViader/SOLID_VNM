@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 using SOLID_VNM.Graph;
 using SOLID_VNM.Core.Scenes;
@@ -20,14 +21,18 @@ namespace SOLID_VNM.Core.Scenes
         void Visit(IChoiceScene choiceScene);
     }
 
-    public class SceneFactory : INodeVisitor
+    public class SceneFactory : PlaceholderFactory<INode, IScene>
+    {
+    }
+
+    public class SceneFactoryImpl : IFactory<INode, IScene>, INodeVisitor
     {
         private readonly IDialogueSceneFactory _dialogueSceneFactory;
         private readonly IChoiceSceneFactory _choiceSceneFactory;
 
         private IScene _scene;
 
-        public SceneFactory(IDialogueSceneFactory dialogueSceneFactory, IChoiceSceneFactory choiceSceneFactory)
+        public SceneFactoryImpl(IDialogueSceneFactory dialogueSceneFactory, IChoiceSceneFactory choiceSceneFactory)
         {
             _dialogueSceneFactory = dialogueSceneFactory;
             _choiceSceneFactory = choiceSceneFactory;

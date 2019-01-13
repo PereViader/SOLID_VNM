@@ -10,14 +10,16 @@ namespace SOLID_VNM.Core
 {
     public class GameLoop
     {
-        private readonly SceneControllerDiscriminator _sceneControllerDiscriminator;
+        private readonly SceneControllerFactory _sceneControllerFactory;
         private readonly SceneFactory _sceneFactory;
 
         private ISceneController _sceneController;
 
-        public GameLoop(SceneControllerDiscriminator sceneControllerDiscriminator, SceneFactory sceneFactory)
+        public GameLoop(
+            SceneControllerFactory sceneControllerFactory,
+            SceneFactory sceneFactory)
         {
-            _sceneControllerDiscriminator = sceneControllerDiscriminator;
+            _sceneControllerFactory = sceneControllerFactory;
             _sceneFactory = sceneFactory;
         }
 
@@ -34,7 +36,7 @@ namespace SOLID_VNM.Core
                 _sceneController.End();
             }
 
-            _sceneController = _sceneControllerDiscriminator.Choose(scene);
+            _sceneController = _sceneControllerFactory.Create(scene);
             _sceneController.Play();
         }
     }

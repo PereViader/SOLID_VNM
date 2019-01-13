@@ -13,7 +13,7 @@ namespace SOLID_VNM.Core.Scenes.DialogueScene
     public interface IDialogueSceneFactory : IFactory<IDialogueNode, IDialogueScene> { }
     public interface IDialogueSceneFacadeFactory : IFactory<IDialogueNode, ISceneFacade> { }
 
-    public class ConcreteDialogueScene : IDialogueScene
+    public class DialogueSceneImpl : IDialogueScene
     {
         private readonly IDialogueSceneModel _dialogueSceneModel;
         private readonly ISceneFacade _nextSceneFacade;
@@ -22,7 +22,7 @@ namespace SOLID_VNM.Core.Scenes.DialogueScene
 
         ISceneFacade IDialogueScene.NextSceneFacade { get { return _nextSceneFacade; } }
 
-        public ConcreteDialogueScene(IDialogueSceneModel dialogueSceneModel, ISceneFacade nextSceneFacade)
+        public DialogueSceneImpl(IDialogueSceneModel dialogueSceneModel, ISceneFacade nextSceneFacade)
         {
             _dialogueSceneModel = dialogueSceneModel;
             _nextSceneFacade = nextSceneFacade;
@@ -62,7 +62,7 @@ namespace SOLID_VNM.Core.Scenes.DialogueScene
             }
         }
 
-        public class Factory : PlaceholderFactory<IDialogueSceneModel, ISceneFacade, ConcreteDialogueScene>, IDialogueSceneFactory
+        public class Factory : PlaceholderFactory<IDialogueSceneModel, ISceneFacade, DialogueSceneImpl>, IDialogueSceneFactory
         {
             private readonly SceneFacadeFactory _sceneFacadeFactory;
 
