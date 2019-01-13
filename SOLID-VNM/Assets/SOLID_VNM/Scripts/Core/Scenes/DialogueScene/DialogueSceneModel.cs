@@ -6,10 +6,10 @@ namespace SOLID_VNM.Core.Scenes.DialogueScene
 {
     public interface IDialogueSceneModel : ISceneModel
     {
-        string ActorId { get; }
-        string ActorAction { get; }
+        string MainActorId { get; }
         string Text { get; }
         Sprite Background { get; }
+
     }
 
     [Serializable]
@@ -19,22 +19,16 @@ namespace SOLID_VNM.Core.Scenes.DialogueScene
         private string actorId;
 
         [SerializeField]
-        private string actorAction;
-
-        [SerializeField]
         private string text;
 
         [SerializeField]
         private Sprite background;
 
-        public string ActorId { get { return actorId; } }
-
-        public string ActorAction { get { return actorAction; } }
+        public string MainActorId { get { return actorId; } }
 
         public string Text { get { return text; } }
 
         public Sprite Background { get { return background; } }
-
 
         public void Accept(ISceneModelVisitor visitor)
         {

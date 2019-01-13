@@ -23,7 +23,7 @@ namespace SOLID_VNM.Core.Scenes.DialogueScene
 
         TextDisplayContent ISceneModelExtractor<IDialogueSceneModel, TextDisplayContent>.Extract(IDialogueSceneModel dialogueSceneModel)
         {
-            IActor actor = _actorProvider.GetActorById(dialogueSceneModel.ActorId);
+            IActor actor = _actorProvider.GetActorById(dialogueSceneModel.MainActorId);
             return _textDisplayContentFactory.Create(actor.Name, dialogueSceneModel.Text);
         }
     }
@@ -46,7 +46,7 @@ namespace SOLID_VNM.Core.Scenes.DialogueScene
 
         IActorDisplayModel ISceneModelExtractor<IDialogueSceneModel, IActorDisplayModel>.Extract(IDialogueSceneModel dialogueSceneModel)
         {
-            IActor actor = _actorProvider.GetActorById(dialogueSceneModel.ActorId);
+            IActor actor = _actorProvider.GetActorById(dialogueSceneModel.MainActorId);
             return _actorDisplayModelFactory.Create(new List<IActor>(), new List<IActor>(new IActor[] { actor })); //TODO add actor left and right
         }
     }
