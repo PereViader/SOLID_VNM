@@ -5,9 +5,9 @@ using Zenject;
 
 namespace SOLID_VNM.Displays.ChoiceDisplay
 {
-    public interface IChoiceDisplay : IDisplay<ChoiceDisplayContent> { }
+    public interface ChoiceDisplay : Display<ChoiceDisplayContent> { }
 
-    public class ConcreteChoiceDisplay : IChoiceDisplay, IInitializable
+    public class ConcreteChoiceDisplay : ChoiceDisplay, IInitializable
     {
         private readonly ChoiceDisplayView _choiceDisplayView;
 
@@ -21,12 +21,12 @@ namespace SOLID_VNM.Displays.ChoiceDisplay
             Hide();
         }
 
-        void IDisplay<ChoiceDisplayContent>.Display(ChoiceDisplayContent choiceDisplayContent)
+        void Display<ChoiceDisplayContent>.Display(ChoiceDisplayContent choiceDisplayContent)
         {
             _choiceDisplayView.Display(choiceDisplayContent);
         }
 
-        void IDisplay<ChoiceDisplayContent>.Hide()
+        void Display<ChoiceDisplayContent>.Hide()
         {
             Hide();
         }

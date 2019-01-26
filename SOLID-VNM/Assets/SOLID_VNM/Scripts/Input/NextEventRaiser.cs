@@ -8,9 +8,9 @@ namespace SOLID_VNM.InputManagement
 {
     public class NextEventRaiser : MonoBehaviour
     {
-        private INextHandler _nextHandler;
+        private NextHandler _nextHandler;
 
-        public INextHandler NextHandler
+        public NextHandler NextHandler
         {
             get { return _nextHandler; }
             set

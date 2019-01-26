@@ -6,7 +6,7 @@ using Zenject;
 
 namespace SOLID_VNM.Displays.BackgroundDisplay
 {
-    public class BackgroundDisplayContent : IDisplayModel, IDisposable
+    public class BackgroundDisplayContent : DisplayContent, IDisposable
     {
         private Sprite _backgroundSprite;
 

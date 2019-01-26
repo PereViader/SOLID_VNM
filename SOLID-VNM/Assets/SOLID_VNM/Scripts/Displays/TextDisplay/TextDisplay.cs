@@ -11,9 +11,9 @@ using SOLID_VNM.Actors;
 
 namespace SOLID_VNM.Displays.TextDisplay
 {
-    public interface ITextDisplay : IDisplay<TextDisplayContent> { }
+    public interface TextDisplay : Display<TextDisplayContent> { }
 
-    public class TextDisplayController : ITextDisplay, IInitializable
+    public class TextDisplayController : TextDisplay, IInitializable
     {
         private readonly TextDisplayView _textDisplayView;
 
@@ -27,12 +27,12 @@ namespace SOLID_VNM.Displays.TextDisplay
             Hide();
         }
 
-        void IDisplay<TextDisplayContent>.Display(TextDisplayContent content)
+        void Display<TextDisplayContent>.Display(TextDisplayContent content)
         {
             _textDisplayView.Display(content);
         }
 
-        void IDisplay<TextDisplayContent>.Hide()
+        void Display<TextDisplayContent>.Hide()
         {
             Hide();
         }

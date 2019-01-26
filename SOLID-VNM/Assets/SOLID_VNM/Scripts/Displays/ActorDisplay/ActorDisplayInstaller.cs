@@ -26,11 +26,11 @@ namespace SOLID_VNM.Displays.ActorDisplay
             Container.BindInstance<SimpleActorDisplayBehaviour.Settings>(_actorDisplayBehaviourSettings);
 
 
-            Container.BindInterfacesTo<ConcreteActorDisplay>().AsSingle().NonLazy();
+            Container.BindInterfacesTo<ActorDisplayImpl>().AsSingle().NonLazy();
 
-            Container.Bind<IActorDisplayBehaviour>().To<SimpleActorDisplayBehaviour>().AsSingle();
+            Container.Bind<ActorDisplayBehaviour>().To<SimpleActorDisplayBehaviour>().AsSingle();
 
-            Container.BindFactory<List<IActor>, List<IActor>, ConcreteActorDisplayModel, ConcreteActorDisplayModel.Factory>();
+            Container.BindFactory<List<Actor>, List<Actor>, ActorDisplayContentImpl, ActorDisplayContentImpl.Factory>();
         }
     }
 }

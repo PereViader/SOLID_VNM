@@ -3,15 +3,14 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-using SOLID_VNM.Graph.XNode;
-using SOLID_VNM.Core;
+using SOLID_VNM;
 using Zenject;
-using SOLID_VNM.Graph;
+using SOLID_VNM.Scenes;
 
 public class DialogueTriggerer : MonoBehaviour
 {
     [SerializeField]
-    private VNGraph _dialogueNodeGraph;
+    private XNodeVisualNovelGraph _dialogueNodeGraph;
 
     [Inject]
     private Core _core;

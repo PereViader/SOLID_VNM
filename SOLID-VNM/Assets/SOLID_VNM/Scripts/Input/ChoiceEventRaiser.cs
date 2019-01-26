@@ -5,9 +5,9 @@ using UnityEngine;
 public class ChoiceEventRaiser : MonoBehaviour
 {
 
-    private IChoiceHandler _choiceHandler;
+    private ChoiceHandler _choiceHandler;
 
-    public IChoiceHandler ChoiceHandler
+    public ChoiceHandler ChoiceHandler
     {
         get { return _choiceHandler; }
         set

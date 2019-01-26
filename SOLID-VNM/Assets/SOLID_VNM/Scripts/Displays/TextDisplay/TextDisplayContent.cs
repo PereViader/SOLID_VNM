@@ -4,12 +4,12 @@ using Zenject;
 using ModestTree;
 
 using SOLID_VNM.Actors;
-using SOLID_VNM.Core.Scenes.DialogueScene;
-using SOLID_VNM.Core.Scenes.ChoiceScene;
+using SOLID_VNM.Scenes.Dialogue;
+using SOLID_VNM.Scenes.Choice;
 
 namespace SOLID_VNM.Displays.TextDisplay
 {
-    public class TextDisplayContent : IDisplayModel, IDisposable
+    public class TextDisplayContent : DisplayContent, IDisposable
     {
         private string _actorName;
         private string _text;

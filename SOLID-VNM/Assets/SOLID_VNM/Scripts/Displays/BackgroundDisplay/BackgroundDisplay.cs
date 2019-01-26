@@ -2,9 +2,9 @@
 
 namespace SOLID_VNM.Displays.BackgroundDisplay
 {
-    public interface IBackgroundDisplay : IDisplay<BackgroundDisplayContent> { }
+    public interface BackgroundDisplay : Display<BackgroundDisplayContent> { }
 
-    public class ConcreteBackgroundDisplay : IBackgroundDisplay, IInitializable
+    public class ConcreteBackgroundDisplay : BackgroundDisplay, IInitializable
     {
         private readonly BackgroundDisplayView _backgroundDisplayView;
 
@@ -18,12 +18,12 @@ namespace SOLID_VNM.Displays.BackgroundDisplay
             Hide();
         }
 
-        void IDisplay<BackgroundDisplayContent>.Display(BackgroundDisplayContent backgroundDisplayContent)
+        void Display<BackgroundDisplayContent>.Display(BackgroundDisplayContent backgroundDisplayContent)
         {
             _backgroundDisplayView.Display(backgroundDisplayContent);
         }
 
-        void IDisplay<BackgroundDisplayContent>.Hide()
+        void Display<BackgroundDisplayContent>.Hide()
         {
             Hide();
         }

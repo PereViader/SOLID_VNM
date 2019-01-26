@@ -10,13 +10,13 @@ using SOLID_VNM.Actors;
 
 namespace SOLID_VNM.Displays.ActorDisplay
 {
-    public interface IActorDisplay : IDisplay<IActorDisplayModel> { }
+    public interface ActorDisplay : Display<ActorDisplayContent> { }
 
-    public class ConcreteActorDisplay : IActorDisplay, IInitializable
+    public class ActorDisplayImpl : ActorDisplay, IInitializable
     {
-        private readonly IActorDisplayBehaviour _actorDisplayBehaviour;
+        private readonly ActorDisplayBehaviour _actorDisplayBehaviour;
 
-        public ConcreteActorDisplay(IActorDisplayBehaviour actorDisplayBehaviour)
+        public ActorDisplayImpl(ActorDisplayBehaviour actorDisplayBehaviour)
         {
             _actorDisplayBehaviour = actorDisplayBehaviour;
         }
@@ -26,13 +26,13 @@ namespace SOLID_VNM.Displays.ActorDisplay
             Hide();
         }
 
-        void IDisplay<IActorDisplayModel>.Display(IActorDisplayModel model)
+        void Display<ActorDisplayContent>.Display(ActorDisplayContent content)
         {
-            _actorDisplayBehaviour.Update(model);
+            _actorDisplayBehaviour.Update(content);
             _actorDisplayBehaviour.Display(true);
         }
 
-        void IDisplay<IActorDisplayModel>.Hide()
+        void Display<ActorDisplayContent>.Hide()
         {
             Hide();
         }

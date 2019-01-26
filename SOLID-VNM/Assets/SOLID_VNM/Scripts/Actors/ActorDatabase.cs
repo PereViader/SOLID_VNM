@@ -7,6 +7,6 @@ namespace SOLID_VNM.Actors
     [CreateAssetMenu(menuName = "SOLID VNM/ActorDatabase")]
     public class ActorDatabase : ScriptableObject
     {
-        public List<Actor> actors;
+        public List<ScriptableObjectActor> actors;
     }
 }

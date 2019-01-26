@@ -4,7 +4,7 @@ using Zenject;
 
 namespace SOLID_VNM.Displays.ChoiceDisplay
 {
-    public class ChoiceDisplayContent : IDisplayModel, IDisposable
+    public class ChoiceDisplayContent : DisplayContent, IDisposable
     {
         private Choice[] _choices;
 
