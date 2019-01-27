@@ -13,8 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: 114430484394636332}
-  - {fileID: 114655713128982030}
   - {fileID: 114918081279292328}
+  - {fileID: 114655713128982030}
+  - {fileID: 114459255512258394}
   - {fileID: 0}
 --- !u!114 &114430484394636332
 MonoBehaviour:
@@ -40,10 +41,13 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: next
-        node: {fileID: 114655713128982030}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: next
-        node: {fileID: 114918081279292328}
+        node: {fileID: 114655713128982030}
+        reroutePoints: []
+      - fieldName: choices
+        node: {fileID: 114459255512258394}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -62,12 +66,66 @@ MonoBehaviour:
   previous: {fileID: 0}
   next: {fileID: 0}
   _model:
-    mainActor: {fileID: 11400000, guid: 5c3a07b90204c064d9d0749b75878fd4, type: 2}
+    mainActor: {fileID: 11400000, guid: 4eb0b176a6c90324d8dd5cc29e71b4b9, type: 2}
     actors:
     - actor: {fileID: 11400000, guid: 5c3a07b90204c064d9d0749b75878fd4, type: 2}
       actorPosition: 1
+    - actor: {fileID: 11400000, guid: 4eb0b176a6c90324d8dd5cc29e71b4b9, type: 2}
+      actorPosition: 1
     text: qeqwe
     background: {fileID: 21300000, guid: 9a9e3620f12d022428aea2033789c193, type: 3}
+--- !u!114 &114459255512258394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7f5d081f1e12574eb3eb6847ad2c566, type: 3}
+  m_Name: X Node Choice Node
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 297, y: -146}
+  ports:
+    keys:
+    - previous
+    - choices
+    values:
+    - _fieldName: previous
+      _node: {fileID: 114459255512258394}
+      _typeQualifiedName: XNode.Node, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: next
+        node: {fileID: 114918081279292328}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _dynamic: 0
+    - _fieldName: choices
+      _node: {fileID: 114459255512258394}
+      _typeQualifiedName: XNode.Node, Assembly-CSharp-firstpass, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: previous
+        node: {fileID: 114918081279292328}
+        reroutePoints: []
+      - fieldName: previous
+        node: {fileID: 114430484394636332}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _dynamic: 0
+  previous: {fileID: 0}
+  choices: {fileID: 0}
+  _model:
+    background: {fileID: 0}
+    choices:
+    - 1
+    - 2
+    - '---'
+    - '---'
 --- !u!114 &114655713128982030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,6 +259,9 @@ MonoBehaviour:
       - fieldName: next
         node: {fileID: 114430484394636332}
         reroutePoints: []
+      - fieldName: choices
+        node: {fileID: 114459255512258394}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _dynamic: 0
@@ -210,7 +271,7 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: previous
-        node: {fileID: 114430484394636332}
+        node: {fileID: 114459255512258394}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -222,5 +283,7 @@ MonoBehaviour:
     actors:
     - actor: {fileID: 11400000, guid: 5c3a07b90204c064d9d0749b75878fd4, type: 2}
       actorPosition: 0
+    - actor: {fileID: 11400000, guid: 4eb0b176a6c90324d8dd5cc29e71b4b9, type: 2}
+      actorPosition: 1
     text: asdasdasd
     background: {fileID: 21300000, guid: 9a9e3620f12d022428aea2033789c193, type: 3}
