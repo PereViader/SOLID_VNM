@@ -9,16 +9,16 @@ namespace SOLID_VNM
 {
     public class Core
     {
-        private readonly SceneControllerSelectorFactory _sceneControllerFactorySelector;
+        private readonly SceneControllerSelectorFactory _sceneControllerSelectorFactory;
         private readonly SceneSelectorFactory _sceneFactory;
 
         private SceneController _sceneController;
 
         public Core(
-            SceneControllerSelectorFactory sceneControllerFactorySelector,
+            SceneControllerSelectorFactory sceneControllerSelectorFactory,
             SceneSelectorFactory sceneFactory)
         {
-            _sceneControllerFactorySelector = sceneControllerFactorySelector;
+            _sceneControllerSelectorFactory = sceneControllerSelectorFactory;
             _sceneFactory = sceneFactory;
         }
 
@@ -35,7 +35,7 @@ namespace SOLID_VNM
                 _sceneController.End();
             }
 
-            _sceneController = _sceneControllerFactorySelector.Create(scene);
+            _sceneController = _sceneControllerSelectorFactory.Create(scene);
             _sceneController.Play();
         }
     }

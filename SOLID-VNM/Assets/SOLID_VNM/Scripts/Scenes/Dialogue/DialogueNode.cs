@@ -11,7 +11,7 @@ namespace SOLID_VNM.Scenes.Dialogue
 
     public class DialogueNodeImpl : DialogueNode
     {
-        private readonly XNodeSceneNodeFactorySelector _xNodeGraphNodeSceneNodeMapper;
+        private readonly XNodeSceneNodeSelectorFactory _xNodeGraphNodeSceneNodeMapper;
         private readonly XNodeDialogueNodeSceneModelMapper _dialogueNodeSceneModelMapper;
 
 
@@ -19,7 +19,7 @@ namespace SOLID_VNM.Scenes.Dialogue
         private XNodeDialogueNode _dialogueNode;
 
 
-        public DialogueNodeImpl(XNodeDialogueNode dialogueNode, XNodeSceneNodeFactorySelector xNodeGraphNodeSceneNodeMapper, XNodeDialogueNodeSceneModelMapper dialogueNodeSceneModelMapper)
+        public DialogueNodeImpl(XNodeDialogueNode dialogueNode, XNodeSceneNodeSelectorFactory xNodeGraphNodeSceneNodeMapper, XNodeDialogueNodeSceneModelMapper dialogueNodeSceneModelMapper)
         {
             _dialogueNode = dialogueNode;
             _xNodeGraphNodeSceneNodeMapper = xNodeGraphNodeSceneNodeMapper;

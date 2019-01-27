@@ -13,14 +13,14 @@ namespace SOLID_VNM.Scenes.Choice
 
     public class ChoiceNodeImpl : ChoiceNode
     {
-        private readonly XNodeSceneNodeFactorySelector _sceneNodeFactorySelector;
+        private readonly XNodeSceneNodeSelectorFactory _sceneNodeSelectorFactory;
         private readonly XNodeChoiceNodeSceneModelMapper _xNodeChoiceNodeSceneModelFactory;
 
         private XNodeChoiceNode _choiceNode;
 
-        public ChoiceNodeImpl(XNodeChoiceNode choiceNode, XNodeSceneNodeFactorySelector sceneNodeFactorySelector, XNodeChoiceNodeSceneModelMapper xNodeChoiceNodeSceneModelFactory)
+        public ChoiceNodeImpl(XNodeChoiceNode choiceNode, XNodeSceneNodeSelectorFactory sceneNodeSelectorFactory, XNodeChoiceNodeSceneModelMapper xNodeChoiceNodeSceneModelFactory)
         {
-            _sceneNodeFactorySelector = sceneNodeFactorySelector;
+            _sceneNodeSelectorFactory = sceneNodeSelectorFactory;
             _choiceNode = choiceNode;
             _xNodeChoiceNodeSceneModelFactory = xNodeChoiceNodeSceneModelFactory;
         }
@@ -37,7 +37,7 @@ namespace SOLID_VNM.Scenes.Choice
         {
             get
             {
-                return _choiceNode.Choices.Select(choice => _sceneNodeFactorySelector.Create(choice)).ToArray();
+                return _choiceNode.Choices.Select(choice => _sceneNodeSelectorFactory.Create(choice)).ToArray();
             }
         }
 

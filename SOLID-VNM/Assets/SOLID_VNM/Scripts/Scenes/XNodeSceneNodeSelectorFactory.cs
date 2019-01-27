@@ -5,25 +5,25 @@ using SOLID_VNM.Scenes.Dialogue;
 
 namespace SOLID_VNM.Scenes
 {
-    public interface XNodeSceneNodeFactorySelector
+    public interface XNodeSceneNodeSelectorFactory
     {
         SceneNode Create(XNodeSceneNode node);
     }
 
-    public class XNodeSceneNodeFactorySelectorImpl : XNodeSceneNodeFactorySelector, XNodeSceneNodeVisitor
+    public class XNodeSceneNodeSelectorFactoryImpl : XNodeSceneNodeSelectorFactory, XNodeSceneNodeVisitor
     {
         private readonly DialogueNodeImpl.Factory _dialogueNodeFactory;
         private readonly ChoiceNodeImpl.Factory _choiceNodeFactory;
 
         private SceneNode _node;
 
-        public XNodeSceneNodeFactorySelectorImpl(DialogueNodeImpl.Factory dialogueNodeFactory, ChoiceNodeImpl.Factory choiceNodeFactory)
+        public XNodeSceneNodeSelectorFactoryImpl(DialogueNodeImpl.Factory dialogueNodeFactory, ChoiceNodeImpl.Factory choiceNodeFactory)
         {
             _dialogueNodeFactory = dialogueNodeFactory;
             _choiceNodeFactory = choiceNodeFactory;
         }
 
-        SceneNode XNodeSceneNodeFactorySelector.Create(XNodeSceneNode node)
+        SceneNode XNodeSceneNodeSelectorFactory.Create(XNodeSceneNode node)
         {
             BuildNode(node);
             return _node;

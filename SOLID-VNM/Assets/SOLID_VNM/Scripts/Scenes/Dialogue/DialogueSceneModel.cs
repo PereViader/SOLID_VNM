@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+
+using UnityEngine;
 using Zenject;
 
 using SOLID_VNM.Actors;
@@ -25,13 +28,21 @@ namespace SOLID_VNM.Scenes.Dialogue
     {
         private Actor _mainActor;
         private Actor[] _actors;
+
+        private Dictionary<Actor, ActorPosition> _actorPosition = new Dictionary<Actor, ActorPosition>();
         private string _text;
         private Sprite _background;
 
-        public DialogueSceneModelImpl(Actor mainActor, Actor[] actors, string text, Sprite background)
+        public DialogueSceneModelImpl(Actor mainActor, Actor[] actors, ActorPosition[] actorPositions, string text, Sprite background)
         {
             _mainActor = mainActor;
             _actors = actors;
+
+            for (int i = 0; i < _actors.Length; i++)
+            {
+                _actorPosition[_actors[i]] = actorPositions[i];
+            }
+
             _text = text;
             _background = background;
         }
@@ -51,9 +62,9 @@ namespace SOLID_VNM.Scenes.Dialogue
 
         ActorPosition DialogueSceneModel.ActorPosition(Actor actor)
         {
-            return SOLID_VNM.Scenes.Dialogue.ActorPosition.Right;
+            return _actorPosition[actor];
         }
 
-        public class Factory : PlaceholderFactory<Actor, Actor[], string, Sprite, DialogueSceneModelImpl> { }
+        public class Factory : PlaceholderFactory<Actor, Actor[], ActorPosition[], string, Sprite, DialogueSceneModelImpl> { }
     }
 }

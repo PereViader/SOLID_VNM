@@ -1,3 +1,7 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
 using UnityEngine;
 using XNode;
 
@@ -5,6 +9,7 @@ using SOLID_VNM.Actors;
 
 namespace SOLID_VNM.Scenes.Dialogue
 {
+    [CreateNodeMenu("SOLID VNM/Dialogue Node")]
     public class XNodeDialogueNode : Node, XNodeSceneNode
     {
         [Input]
@@ -30,8 +35,18 @@ namespace SOLID_VNM.Scenes.Dialogue
     [System.Serializable]
     public class XNodeDialogueModel : XNodeSceneModel
     {
-        public ScriptableObjectActor actor;
+        public ScriptableObjectActor mainActor;
+        public List<ActorInPosition> actors;
+
         public string text;
         public Sprite background;
+
+
+        [System.Serializable]
+        public class ActorInPosition
+        {
+            public ScriptableObjectActor actor;
+            public ActorPosition actorPosition;
+        }
     }
 }

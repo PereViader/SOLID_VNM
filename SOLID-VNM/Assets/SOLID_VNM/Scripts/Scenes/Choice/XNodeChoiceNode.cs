@@ -6,6 +6,7 @@ using XNode;
 
 namespace SOLID_VNM.Scenes.Choice
 {
+    [CreateNodeMenu("SOLID VNM/Choice Node")]
     public class XNodeChoiceNode : Node, XNodeSceneNode
     {
         [Input]

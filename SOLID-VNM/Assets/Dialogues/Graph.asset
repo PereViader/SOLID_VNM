@@ -13,8 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: 114430484394636332}
-  - {fileID: 114992398908411988}
   - {fileID: 114655713128982030}
+  - {fileID: 114918081279292328}
   - {fileID: 0}
 --- !u!114 &114430484394636332
 MonoBehaviour:
@@ -28,7 +28,7 @@ MonoBehaviour:
   m_Name: X Node Dialogue Node
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 24, y: -200}
+  position: {x: -296, y: -296}
   ports:
     keys:
     - previous
@@ -40,13 +40,10 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: next
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: choices
-        node: {fileID: 114992398908411988}
+        node: {fileID: 114655713128982030}
         reroutePoints: []
       - fieldName: next
-        node: {fileID: 114655713128982030}
+        node: {fileID: 114918081279292328}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -57,7 +54,7 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: previous
-        node: {fileID: 114992398908411988}
+        node: {fileID: 114918081279292328}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -65,8 +62,11 @@ MonoBehaviour:
   previous: {fileID: 0}
   next: {fileID: 0}
   _model:
-    actor: {fileID: 11400000, guid: 5c3a07b90204c064d9d0749b75878fd4, type: 2}
-    text: hihi
+    mainActor: {fileID: 11400000, guid: 5c3a07b90204c064d9d0749b75878fd4, type: 2}
+    actors:
+    - actor: {fileID: 11400000, guid: 5c3a07b90204c064d9d0749b75878fd4, type: 2}
+      actorPosition: 1
+    text: qeqwe
     background: {fileID: 21300000, guid: 9a9e3620f12d022428aea2033789c193, type: 3}
 --- !u!114 &114655713128982030
 MonoBehaviour:
@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Name: Start Node
   m_EditorClassIdentifier: Assembly-CSharp:SOLID_VNM.Scenes:StartNode
   graph: {fileID: 11400000}
-  position: {x: -344, y: -184}
+  position: {x: -584, y: -232}
   ports:
     keys:
     - next
@@ -175,7 +175,7 @@ MonoBehaviour:
     actor: {fileID: 11400000, guid: 5c3a07b90204c064d9d0749b75878fd4, type: 2}
     text: hola
     background: {fileID: 21300000, guid: 9a9e3620f12d022428aea2033789c193, type: 3}
---- !u!114 &114992398908411988
+--- !u!114 &114918081279292328
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -183,18 +183,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7f5d081f1e12574eb3eb6847ad2c566, type: 3}
-  m_Name: X Node Choice Node
+  m_Script: {fileID: 11500000, guid: d87ca93e19a570e489bfe5b9679b7732, type: 3}
+  m_Name: X Node Dialogue Node
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 360, y: -232}
+  position: {x: 8, y: -296}
   ports:
     keys:
     - previous
-    - choices
+    - next
     values:
     - _fieldName: previous
-      _node: {fileID: 114992398908411988}
+      _node: {fileID: 114918081279292328}
       _typeQualifiedName: XNode.Node, Assembly-CSharp-firstpass, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
@@ -204,8 +204,8 @@ MonoBehaviour:
       _direction: 0
       _connectionType: 0
       _dynamic: 0
-    - _fieldName: choices
-      _node: {fileID: 114992398908411988}
+    - _fieldName: next
+      _node: {fileID: 114918081279292328}
       _typeQualifiedName: XNode.Node, Assembly-CSharp-firstpass, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
@@ -213,14 +213,14 @@ MonoBehaviour:
         node: {fileID: 114430484394636332}
         reroutePoints: []
       _direction: 1
-      _connectionType: 0
+      _connectionType: 1
       _dynamic: 0
   previous: {fileID: 0}
-  choices: {fileID: 0}
+  next: {fileID: 0}
   _model:
+    mainActor: {fileID: 11400000, guid: 5c3a07b90204c064d9d0749b75878fd4, type: 2}
+    actors:
+    - actor: {fileID: 11400000, guid: 5c3a07b90204c064d9d0749b75878fd4, type: 2}
+      actorPosition: 0
+    text: asdasdasd
     background: {fileID: 21300000, guid: 9a9e3620f12d022428aea2033789c193, type: 3}
-    choices:
-    - 1
-    - 2
-    - 3
-    - 4

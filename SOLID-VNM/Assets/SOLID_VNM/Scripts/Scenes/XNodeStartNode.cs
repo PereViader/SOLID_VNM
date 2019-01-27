@@ -3,6 +3,7 @@ using XNode;
 
 namespace SOLID_VNM.Scenes
 {
+    [CreateNodeMenu("SOLID VNM/Start Node")]
     public class StartNode : Node
     {
         [Output(backingValue = ShowBackingValue.Never, connectionType = ConnectionType.Override)]

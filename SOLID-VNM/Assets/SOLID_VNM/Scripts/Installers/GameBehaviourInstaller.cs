@@ -38,7 +38,7 @@ namespace SOLID_VNM.Installers
         private void InstallGraph()
         {
             Container.BindFactory<XNodeVisualNovelGraph, VisualNovelGraphImpl, VisualNovelGraphImpl.Factory>();
-            Container.Bind<XNodeSceneNodeFactorySelector>().To<XNodeSceneNodeFactorySelectorImpl>().AsSingle();
+            Container.Bind<XNodeSceneNodeSelectorFactory>().To<XNodeSceneNodeSelectorFactoryImpl>().AsSingle();
         }
 
         private void InstallDialogue()
@@ -48,7 +48,7 @@ namespace SOLID_VNM.Installers
             Container.BindFactory<DialogueScene, DialogueSceneController, DialogueSceneController.Factory>();
             Container.Bind<DialogueScenePlayer>().To<ConcreteDialogueScenePlayer>().AsSingle();
 
-            Container.BindFactory<Actor, Actor[], string, Sprite, DialogueSceneModelImpl, DialogueSceneModelImpl.Factory>();
+            Container.BindFactory<Actor, Actor[], ActorPosition[], string, Sprite, DialogueSceneModelImpl, DialogueSceneModelImpl.Factory>();
             Container.Bind<XNodeDialogueNodeSceneModelMapper>().To<XNodeDialogueNodeSceneModelMapperImpl>().AsSingle();
 
             Container.BindFactoryCustomInterface<DialogueSceneModel, SceneFacade, DialogueSceneImpl, DialogueSceneImpl.Factory, DialogueSceneFactory>();

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 using SOLID_VNM.Actors;
 
@@ -19,14 +20,14 @@ namespace SOLID_VNM.Scenes.Dialogue
 
         DialogueSceneModel XNodeSceneModelSceneModelMapper<XNodeDialogueModel, DialogueSceneModel>.From(XNodeDialogueModel model)
         {
-            Actor mainActor = model.actor;
-            Actor[] actors = new Actor[] { model.actor };
-            //TODO : IMPROVE
+            Actor mainActor = model.mainActor;
+            Actor[] actors = model.actors.Select(actorInPosition => actorInPosition.actor).ToArray();
+            ActorPosition[] actorPositions = model.actors.Select(actorInPosition => actorInPosition.actorPosition).ToArray();
 
             string text = model.text;
             Sprite background = model.background;
 
-            return _dialogueSceneModelFactory.Create(mainActor, actors, text, background);
+            return _dialogueSceneModelFactory.Create(mainActor, actors, actorPositions, text, background);
         }
     }
 }

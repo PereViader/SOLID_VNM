@@ -9,11 +9,11 @@ namespace SOLID_VNM.Scenes
 
     public class VisualNovelGraphImpl : VisualNovelGraph
     {
-        private readonly XNodeSceneNodeFactorySelector _xNodeGraphNodeSceneNodeMapper;
+        private readonly XNodeSceneNodeSelectorFactory _xNodeGraphNodeSceneNodeMapper;
 
         private XNodeVisualNovelGraph _graph;
 
-        public VisualNovelGraphImpl(XNodeVisualNovelGraph vngraph, XNodeSceneNodeFactorySelector xNodeGraphNodeSceneNodeMapper)
+        public VisualNovelGraphImpl(XNodeVisualNovelGraph vngraph, XNodeSceneNodeSelectorFactory xNodeGraphNodeSceneNodeMapper)
         {
             _graph = vngraph;
             _xNodeGraphNodeSceneNodeMapper = xNodeGraphNodeSceneNodeMapper;
