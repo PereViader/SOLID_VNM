@@ -14,8 +14,8 @@ MonoBehaviour:
   nodes:
   - {fileID: 114430484394636332}
   - {fileID: 114918081279292328}
-  - {fileID: 114655713128982030}
   - {fileID: 114459255512258394}
+  - {fileID: 114655713128982030}
   - {fileID: 0}
 --- !u!114 &114430484394636332
 MonoBehaviour:
@@ -44,10 +44,13 @@ MonoBehaviour:
         node: {fileID: 0}
         reroutePoints: []
       - fieldName: next
-        node: {fileID: 114655713128982030}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: choices
         node: {fileID: 114459255512258394}
+        reroutePoints: []
+      - fieldName: next
+        node: {fileID: 114655713128982030}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -124,8 +127,6 @@ MonoBehaviour:
     choices:
     - 1
     - 2
-    - '---'
-    - '---'
 --- !u!114 &114655713128982030
 MonoBehaviour:
   m_ObjectHideFlags: 0

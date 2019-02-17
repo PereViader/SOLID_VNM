@@ -19,7 +19,9 @@ namespace SOLID_VNM.Displays.TextDisplay
 
             Container.BindFactory<string, string, TextDisplayContent, TextDisplayContent.Factory>();
 
-            Container.Bind<TextDisplay>().To<TextDisplayController>().AsSingle().NonLazy();
+            Container.BindInterfacesTo<TextDisplayImp>().AsSingle();
+            Container.Bind<TextDisplayBehaviour>().To<TextDisplayBehaviourImp>().AsSingle();
+
         }
     }
 }

@@ -13,21 +13,14 @@ namespace SOLID_VNM.Displays.BackgroundDisplay
         [SerializeField]
         private GameObject _backgroundCanvas;
 
+        public Image CanvasImage { get { return _guiImage; } }
+
+        public GameObject Canvas { get { return _backgroundCanvas; } }
+
         private void OnValidate()
         {
             Debug.Assert(_backgroundCanvas != null, "BackgroundDisplayView: Background Canvas is not assigned", this);
             Debug.Assert(_guiImage != null, "BackgroundDisplayView: Image is not assigned", this);
-        }
-
-        public void Hide()
-        {
-            _backgroundCanvas.SetActive(false);
-        }
-
-        public void Display(BackgroundDisplayContent backgroundDisplayContent)
-        {
-            _backgroundCanvas.SetActive(true);
-            _guiImage.sprite = backgroundDisplayContent.BackgroundSprite;
         }
     }
 }

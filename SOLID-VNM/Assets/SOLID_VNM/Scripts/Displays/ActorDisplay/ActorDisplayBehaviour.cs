@@ -7,92 +7,102 @@ using SOLID_VNM.Actors;
 using SOLID_VNM.Displays.ActorDisplay;
 using System;
 
-public interface ActorDisplayBehaviour
+namespace SOLID_VNM.Displays.ActorDisplay
 {
-    void Update(ActorDisplayContent content);
-    void Display(bool value);
-}
-
-public class SimpleActorDisplayBehaviour : ActorDisplayBehaviour
-{
-    private readonly ActorDisplayView _actorDisplayView;
-    private readonly Settings _settings;
-
-    private Dictionary<ActorPosition, List<ActorDisplayActorView>> _displayActorsInPosition = new Dictionary<ActorPosition, List<ActorDisplayActorView>>();
-    private Dictionary<Actor, ActorDisplayActorView> _actorToDisplayActor = new Dictionary<Actor, ActorDisplayActorView>();
-
-    public SimpleActorDisplayBehaviour(ActorDisplayView actorDisplayView, Settings settings)
+    public interface ActorDisplayBehaviour
     {
-        _actorDisplayView = actorDisplayView;
-        _settings = settings;
-
-        foreach (ActorPosition actorPosition in System.Enum.GetValues(typeof(ActorPosition)))
-        {
-            _displayActorsInPosition.Add(actorPosition, new List<ActorDisplayActorView>());
-        }
+        void Display(ActorDisplayContent content);
+        void Show();
+        void Hide();
     }
 
-    void ActorDisplayBehaviour.Update(ActorDisplayContent content)
+    public class SimpleActorDisplayBehaviour : ActorDisplayBehaviour
     {
-        CleanUpActors();
+        private readonly ActorDisplayView _actorDisplayView;
+        private readonly Settings _settings;
 
-        foreach (var actor in content.Actors)
+        private Dictionary<ActorPosition, List<ActorDisplayActorView>> _displayActorsInPosition = new Dictionary<ActorPosition, List<ActorDisplayActorView>>();
+        private Dictionary<Actor, ActorDisplayActorView> _actorToDisplayActor = new Dictionary<Actor, ActorDisplayActorView>();
+
+        public SimpleActorDisplayBehaviour(ActorDisplayView actorDisplayView, Settings settings)
         {
-            ActorDisplayActorView displayActor = CreateDisplayActorAtPosition(content.ActorPosition(actor));
-            UpdateActorDisplayVisuals(displayActor, actor);
-            _actorToDisplayActor.Add(actor, displayActor);
-        }
-    }
+            _actorDisplayView = actorDisplayView;
+            _settings = settings;
 
-    private void UpdateActorDisplayVisuals(ActorDisplayActorView displayActor, Actor actor)
-    {
-        displayActor.Image.sprite = actor.Sprite;
-    }
-
-    private void CleanUpActors()
-    {
-        foreach (ActorDisplayActorView actor in _actorToDisplayActor.Values)
-        {
-            GameObject.Destroy(actor.gameObject);
+            foreach (ActorPosition actorPosition in System.Enum.GetValues(typeof(ActorPosition)))
+            {
+                _displayActorsInPosition.Add(actorPosition, new List<ActorDisplayActorView>());
+            }
         }
 
-        _actorToDisplayActor.Clear();
-        foreach (var actorList in _displayActorsInPosition.Values)
+        void ActorDisplayBehaviour.Display(ActorDisplayContent content)
         {
-            actorList.Clear();
+            CleanUpActors();
+
+            foreach (Actor actor in content.Actors)
+            {
+                ActorPosition actorPosition = content.ActorPosition(actor);
+                ActorDisplayActorView displayActor = CreateDisplayActorAtPosition(actorPosition);
+                InitializeActorDisplayActorView(displayActor, actor);
+                _actorToDisplayActor.Add(actor, displayActor);
+            }
         }
-    }
 
-    private ActorDisplayActorView CreateDisplayActorAtPosition(ActorPosition actorPosition)
-    {
-        GameObject instance = GameObject.Instantiate(_settings.actorDisplayActorPrefab);
-        instance.transform.SetParent(GetPositionParent(actorPosition), false);
-        ActorDisplayActorView actorDisplayActorFacade = instance.GetComponent<ActorDisplayActorView>();
-        _displayActorsInPosition[actorPosition].Add(actorDisplayActorFacade);
-        return actorDisplayActorFacade;
-    }
-
-    private Transform GetPositionParent(ActorPosition actorPosition)
-    {
-        switch (actorPosition)
+        private void InitializeActorDisplayActorView(ActorDisplayActorView displayActor, Actor actor)
         {
-            case ActorPosition.Left:
-                return _actorDisplayView.leftActorRoot.transform;
-            case ActorPosition.Right:
-                return _actorDisplayView.rightActorsRoot.transform;
-            default:
-                throw new System.ApplicationException("This should never happen");
+            displayActor.Image.sprite = actor.Sprite;
         }
-    }
 
-    void ActorDisplayBehaviour.Display(bool value)
-    {
-        _actorDisplayView.display.SetActive(value);
-    }
+        private void CleanUpActors()
+        {
+            foreach (ActorDisplayActorView actor in _actorToDisplayActor.Values)
+            {
+                GameObject.Destroy(actor.gameObject);
+            }
 
-    [System.Serializable]
-    public class Settings
-    {
-        public GameObject actorDisplayActorPrefab;
+            _actorToDisplayActor.Clear();
+            foreach (var actorList in _displayActorsInPosition.Values)
+            {
+                actorList.Clear();
+            }
+        }
+
+        private ActorDisplayActorView CreateDisplayActorAtPosition(ActorPosition actorPosition)
+        {
+            GameObject instance = GameObject.Instantiate(_settings.actorDisplayActorPrefab);
+            instance.transform.SetParent(GetParentForPosition(actorPosition), false);
+            ActorDisplayActorView actorDisplayActorFacade = instance.GetComponent<ActorDisplayActorView>();
+            _displayActorsInPosition[actorPosition].Add(actorDisplayActorFacade);
+            return actorDisplayActorFacade;
+        }
+
+        private Transform GetParentForPosition(ActorPosition actorPosition)
+        {
+            switch (actorPosition)
+            {
+                case ActorPosition.Left:
+                    return _actorDisplayView.leftActorRoot.transform;
+                case ActorPosition.Right:
+                    return _actorDisplayView.rightActorsRoot.transform;
+                default:
+                    throw new System.ApplicationException("This should never happen");
+            }
+        }
+
+        void ActorDisplayBehaviour.Show()
+        {
+            _actorDisplayView.display.SetActive(true);
+        }
+
+        void ActorDisplayBehaviour.Hide()
+        {
+            _actorDisplayView.display.SetActive(false);
+        }
+
+        [System.Serializable]
+        public class Settings
+        {
+            public GameObject actorDisplayActorPrefab;
+        }
     }
 }

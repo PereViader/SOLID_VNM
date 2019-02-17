@@ -16,7 +16,8 @@ namespace SOLID_VNM.Displays.BackgroundDisplay
         {
             Container.BindInstance(_backgroundDisplayView);
 
-            Container.Bind<BackgroundDisplay>().To<ConcreteBackgroundDisplay>().AsSingle().NonLazy();
+            Container.BindInterfacesTo<BackgroundDisplayImp>().AsSingle();
+            Container.Bind<BackgroundDisplayBehaviour>().To<BackgroundDisplayBehaviourImp>().AsSingle();
 
             Container.BindFactory<Sprite, BackgroundDisplayContent, BackgroundDisplayContent.Factory>();
         }

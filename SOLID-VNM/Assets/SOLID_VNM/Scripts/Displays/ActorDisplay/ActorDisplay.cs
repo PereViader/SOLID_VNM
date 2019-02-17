@@ -12,11 +12,11 @@ namespace SOLID_VNM.Displays.ActorDisplay
 {
     public interface ActorDisplay : Display<ActorDisplayContent> { }
 
-    public class ActorDisplayImpl : ActorDisplay, IInitializable
+    public class ActorDisplayImp : ActorDisplay, IInitializable
     {
         private readonly ActorDisplayBehaviour _actorDisplayBehaviour;
 
-        public ActorDisplayImpl(ActorDisplayBehaviour actorDisplayBehaviour)
+        public ActorDisplayImp(ActorDisplayBehaviour actorDisplayBehaviour)
         {
             _actorDisplayBehaviour = actorDisplayBehaviour;
         }
@@ -28,8 +28,8 @@ namespace SOLID_VNM.Displays.ActorDisplay
 
         void Display<ActorDisplayContent>.Display(ActorDisplayContent content)
         {
-            _actorDisplayBehaviour.Update(content);
-            _actorDisplayBehaviour.Display(true);
+            _actorDisplayBehaviour.Display(content);
+            _actorDisplayBehaviour.Show();
         }
 
         void Display<ActorDisplayContent>.Hide()
@@ -39,7 +39,7 @@ namespace SOLID_VNM.Displays.ActorDisplay
 
         private void Hide()
         {
-            _actorDisplayBehaviour.Display(false);
+            _actorDisplayBehaviour.Hide();
         }
     }
 }

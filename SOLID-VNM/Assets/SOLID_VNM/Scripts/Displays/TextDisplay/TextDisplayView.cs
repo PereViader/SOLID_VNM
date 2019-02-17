@@ -19,24 +19,15 @@ namespace SOLID_VNM.Displays.TextDisplay
         [SerializeField]
         private GameObject _textPanel;
 
+        public TMP_Text ContentText { get { return _guiText; } }
+        public TMP_Text ActorText { get { return _guiActorText; } }
+        public GameObject Canvas { get { return _textPanel; } }
+
+
         private void OnValidate()
         {
             Debug.Assert(_guiText != null, "gui Text in text display view is not assigned", this);
             Debug.Assert(_textPanel != null, "TextPanel gameobject in text display view is not assigned", this);
-        }
-
-        public void Hide()
-        {
-            _textPanel.SetActive(false);
-        }
-
-        public void Display(TextDisplayContent textDisplayContent)
-        {
-            Assert.IsNotNull(textDisplayContent);
-
-            _textPanel.SetActive(true);
-            _guiText.text = textDisplayContent.Text;
-            _guiActorText.text = textDisplayContent.ActorName;
         }
     }
 }

@@ -13,13 +13,13 @@ namespace SOLID_VNM.Displays.TextDisplay
 {
     public interface TextDisplay : Display<TextDisplayContent> { }
 
-    public class TextDisplayController : TextDisplay, IInitializable
+    public class TextDisplayImp : TextDisplay, IInitializable
     {
-        private readonly TextDisplayView _textDisplayView;
+        private readonly TextDisplayBehaviour _textDisplayBehaviour;
 
-        public TextDisplayController(TextDisplayView textDisplayView)
+        public TextDisplayImp(TextDisplayBehaviour textDisplayBehaviour)
         {
-            _textDisplayView = textDisplayView;
+            _textDisplayBehaviour = textDisplayBehaviour;
         }
 
         void IInitializable.Initialize()
@@ -29,7 +29,8 @@ namespace SOLID_VNM.Displays.TextDisplay
 
         void Display<TextDisplayContent>.Display(TextDisplayContent content)
         {
-            _textDisplayView.Display(content);
+            _textDisplayBehaviour.Display(content);
+            _textDisplayBehaviour.Show();
         }
 
         void Display<TextDisplayContent>.Hide()
@@ -39,7 +40,7 @@ namespace SOLID_VNM.Displays.TextDisplay
 
         private void Hide()
         {
-            _textDisplayView.Hide();
+            _textDisplayBehaviour.Hide();
         }
     }
 }

@@ -26,7 +26,7 @@ namespace SOLID_VNM.Displays.ActorDisplay
             Container.BindInstance<SimpleActorDisplayBehaviour.Settings>(_actorDisplayBehaviourSettings);
 
 
-            Container.BindInterfacesTo<ActorDisplayImpl>().AsSingle().NonLazy();
+            Container.BindInterfacesTo<ActorDisplayImp>().AsSingle();
 
             Container.Bind<ActorDisplayBehaviour>().To<SimpleActorDisplayBehaviour>().AsSingle();
 
