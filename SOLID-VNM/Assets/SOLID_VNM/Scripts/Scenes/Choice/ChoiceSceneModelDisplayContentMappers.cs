@@ -3,6 +3,8 @@
 using SOLID_VNM.Displays.BackgroundDisplay;
 using SOLID_VNM.Displays.ChoiceDisplay;
 
+using SOLID_VNM.Displays.BackgroundDisplay.NoTransitionBehaviour;
+
 namespace SOLID_VNM.Scenes.Choice
 {
     public interface ChoiceScenModelChoiceChoiceDisplayContentExtractor : SceneModelDisplayContentMapper<ChoiceSceneModel, ChoiceDisplayContent> { }
@@ -25,19 +27,19 @@ namespace SOLID_VNM.Scenes.Choice
     }
 
 
-    public interface ChoiceSceneModelBackgroundDisplayContentExtractor : SceneModelDisplayContentMapper<ChoiceSceneModel, BackgroundDisplayContent> { }
+    public interface ChoiceSceneModelBackgroundDisplayContentExtractor : SceneModelDisplayContentMapper<ChoiceSceneModel, NoTransitionBackgroundDisplayModel> { }
 
     public class ChoiceSceneModelBackgroundDisplayContentExtractorImpl : ChoiceSceneModelBackgroundDisplayContentExtractor
     {
 
-        private readonly BackgroundDisplayContent.Factory _backgroundDisplayContentFactory;
+        private readonly NoTransitionBackgroundDisplayModel.Factory _backgroundDisplayContentFactory;
 
-        public ChoiceSceneModelBackgroundDisplayContentExtractorImpl(BackgroundDisplayContent.Factory backgroundDisplayContentFactory)
+        public ChoiceSceneModelBackgroundDisplayContentExtractorImpl(NoTransitionBackgroundDisplayModel.Factory backgroundDisplayContentFactory)
         {
             _backgroundDisplayContentFactory = backgroundDisplayContentFactory;
         }
 
-        BackgroundDisplayContent SceneModelDisplayContentMapper<ChoiceSceneModel, BackgroundDisplayContent>.From(ChoiceSceneModel choiceSceneModel)
+        NoTransitionBackgroundDisplayModel SceneModelDisplayContentMapper<ChoiceSceneModel, NoTransitionBackgroundDisplayModel>.From(ChoiceSceneModel choiceSceneModel)
         {
             return _backgroundDisplayContentFactory.Create(choiceSceneModel.Background);
         }

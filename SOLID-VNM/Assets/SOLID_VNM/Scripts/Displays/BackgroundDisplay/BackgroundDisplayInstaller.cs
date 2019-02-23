@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
+using SOLID_VNM.Displays.BackgroundDisplay.NoTransitionBehaviour;
+using SOLID_VNM.Displays.BackgroundDisplay.FadeInTransitionBehaviour;
+
 
 namespace SOLID_VNM.Displays.BackgroundDisplay
 {
@@ -17,9 +20,17 @@ namespace SOLID_VNM.Displays.BackgroundDisplay
             Container.BindInstance(_backgroundDisplayView);
 
             Container.BindInterfacesTo<BackgroundDisplayImp>().AsSingle();
-            Container.Bind<BackgroundDisplayBehaviour>().To<BackgroundDisplayBehaviourImp>().AsSingle();
 
-            Container.BindFactory<Sprite, BackgroundDisplayContent, BackgroundDisplayContent.Factory>();
+            Container.Bind<BackgroundDisplayPresenterSelectorFactory>().To<BackgroundDisplayPresenterSelectorFactoryImp>().AsSingle();
+
+            //No transition
+            Container.BindFactory<Sprite, NoTransitionBackgroundDisplayModel, NoTransitionBackgroundDisplayModel.Factory>();
+            Container.BindFactory<NoTransitionBackgroundDisplayModel, NoTransitionBackgroundDisplayPresenter, NoTransitionBackgroundDisplayPresenter.Factory>();
+
+
+            //Fade in transition
+            Container.BindFactory<Sprite, float, FadeInTransitionBackgroundDisplayModel, FadeInTransitionBackgroundDisplayModel.Factory>();
+            Container.BindFactory<FadeInTransitionBackgroundDisplayModel, FadeInTransitionBackgroundDisplayPresenter, FadeInTransitionBackgroundDisplayPresenter.Factory>();
         }
     }
 }

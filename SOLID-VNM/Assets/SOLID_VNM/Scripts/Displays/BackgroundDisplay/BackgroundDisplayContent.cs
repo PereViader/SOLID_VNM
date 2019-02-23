@@ -4,24 +4,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
+using SOLID_VNM.Displays.BackgroundDisplay.NoTransitionBehaviour;
+using SOLID_VNM.Displays.BackgroundDisplay.FadeInTransitionBehaviour;
+
+
 namespace SOLID_VNM.Displays.BackgroundDisplay
 {
-    public class BackgroundDisplayContent : DisplayContent, IDisposable
+    public interface BackgroundDisplayModel : DisplayModel
     {
-        private Sprite _backgroundSprite;
+        void Visit(BackgroundDisplayModelVisitor visitor);
+    }
 
-        public Sprite BackgroundSprite { get { return _backgroundSprite; } }
-
-        public BackgroundDisplayContent(Sprite backgroundSprite)
-        {
-            _backgroundSprite = backgroundSprite;
-        }
-
-        public void Dispose()
-        {
-        }
-
-        public class Factory : PlaceholderFactory<Sprite, BackgroundDisplayContent> { }
+    public interface BackgroundDisplayModelVisitor
+    {
+        void Accept(NoTransitionBackgroundDisplayModel model);
+        void Accept(FadeInTransitionBackgroundDisplayModel model);
     }
 }
 

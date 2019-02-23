@@ -33,7 +33,7 @@ namespace SOLID_VNM.Displays.TextDisplay
             _textDisplayBehaviour.Show();
         }
 
-        void Display<TextDisplayContent>.Hide()
+        void Display<TextDisplayContent>.Stop()
         {
             Hide();
         }

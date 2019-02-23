@@ -16,7 +16,7 @@ namespace SOLID_VNM.Displays.ActorDisplay
         Right,
     }
 
-    public interface ActorDisplayContent : DisplayContent
+    public interface ActorDisplayContent : DisplayModel
     {
         List<Actor> Actors { get; }
         ActorPosition ActorPosition(Actor actor);

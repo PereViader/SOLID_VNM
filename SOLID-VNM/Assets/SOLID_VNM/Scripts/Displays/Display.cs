@@ -1,12 +1,12 @@
 ﻿namespace SOLID_VNM.Displays
 {
-    public interface DisplayContent
+    public interface DisplayModel
     {
     }
 
-    public interface Display<T> where T : DisplayContent
+    public interface Display<T> where T : DisplayModel
     {
-        void Display(T content);
-        void Hide();
+        void Display(T model);
+        void Stop();
     }
 }

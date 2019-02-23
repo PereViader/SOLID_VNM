@@ -7,6 +7,8 @@ using SOLID_VNM.Displays.ActorDisplay;
 using SOLID_VNM.Displays.TextDisplay;
 using SOLID_VNM.Displays.BackgroundDisplay;
 
+using SOLID_VNM.Displays.BackgroundDisplay.NoTransitionBehaviour;
+
 namespace SOLID_VNM.Scenes.Dialogue
 {
     public interface DialogueSceneModelTextDisplayContentMapper : SceneModelDisplayContentMapper<DialogueSceneModel, TextDisplayContent> { }
@@ -63,18 +65,18 @@ namespace SOLID_VNM.Scenes.Dialogue
     }
 
 
-    public interface DialogueSceneModelBackgroundDisplayContentMapper : SceneModelDisplayContentMapper<DialogueSceneModel, BackgroundDisplayContent> { }
+    public interface DialogueSceneModelBackgroundDisplayContentMapper : SceneModelDisplayContentMapper<DialogueSceneModel, NoTransitionBackgroundDisplayModel> { }
 
     public class DialogueSceneModelBackgroundDisplayContentMapperImpl : DialogueSceneModelBackgroundDisplayContentMapper
     {
-        private readonly BackgroundDisplayContent.Factory _backgroundDisplayContentFactory;
+        private readonly NoTransitionBackgroundDisplayModel.Factory _backgroundDisplayContentFactory;
 
-        public DialogueSceneModelBackgroundDisplayContentMapperImpl(BackgroundDisplayContent.Factory backgroundDisplayContentFactory)
+        public DialogueSceneModelBackgroundDisplayContentMapperImpl(NoTransitionBackgroundDisplayModel.Factory backgroundDisplayContentFactory)
         {
             _backgroundDisplayContentFactory = backgroundDisplayContentFactory;
         }
 
-        BackgroundDisplayContent SceneModelDisplayContentMapper<DialogueSceneModel, BackgroundDisplayContent>.From(DialogueSceneModel dialogueSceneModel)
+        NoTransitionBackgroundDisplayModel SceneModelDisplayContentMapper<DialogueSceneModel, NoTransitionBackgroundDisplayModel>.From(DialogueSceneModel dialogueSceneModel)
         {
             return _backgroundDisplayContentFactory.Create(dialogueSceneModel.Background);
         }

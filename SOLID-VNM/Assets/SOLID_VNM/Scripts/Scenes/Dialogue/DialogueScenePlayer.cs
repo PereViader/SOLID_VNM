@@ -47,9 +47,9 @@ namespace SOLID_VNM.Scenes.Dialogue
 
         void ScenePlayer<DialogueScene>.End()
         {
-            _textDisplay.Hide();
-            _backgroundDisplay.Hide();
-            _actorDisplay.Hide();
+            _textDisplay.Stop();
+            _backgroundDisplay.Stop();
+            _actorDisplay.Stop();
         }
     }
 }

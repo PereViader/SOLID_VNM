@@ -41,7 +41,7 @@ namespace SOLID_VNM.Displays.ChoiceDisplay
             choiceButton.Text.text = choice.text;
         }
 
-        void Display<ChoiceDisplayContent>.Hide()
+        void Display<ChoiceDisplayContent>.Stop()
         {
             Hide();
         }

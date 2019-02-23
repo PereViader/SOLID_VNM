@@ -38,8 +38,8 @@ namespace SOLID_VNM.Scenes.Choice
 
         void ScenePlayer<ChoiceScene>.End()
         {
-            _choiceDisplay.Hide();
-            _backgroundDisplay.Hide();
+            _choiceDisplay.Stop();
+            _backgroundDisplay.Stop();
         }
     }
 }

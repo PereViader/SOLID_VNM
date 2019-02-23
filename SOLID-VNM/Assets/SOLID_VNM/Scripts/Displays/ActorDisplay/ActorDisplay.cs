@@ -32,7 +32,7 @@ namespace SOLID_VNM.Displays.ActorDisplay
             _actorDisplayBehaviour.Show();
         }
 
-        void Display<ActorDisplayContent>.Hide()
+        void Display<ActorDisplayContent>.Stop()
         {
             Hide();
         }

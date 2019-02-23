@@ -2,36 +2,50 @@
 
 namespace SOLID_VNM.Displays.BackgroundDisplay
 {
-    public interface BackgroundDisplay : Display<BackgroundDisplayContent> { }
+    public interface BackgroundDisplay : Display<BackgroundDisplayModel> { }
 
-    public class BackgroundDisplayImp : BackgroundDisplay, IInitializable
+    public class BackgroundDisplayImp : BackgroundDisplay, IInitializable, ITickable
     {
-        private readonly BackgroundDisplayBehaviour _backgroundDisplayBehaviour;
+        private readonly BackgroundDisplayPresenterSelectorFactory _presenterSelectorFactory;
 
-        public BackgroundDisplayImp(BackgroundDisplayBehaviour backgroundDisplayBehaviour)
+        private BackgroundDisplayPresenter _activePresenter;
+
+        public BackgroundDisplayImp(BackgroundDisplayPresenterSelectorFactory backgroundDisplayPresenterSelector)
         {
-            _backgroundDisplayBehaviour = backgroundDisplayBehaviour;
+            _presenterSelectorFactory = backgroundDisplayPresenterSelector;
         }
 
         void IInitializable.Initialize()
         {
-            Hide();
         }
 
-        void Display<BackgroundDisplayContent>.Display(BackgroundDisplayContent backgroundDisplayContent)
+        void Display<BackgroundDisplayModel>.Display(BackgroundDisplayModel backgroundDisplayModel)
         {
-            _backgroundDisplayBehaviour.Display(backgroundDisplayContent);
-            _backgroundDisplayBehaviour.Show();
+            if (_activePresenter != null)
+            {
+                _activePresenter.Hide();
+                _activePresenter = null;
+            }
+
+            _activePresenter = _presenterSelectorFactory.Create(backgroundDisplayModel);
+            _activePresenter.Start();
         }
 
-        void Display<BackgroundDisplayContent>.Hide()
+        public void Tick()
         {
-            Hide();
+            if (_activePresenter != null)
+            {
+                _activePresenter.Tick();
+            }
         }
 
-        private void Hide()
+        void Display<BackgroundDisplayModel>.Stop()
         {
-            _backgroundDisplayBehaviour.Hide();
+            if (_activePresenter != null)
+            {
+                _activePresenter.Reset();
+                _activePresenter.Reset();
+            }
         }
     }
 }
