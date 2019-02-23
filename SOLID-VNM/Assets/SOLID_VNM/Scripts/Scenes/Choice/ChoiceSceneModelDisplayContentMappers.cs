@@ -3,7 +3,7 @@
 using SOLID_VNM.Displays.BackgroundDisplay;
 using SOLID_VNM.Displays.ChoiceDisplay;
 
-using SOLID_VNM.Displays.BackgroundDisplay.NoTransitionBehaviour;
+using SOLID_VNM.Displays.BackgroundDisplay.FadeInTransitionBehaviour;
 
 namespace SOLID_VNM.Scenes.Choice
 {
@@ -27,21 +27,21 @@ namespace SOLID_VNM.Scenes.Choice
     }
 
 
-    public interface ChoiceSceneModelBackgroundDisplayContentExtractor : SceneModelDisplayContentMapper<ChoiceSceneModel, NoTransitionBackgroundDisplayModel> { }
+    public interface ChoiceSceneModelBackgroundDisplayContentExtractor : SceneModelDisplayContentMapper<ChoiceSceneModel, FadeInTransitionBackgroundDisplayModel> { }
 
     public class ChoiceSceneModelBackgroundDisplayContentExtractorImpl : ChoiceSceneModelBackgroundDisplayContentExtractor
     {
 
-        private readonly NoTransitionBackgroundDisplayModel.Factory _backgroundDisplayContentFactory;
+        private readonly FadeInTransitionBackgroundDisplayModel.Factory _backgroundDisplayContentFactory;
 
-        public ChoiceSceneModelBackgroundDisplayContentExtractorImpl(NoTransitionBackgroundDisplayModel.Factory backgroundDisplayContentFactory)
+        public ChoiceSceneModelBackgroundDisplayContentExtractorImpl(FadeInTransitionBackgroundDisplayModel.Factory backgroundDisplayContentFactory)
         {
             _backgroundDisplayContentFactory = backgroundDisplayContentFactory;
         }
 
-        NoTransitionBackgroundDisplayModel SceneModelDisplayContentMapper<ChoiceSceneModel, NoTransitionBackgroundDisplayModel>.From(ChoiceSceneModel choiceSceneModel)
+        FadeInTransitionBackgroundDisplayModel SceneModelDisplayContentMapper<ChoiceSceneModel, FadeInTransitionBackgroundDisplayModel>.From(ChoiceSceneModel choiceSceneModel)
         {
-            return _backgroundDisplayContentFactory.Create(choiceSceneModel.Background);
+            return _backgroundDisplayContentFactory.Create(choiceSceneModel.Background, 5f);
         }
     }
 }

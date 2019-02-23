@@ -50,6 +50,9 @@ MonoBehaviour:
         node: {fileID: 114459255512258394}
         reroutePoints: []
       - fieldName: next
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: next
         node: {fileID: 114655713128982030}
         reroutePoints: []
       _direction: 0
@@ -89,7 +92,7 @@ MonoBehaviour:
   m_Name: X Node Choice Node
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 297, y: -146}
+  position: {x: 248, y: 24}
   ports:
     keys:
     - previous
@@ -123,7 +126,7 @@ MonoBehaviour:
   previous: {fileID: 0}
   choices: {fileID: 0}
   _model:
-    background: {fileID: 0}
+    background: {fileID: 21300000, guid: 0dcddf3a936fa0a4687406eabc8dbdf9, type: 3}
     choices:
     - 1
     - 2

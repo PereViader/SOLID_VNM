@@ -7,32 +7,32 @@ namespace SOLID_VNM.Displays.BackgroundDisplay.FadeInTransitionBehaviour
     public class FadeInTransitionBackgroundDisplayPresenter : BackgroundDisplayPresenter
     {
         private readonly BackgroundDisplayView _view;
-        private readonly Settings _settings;
 
         private FadeInTransitionBackgroundDisplayModel _model;
 
-        public FadeInTransitionBackgroundDisplayPresenter(FadeInTransitionBackgroundDisplayModel model, BackgroundDisplayView view, Settings settings)
+        public FadeInTransitionBackgroundDisplayPresenter(FadeInTransitionBackgroundDisplayModel model, BackgroundDisplayView view)
         {
             _view = view;
-            _settings = settings;
             _model = model;
         }
 
         void BackgroundDisplayPresenter.Start()
         {
-            _view.CanvasImage.sprite = _model.BackgroundSprite;
-            _view.CanvasImage.color = _settings.startingFadeColor;
+            _view.SwapBackgrounds();
+            _view.FrontBackground.sprite = _model.BackgroundSprite;
+            _view.FrontBackground.color = new Color(1, 1, 1, 0);
             SetVisible(true);
         }
 
         void BackgroundDisplayPresenter.Tick()
         {
-            _view.CanvasImage.color = Color.Lerp(_view.CanvasImage.color, Color.white, _model.InterpolationFactor * Time.deltaTime);
+            _view.FrontBackground.color = Color.Lerp(_view.FrontBackground.color, Color.white, _model.InterpolationFactor * Time.deltaTime);
         }
 
-        void BackgroundDisplayPresenter.Reset()
+        void BackgroundDisplayPresenter.End()
         {
-            _view.CanvasImage.color = Color.white;
+            _view.FrontBackground.color = Color.white;
+            _view.BackBackground.sprite = null;
         }
 
         void BackgroundDisplayPresenter.Hide()
@@ -40,15 +40,9 @@ namespace SOLID_VNM.Displays.BackgroundDisplay.FadeInTransitionBehaviour
             SetVisible(false);
         }
 
-        private void SetVisible(bool v)
+        private void SetVisible(bool status)
         {
-            _view.Canvas.SetActive(true);
-        }
-
-        [System.Serializable]
-        public class Settings
-        {
-            public Color startingFadeColor;
+            _view.BackgroundDisplay.SetActive(status);
         }
 
         public class Factory : PlaceholderFactory<FadeInTransitionBackgroundDisplayModel, FadeInTransitionBackgroundDisplayPresenter> { }

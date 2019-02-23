@@ -6,13 +6,13 @@ namespace SOLID_VNM.Displays.BackgroundDisplay
 
     public class BackgroundDisplayImp : BackgroundDisplay, IInitializable, ITickable
     {
-        private readonly BackgroundDisplayPresenterSelectorFactory _presenterSelectorFactory;
+        private readonly BackgroundDisplayPresenterFactory _presenterFactory;
 
         private BackgroundDisplayPresenter _activePresenter;
 
-        public BackgroundDisplayImp(BackgroundDisplayPresenterSelectorFactory backgroundDisplayPresenterSelector)
+        public BackgroundDisplayImp(BackgroundDisplayPresenterFactory backgroundDisplayPresenterSelector)
         {
-            _presenterSelectorFactory = backgroundDisplayPresenterSelector;
+            _presenterFactory = backgroundDisplayPresenterSelector;
         }
 
         void IInitializable.Initialize()
@@ -23,11 +23,11 @@ namespace SOLID_VNM.Displays.BackgroundDisplay
         {
             if (_activePresenter != null)
             {
-                _activePresenter.Hide();
+                _activePresenter.End();
                 _activePresenter = null;
             }
 
-            _activePresenter = _presenterSelectorFactory.Create(backgroundDisplayModel);
+            _activePresenter = _presenterFactory.Create(backgroundDisplayModel);
             _activePresenter.Start();
         }
 
@@ -43,8 +43,7 @@ namespace SOLID_VNM.Displays.BackgroundDisplay
         {
             if (_activePresenter != null)
             {
-                _activePresenter.Reset();
-                _activePresenter.Reset();
+                _activePresenter.End();
             }
         }
     }

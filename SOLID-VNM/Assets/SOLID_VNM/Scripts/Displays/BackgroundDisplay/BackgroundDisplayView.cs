@@ -1,27 +1,50 @@
-﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using Zenject;
+
 namespace SOLID_VNM.Displays.BackgroundDisplay
 {
-    public class BackgroundDisplayView : MonoBehaviour
+    public interface BackgroundDisplayView
     {
-        [SerializeField]
-        private Image _guiImage;
+        GameObject BackgroundDisplay { get; }
+        Image FrontBackground { get; }
+        Image BackBackground { get; }
 
-        [SerializeField]
-        private GameObject _backgroundCanvas;
+        void SwapBackgrounds();
+    }
 
-        public Image CanvasImage { get { return _guiImage; } }
+    public class BackgroundDisplayViewImp : BackgroundDisplayView, IInitializable
+    {
+        private readonly BackgroundDisplayViewMB _backgroundDisplayViewMB;
 
-        public GameObject Canvas { get { return _backgroundCanvas; } }
+        private Image _frontBackground;
+        private Image _backBackground;
 
-        private void OnValidate()
+        Image BackgroundDisplayView.FrontBackground { get { return _frontBackground; } }
+        Image BackgroundDisplayView.BackBackground { get { return _backBackground; } }
+
+        GameObject BackgroundDisplayView.BackgroundDisplay { get { return _backgroundDisplayViewMB.Canvas; } }
+
+        public BackgroundDisplayViewImp(BackgroundDisplayViewMB backgroundDisplayViewMB)
         {
-            Debug.Assert(_backgroundCanvas != null, "BackgroundDisplayView: Background Canvas is not assigned", this);
-            Debug.Assert(_guiImage != null, "BackgroundDisplayView: Image is not assigned", this);
+            _backgroundDisplayViewMB = backgroundDisplayViewMB;
+        }
+
+        void IInitializable.Initialize()
+        {
+            _frontBackground = _backgroundDisplayViewMB.StartingFrontBackground;
+            _backBackground = _backgroundDisplayViewMB.StartingBackBackground;
+        }
+
+        void BackgroundDisplayView.SwapBackgrounds()
+        {
+            Image tmp = _frontBackground;
+            _frontBackground = _backBackground;
+            _backBackground = tmp;
+
+            //The last UI element is rendered on top of all the rest 
+            _frontBackground.gameObject.transform.SetAsLastSibling();
         }
     }
 }
-

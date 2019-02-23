@@ -13,22 +13,36 @@ namespace SOLID_VNM.Displays.BackgroundDisplay
     {
 
         [SerializeField]
-        private BackgroundDisplayView _backgroundDisplayView;
+        private BackgroundDisplayViewMB _backgroundDisplayViewMB;
 
         public override void InstallBindings()
         {
-            Container.BindInstance(_backgroundDisplayView);
+            InstallMain();
+            InstallBackgroundView();
+            InstallNoTransitionBackgroundBehaviour();
+            InstallFadeInTransitionBackgroundBehavuiour();
+        }
 
+        private void InstallMain()
+        {
             Container.BindInterfacesTo<BackgroundDisplayImp>().AsSingle();
+            Container.BindFactory<BackgroundDisplayModel, BackgroundDisplayPresenter, BackgroundDisplayPresenterFactory>().FromFactory<BackgroundDisplayPresenterFactoryImp>();
+        }
 
-            Container.Bind<BackgroundDisplayPresenterSelectorFactory>().To<BackgroundDisplayPresenterSelectorFactoryImp>().AsSingle();
+        private void InstallBackgroundView()
+        {
+            Container.BindInterfacesTo<BackgroundDisplayViewImp>().AsSingle();
+            Container.BindInstance(_backgroundDisplayViewMB);
+        }
 
-            //No transition
+        private void InstallNoTransitionBackgroundBehaviour()
+        {
             Container.BindFactory<Sprite, NoTransitionBackgroundDisplayModel, NoTransitionBackgroundDisplayModel.Factory>();
             Container.BindFactory<NoTransitionBackgroundDisplayModel, NoTransitionBackgroundDisplayPresenter, NoTransitionBackgroundDisplayPresenter.Factory>();
+        }
 
-
-            //Fade in transition
+        private void InstallFadeInTransitionBackgroundBehavuiour()
+        {
             Container.BindFactory<Sprite, float, FadeInTransitionBackgroundDisplayModel, FadeInTransitionBackgroundDisplayModel.Factory>();
             Container.BindFactory<FadeInTransitionBackgroundDisplayModel, FadeInTransitionBackgroundDisplayPresenter, FadeInTransitionBackgroundDisplayPresenter.Factory>();
         }
